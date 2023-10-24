@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Rack;
-use App\Models\RackSpace;
 use Illuminate\Http\Request;
 
-class RackController extends Controller
+class RackSpaceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +13,7 @@ class RackController extends Controller
      */
     public function index()
     {
-        $racks = Rack::paginate(10);
-
-        return view('racks.index', compact('racks'));
+        //
     }
 
     /**
@@ -28,7 +24,6 @@ class RackController extends Controller
     public function create()
     {
         //
-        return view('racks.create');
     }
 
     /**
@@ -40,30 +35,6 @@ class RackController extends Controller
     public function store(Request $request)
     {
         //
-        $request->validate([
-            'name' => 'required|unique:racks|max:255',
-            'description' => 'required',
-            'rack_size' => 'numeric|required|min:1|max:256',
-        ]);
-
-        $rack = new Rack();
-
-        $rack->name = $request->name;
-        $rack->description = $request->description;
-
-        $rack->save();
-
-        for ($i = 1; $i <= $request->rack_size; $i++) {
-            RackSpace::create([
-                'rack_id' => $rack->id,
-                'unit_number' => $i,
-            ]);
-        }
-
-        return redirect('/racks')->with(
-            'success',
-            'Rack has been added successfully.'
-        );
     }
 
     /**
@@ -74,12 +45,7 @@ class RackController extends Controller
      */
     public function show($id)
     {
-        // finding the rack with the id and returning it along with its rack spaces (lazy loading)
-
-        $rack = Rack::find($id);
-
-        // dd($rack->rackSpaces->count()); gives 123
-        return view('racks.show', compact('rack'));
+        //
     }
 
     /**

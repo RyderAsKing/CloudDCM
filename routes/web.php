@@ -37,6 +37,10 @@ Route::middleware('auth')->group(function () {
     );
 
     Route::resource('racks', RackController::class);
+
+    Route::get('/racks/{rack}/spaces', [RackController::class, 'spaces'])->name(
+        'racks.spaces'
+    );
 });
 
 require __DIR__ . '/auth.php';

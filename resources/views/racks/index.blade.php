@@ -60,10 +60,10 @@
                                 <td class="border px-4 py-2" style="width: 20%">
                                     <a href="{{ route('racks.show', $rack->id) }}"
                                         class="text-white bg-gradient-to-r from-blue-300 to-indigo-300  border border-fuchsia-00 hover:border-violet-100 font-semibold py-1 px-4 rounded-md transition-colors duration-300"
-                                        style="width: fit-content;">View</a>
+                                        style="width: fit-content;">View &rarr;</a>
                                     <a href="{{ route('racks.edit', $rack->id) }}"
                                         class="text-white bg-gradient-to-r from-blue-300 to-indigo-300  border border-fuchsia-00 hover:border-violet-100 font-semibold py-1 px-4 rounded-md transition-colors duration-300"
-                                        style="width: fit-content;">Edit</a>
+                                        style="width: fit-content;">Edit &rarr;</a>
                                 </td>
                             </tr>
                             @endforeach
