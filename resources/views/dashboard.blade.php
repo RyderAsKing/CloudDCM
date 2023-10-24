@@ -16,7 +16,7 @@
                             <h2 class="text-xl font-semibold mb-4">Welcome to dashboard</h2>
                             <p class="text-gray-700">Here you can manage colocation rack space with ease</p>
 
-                            <a href="#"
+                            <a href="{{ route('racks.index') }}"
                                 class="mt-2 flex items-center bg-gradient-to-r from-violet-300 to-indigo-300  border border-fuchsia-00 hover:border-violet-100 font-semibold py-2 px-4 rounded-md transition-colors duration-300"
                                 style="width: fit-content;">Manage
                                 now
