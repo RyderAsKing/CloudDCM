@@ -16,4 +16,9 @@ class RackSpace extends Model
         'description',
         'client_email', // this is the email of the client who is renting the rack space
     ];
+
+    public function rack()
+    {
+        return $this->belongsTo(Rack::class);
+    }
 }

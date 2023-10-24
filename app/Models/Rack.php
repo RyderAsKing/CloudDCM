@@ -10,4 +10,9 @@ class Rack extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'description'];
+
+    public function rackSpaces()
+    {
+        return $this->hasMany(RackSpace::class);
+    }
 }
