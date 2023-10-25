@@ -14,7 +14,10 @@ return new class extends Migration {
     {
         Schema::create('rack_spaces', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('rack_id')->constrained();
+            $table
+                ->foreignId('rack_id')
+                ->constrained()
+                ->onDelete('cascade');
             $table->integer('unit_number');
             $table->string('name')->nullable();
             $table->text('description')->nullable();

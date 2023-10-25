@@ -114,6 +114,7 @@ class RackController extends Controller
     public function destroy($id)
     {
         //
+        Rack::destroy($id);
     }
 
     public function spaces($id, $unit_number)
