@@ -26,55 +26,49 @@
             </div>
             @endif
 
-            <div class="bg-white overflow-hidden shadow-xl p-4">
-                <div class="flex justify-between items-center">
-                    <h2 class="text-xl font-semibold mb-4">Racks</h2>
-                    <a href="{{ route('racks.create') }}"
-                        class="text-white mt-2 flex items-center bg-gradient-to-r from-blue-300 to-indigo-300  border border-fuchsia-00 hover:border-violet-100 font-semibold py-2 px-4 rounded-md transition-colors duration-300"
-                        style="width: fit-content;">Add
-                        Rack
-                        &rarr;
-                    </a>
-                </div>
-                <table class="table-auto w-full">
-                    <thead>
-                        <tr>
-                            <th class="px-4 py-2">Name</th>
-                            <th class="px-4 py-2">Description</th>
-                            <th class="px-4 py-2">Size</th>
-                            <th class="px-4 py-2 ">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if(count($racks) < 1) <tr>
-                            <td colspan="4" class="text-center py-4">No racks found.</td>
-                            </tr>
-                            @endif
+            <a href="{{route('racks.create')}}" type="button"
+                class="mb-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">
+                Add rack +
+            </a>
+            <div class="flex flex-col">
 
-                            @foreach ($racks as $rack)
-                            <tr>
-                                <td class="border px-4 py-2">{{ $rack->name }}</td>
-                                <td class="border px-4 py-2" style="width: 50%">{{ $rack->description }}</td>
-                                <td class="border px-4 py-2">{{ count($rack->rackSpaces) }}</td>
-
-                                <td class="border px-4 py-2" style="width: 20%">
-                                    <a href="{{ route('racks.show', $rack->id) }}"
-                                        class="text-white bg-gradient-to-r from-blue-300 to-indigo-300  border border-fuchsia-00 hover:border-violet-100 font-semibold py-1 px-4 rounded-md transition-colors duration-300"
-                                        style="width: fit-content;">View &rarr;</a>
-                                    <a href="{{ route('racks.edit', $rack->id) }}"
-                                        class="text-white bg-gradient-to-r from-blue-300 to-indigo-300  border border-fuchsia-00 hover:border-violet-100 font-semibold py-1 px-4 rounded-md transition-colors duration-300"
-                                        style="width: fit-content;">Edit &rarr;</a>
-                                </td>
-                            </tr>
-                            @endforeach
-                    </tbody>
-                </table>
-                <div class="mt-2">
-                    {{ $racks->links() }}
+                <div class="overflow-x-auto">
+                    <div class="inline-block min-w-full">
+                        <div class="overflow-hidden border rounded-lg">
+                            <table class="min-w-full divide-y divide-neutral-200">
+                                <thead class="bg-white">
+                                    <tr class="text-neutral-500">
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Name</th>
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Description
+                                        </th>
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Size</th>
+                                        <th class="px-5 py-3 text-xs font-medium text-right uppercase">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-neutral-200">
+                                    @foreach ($racks as $rack)
+                                    <tr class="text-neutral-800 bg-white">
+                                        <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">{{$rack->name}}
+                                        </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{$rack->description}}</td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                            {{$rack->rackSpaces->count()}}
+                                        </td>
+                                        <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                            <a class="text-blue-600 hover:text-blue-700"
+                                                href="{{route('racks.show', $rack->id)}}">Edit</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="mt-2">
+                {{ $racks->links() }}
             </div>
         </div>
     </div>
-
-
 </x-app-layout>

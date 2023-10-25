@@ -18,7 +18,7 @@
                             class="border border-gray-300 p-2 mt-1 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                             value={{old('name')}}>
                         @error('name')
-                        <div class="mt-2 text-sm">
+                        <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
                         @enderror
@@ -29,7 +29,7 @@
                             class="border border-gray-300 p-2 mt-1 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                             value={{old('description')}}>
                         @error('description')
-                        <div class="mt-2 text-sm">
+                        <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
                         @enderror
@@ -40,14 +40,14 @@
                             class="border border-gray-300 p-2 mt-1 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
                             value={{old('rack_space')}}>
                         @error('rack_size')
-                        <div class="mt-2 text-sm">
+                        <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
                         </div>
                         @enderror
                     </div>
                     <button type="submit"
-                        class="mt-2 flex items-center bg-white from-violet-300 to-indigo-300  border border-fuchsia-00 hover:border-violet-100 font-semibold py-2 px-4 rounded-md transition-colors duration-300"
-                        style="width: fit-content;">Add Rack</button>
+                        class="mt-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none"
+                        style="width: fit-content;">Add Rack +</button>
                 </form>
             </div>
         </div>

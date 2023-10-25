@@ -11,14 +11,12 @@
                 <div class="p-6 text-gray-900">
                     <div class="grid grid-cols-1 ">
                         <!-- Card 1 -->
-                        <div
-                            class="backdrop-blur-sm bg-white/20 p-6 rounded-md shadow-sm cursor-pointer border-2 border-gray-50 hover:border-violet-200 hover:border-2 transition-colors duration-300">
+                        <div class="backdrop-blur-sm bg-white/20 p-6 rounded-md shadow-sm  border-2 border-gray-50 ">
                             <h2 class="text-xl font-semibold mb-4">Welcome to dashboard</h2>
                             <p class="text-gray-700">Here you can manage colocation rack space with ease</p>
 
                             <a href="{{ route('racks.index') }}"
-                                class="text-white mt-2 flex items-center bg-gradient-to-r from-blue-300 to-indigo-300  border border-fuchsia-00 hover:border-violet-100 font-semibold py-2 px-4 rounded-md transition-colors duration-300"
-                                style="width: fit-content;">Manage
+                                class="mt-4 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">Manage
                                 now
                                 &rarr;
                             </a>
