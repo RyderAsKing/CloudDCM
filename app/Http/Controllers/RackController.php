@@ -139,9 +139,9 @@ class RackController extends Controller
             'client_email' => 'email|nullable',
         ]);
 
-        $rack_space->name = $request->server_name;
-        $rack_space->description = $request->server_ip;
-        $rack_space->client_email = $request->server_mac;
+        $rack_space->name = $request->name;
+        $rack_space->description = $request->description;
+        $rack_space->client_email = $request->client_email;
 
         $rack_space->save();
 

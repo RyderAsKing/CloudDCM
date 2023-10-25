@@ -14,9 +14,9 @@
                     @csrf
                     <div class="flex flex-col">
                         <label for="name" class="font-bold">Name</label>
-                        <input type="text" name="name" id="name" placeholder="e.g. Rack 1"
+                        <input type="text" name="name" id="name" placeholder="e.g. dal.xyz.com"
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value={{old('name')}}>
+                            value="@if($rackSpace->name != null) {{$rackSpace->name}} @endif">
                         @error('name')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
@@ -25,9 +25,10 @@
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="description" class="font-bold"> Description</label>
-                        <input type="text" name="description" id="description" placeholder="e.g. Very cool rack"
+                        <input type="text" name="description" id="description"
+                            placeholder="e.g. This server is used for ..."
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value={{old('description')}}>
+                            value="@if($rackSpace->description != null) {{$rackSpace->description}} @endif">
                         @error('description')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
@@ -36,9 +37,9 @@
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="client_email" class="font-bold"> Client Email</label>
-                        <input type="text" name="client_email" id="client_email" placeholder="e.g. Very cool rack"
+                        <input type="text" name="client_email" id="client_email" placeholder="e.g. admin@example.com"
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value={{old('client_email')}}>
+                            value="@if($rackSpace->client_email != null) {{$rackSpace->client_email}} @endif">
                         @error('client_email')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
