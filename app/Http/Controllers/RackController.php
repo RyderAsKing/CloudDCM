@@ -115,6 +115,11 @@ class RackController extends Controller
     {
         //
         Rack::destroy($id);
+
+        return redirect('/racks')->with(
+            'success',
+            'Rack has been deleted successfully.'
+        );
     }
 
     public function spaces($id, $unit_number)
