@@ -5,10 +5,7 @@
         </h2>
     </x-slot>
 
-    {{-- loop through rackSpaces and display all rackSpaces in a nice formatted table with options to edit and delete.
-    the rows are name, description, client_email.
-    style using Tailwind css
-    --}}
+
     <div class="py-12">
         <div class="grid grid-cols-5 gap-2 mx-auto sm:px-6 lg:px-8">
             <div class="rack rounded-xl bg-gray-200"
@@ -86,7 +83,7 @@
                                                 Not assigned @endif </td>
                                             <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                                 <a class="text-blue-600 hover:text-blue-700"
-                                                    href="{{route('racks.show', $rack->id)}}">Edit</a>
+                                                    href="{{route('racks.spaces.show', [$rack->id, $rackSpace])}}">Edit</a>
                                             </td>
                                         </tr>
                                         @endforeach

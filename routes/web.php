@@ -36,9 +36,15 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('racks', RackController::class);
 
-    Route::get('/racks/{rack}/spaces', [RackController::class, 'spaces'])->name(
-        'racks.spaces'
-    );
+    Route::get('/racks/{rack}/spaces/{rackSpace:unit_number}', [
+        RackController::class,
+        'spaces',
+    ])->name('racks.spaces.show');
+
+    Route::patch('/racks/{rack}/spaces/{rackSpace:unit_number}', [
+        RackController::class,
+        'spaces_update',
+    ])->name('racks.spaces.update');
 });
 
 require __DIR__ . '/auth.php';

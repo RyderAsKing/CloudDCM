@@ -115,4 +115,39 @@ class RackController extends Controller
     {
         //
     }
+
+    public function spaces($id, $unit_number)
+    {
+        $rack = Rack::find($id);
+
+        $rackSpace = RackSpace::where('rack_id', $id)
+            ->where('unit_number', $unit_number)
+            ->first();
+
+        return view('racks.spaces.index', compact('rack', 'rackSpace'));
+    }
+
+    public function spaces_update($id, $unit_number, Request $request)
+    {
+        $rack_space = RackSpace::where('rack_id', $id)
+            ->where('unit_number', $unit_number)
+            ->first();
+
+        $request->validate([
+            'name' => 'string|max:255|nullable',
+            'description' => 'string|nullable',
+            'client_email' => 'email|nullable',
+        ]);
+
+        $rack_space->name = $request->server_name;
+        $rack_space->description = $request->server_ip;
+        $rack_space->client_email = $request->server_mac;
+
+        $rack_space->save();
+
+        return redirect('/racks/' . $id)->with(
+            'success',
+            'Rack space has been added successfully.'
+        );
+    }
 }
