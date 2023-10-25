@@ -9,7 +9,6 @@
     the rows are name, description, client_email.
     style using Tailwind css
     --}}
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
@@ -27,58 +26,55 @@
             </div>
             @endif
 
-            <div class="bg-white overflow-hidden shadow-xl p-4">
-                <div class="flex justify-between items-center">
-                    <h2 class="text-xl font-semibold mb-4">Rack spaces</h2>
+            <div class="flex flex-col">
 
-                </div>
-                <table class="table-auto w-full">
-                    <thead>
-                        <tr>
-                            <th class="px-4 py-2">ID</th>
-                            <th class="px-4 py-2" style="width: 20%">Name</th>
-                            <th class="px-4 py-2" style="width: 40%">Description</th>
-                            <th class="px-4 py-2" style="width: 20%">Client Email</th>
-                            <th class="px-4 py-2 ">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if($rack->rackSpaces->count() < 1) <tr>
-                            <td colspan="4" class="text-center py-4">No rackSpaces found.</td>
-                            </tr>
-                            @endif
-
-                            @foreach ($rack->rackSpaces as $rackSpace)
-                            <tr>
-                                <td class="border px-4 py-2">{{ $rackSpace->unit_number }}</td>
-                                <td class="border px-4 py-2"> @if($rackSpace->name != null) {{ $rackSpace->name }} @else
-                                    Not assigned @endif</td>
-                                <td class="border px-4 py-2">@if($rackSpace->description != null) {{
-                                    $rackSpace->description }} @else
-                                    Not assigned @endif</td>
-                                <td class="border px-4 py-2">@if($rackSpace->client_email != null) {{
-                                    $rackSpace->client_email }} @else
-                                    Not assigned @endif</td>
-                                <td class="border px-4 py-2">
-
-                                    <a href="{{ route('racks.spaces', $rackSpace->id) }}" class="text-white bg-gradient-to-r from-blue-300 to-indigo-300 border border-fuchsia-00 hover:border-violet-100
-                                        font-semibold py-1 px-4 rounded-md transition-colors duration-300"
-                                        style="width: fit-content;">
-                                        Edit &rarr;
-                                    </a>
-
-                                </td>
-
-                            </tr>
-                            @endforeach
-                    </tbody>
-                </table>
-                <div class="mt-2">
+                <div class="overflow-x-auto">
+                    <div class="inline-block min-w-full">
+                        <div class="overflow-hidden border rounded-lg">
+                            <table class="min-w-full divide-y divide-neutral-200">
+                                <thead class="bg-white">
+                                    <tr class="text-neutral-500">
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">ID</th>
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Name
+                                        </th>
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Description</th>
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Client Email</th>
+                                        <th class="px-5 py-3 text-xs font-medium text-right uppercase">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-neutral-200">
+                                    @foreach ($rack->rackSpaces as $rackSpace)
+                                    <tr class="text-neutral-800 bg-white">
+                                        <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">
+                                            {{$rackSpace->unit_number}}
+                                        </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">@if($rackSpace->name != null) {{
+                                            $rackSpace->name }} @else
+                                            Not assigned @endif</td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                            @if($rackSpace->description != null) {{
+                                            $rackSpace->description }} @else
+                                            Not assigned @endif
+                                        </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                            @if($rackSpace->client_email != null) {{
+                                            $rackSpace->client_email }} @else
+                                            Not assigned @endif </td>
+                                        <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                            <a class="text-blue-600 hover:text-blue-700"
+                                                href="{{route('racks.show', $rack->id)}}">Edit</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
+
         </div>
     </div>
-
 
 
 </x-app-layout>
