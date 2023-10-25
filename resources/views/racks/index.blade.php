@@ -46,6 +46,18 @@
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-neutral-200">
+                                    @if ($racks->isEmpty())
+
+                                    <tr class="bg-white text-neutral-500">
+                                        <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">No racks found.
+                                        </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
+                                        <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                        </td>
+                                    </tr>
+                                    @endif
+
                                     @foreach ($racks as $rack)
                                     <tr class="text-neutral-800 bg-white">
                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">{{$rack->name}}

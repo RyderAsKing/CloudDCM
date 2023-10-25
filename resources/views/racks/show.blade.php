@@ -13,7 +13,8 @@
                 <p>Server Rack: {{$rack->name}}</p>
                 @foreach ($rack->rackSpaces as $rackSpace)
                 <div class="rack-unit bg-gray-900 text-white flex justify-between text-xs" style="padding: .5rem">
-                    <span><a class="hover:text-blue-300" href="#">#{{$rackSpace->unit_number}}
+                    <span><a class="hover:text-blue-300"
+                            href="{{route('racks.spaces.show', [$rack->id, $rackSpace->unit_number])}}">#{{$rackSpace->unit_number}}
                             &rarr;</a></span><span>@if($rackSpace->name !=
                         null) {{
                         $rackSpace->name }} @else
@@ -83,7 +84,7 @@
                                                 Not assigned @endif </td>
                                             <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                                 <a class="text-blue-600 hover:text-blue-700"
-                                                    href="{{route('racks.spaces.show', [$rack->id, $rackSpace])}}">Edit</a>
+                                                    href="{{route('racks.spaces.show', [$rack->id, $rackSpace->unit_number])}}">Edit</a>
                                             </td>
                                         </tr>
                                         @endforeach

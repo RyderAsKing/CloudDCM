@@ -9,7 +9,7 @@
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl p-4 rounded-xl">
-                <form action="{{route('racks.spaces.show', [$rack->id, $rackSpace])}}" method="POST">
+                <form action="{{route('racks.spaces.show', [$rack->id, $rackSpace->unit_number])}}" method="POST">
                     @method('PATCH')
                     @csrf
                     <div class="flex flex-col">
