@@ -35,4 +35,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Get the racks for the user.
+     */
+    public function racks()
+    {
+        return $this->hasMany(Rack::class);
+    }
 }
