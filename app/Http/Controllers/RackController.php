@@ -145,8 +145,8 @@ class RackController extends Controller
             'client_email' => 'email|nullable',
             'client_id' => 'numeric|nullable',
             'hardware_type' => 'string|nullable',
-            'switch_port' => 'numeric|nullable',
-            'ipmi_port' => 'numeric|nullable',
+            'switch_port' => 'string|nullable',
+            'ipmi_port' => 'string|nullable',
             'subnet' => 'string|nullable',
         ]);
 

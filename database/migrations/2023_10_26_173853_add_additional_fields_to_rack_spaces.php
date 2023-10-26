@@ -13,8 +13,8 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('rack_spaces', function (Blueprint $table) {
-            $table->integer('switch_port')->nullable();
-            $table->integer('ipmi_port')->nullable();
+            $table->string('switch_port')->nullable();
+            $table->string('ipmi_port')->nullable();
             $table->string('subnet')->nullable();
         });
     }
