@@ -63,7 +63,7 @@
             <div class="rack rounded-xl bg-gray-200"
                 style="display: flex; flex-direction: column; gap: .1rem; border: 1px solid #200; padding: .5rem; height: fit-content;">
                 <p>Server Rack: {{$rack->name}}</p>
-                @foreach ($rack->rackSpaces as $rackSpace)
+                @foreach ($rack->rackSpaces->reverse() as $rackSpace)
                 <div class="rack-unit bg-gray-900 text-white flex justify-between text-xs" style="padding: .5rem">
                     <span><a class="hover:text-blue-300"
                             href="{{route('racks.spaces.show', [$rack->id, $rackSpace->unit_number])}}">#{{$rackSpace->unit_number}}
@@ -116,7 +116,7 @@
                                         </tr>
                                     </thead>
                                     <tbody class="divide-y divide-neutral-200">
-                                        @foreach ($rack->rackSpaces as $rackSpace)
+                                        @foreach ($rack->rackSpaces->reverse() as $rackSpace)
                                         <tr class="text-neutral-800 bg-white">
                                             <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">
                                                 {{$rackSpace->unit_number}}
