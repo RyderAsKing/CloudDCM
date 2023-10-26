@@ -16,10 +16,12 @@ class UserSeeder extends Seeder
     {
         //
 
-        \App\Models\User::factory()->create([
+        $user = \App\Models\User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
         ]);
+
+        $user->assignRole('admin');
     }
 }
