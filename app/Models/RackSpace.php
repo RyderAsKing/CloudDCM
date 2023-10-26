@@ -15,6 +15,8 @@ class RackSpace extends Model
         'name',
         'description',
         'client_email', // this is the email of the client who is renting the rack space
+        'client_id', // this is the id of the client who is renting the rack space
+        'hardware_type',
     ];
 
     public function rack()
