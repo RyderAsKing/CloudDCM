@@ -143,11 +143,15 @@ class RackController extends Controller
             'name' => 'string|max:255|nullable',
             'description' => 'string|nullable',
             'client_email' => 'email|nullable',
+            'client_id' => 'numeric|nullable',
+            'hardware_type' => 'string|nullable',
         ]);
 
         $rack_space->name = $request->name;
         $rack_space->description = $request->description;
         $rack_space->client_email = $request->client_email;
+        $rack_space->client_id = $request->client_id;
+        $rack_space->hardware_type = $request->hardware_type;
 
         $rack_space->save();
 
