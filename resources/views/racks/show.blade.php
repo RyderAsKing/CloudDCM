@@ -110,7 +110,10 @@
                                             </th>
                                             <th class="px-5 py-3 text-xs font-medium text-left uppercase">Description
                                             </th>
-                                            <th class="px-5 py-3 text-xs font-medium text-left uppercase">Client Email
+                                            <th class="px-5 py-3 text-xs font-medium text-left uppercase">Client
+                                                Information
+                                            </th>
+                                            <th class="px-5 py-3 text-xs font-medium text-left uppercase">Hardware Type
                                             </th>
                                             <th class="px-5 py-3 text-xs font-medium text-right uppercase">Actions</th>
                                         </tr>
@@ -131,9 +134,16 @@
                                                 Not assigned @endif
                                             </td>
                                             <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                                @if($rackSpace->client_id != null) {{
+                                                $rackSpace->client_id }}@endif
                                                 @if($rackSpace->client_email != null) {{
                                                 $rackSpace->client_email }} @else
                                                 Not assigned @endif </td>
+                                            <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                                @if($rackSpace->hardware_type != null) {{
+                                                $rackSpace->hardware_type }} @else
+                                                Not assigned @endif
+                                            </td>
                                             <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                                 <a class="text-blue-600 hover:text-blue-700"
                                                     href="{{route('racks.spaces.show', [$rack->id, $rackSpace->unit_number])}}">Edit</a>
