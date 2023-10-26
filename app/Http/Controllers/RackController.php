@@ -145,6 +145,9 @@ class RackController extends Controller
             'client_email' => 'email|nullable',
             'client_id' => 'numeric|nullable',
             'hardware_type' => 'string|nullable',
+            'switch_port' => 'numeric|nullable',
+            'ipmi_port' => 'numeric|nullable',
+            'subnet' => 'string|nullable',
         ]);
 
         $rack_space->name = $request->name;
@@ -152,6 +155,9 @@ class RackController extends Controller
         $rack_space->client_email = $request->client_email;
         $rack_space->client_id = $request->client_id;
         $rack_space->hardware_type = $request->hardware_type;
+        $rack_space->switch_port = $request->switch_port;
+        $rack_space->ipmi_port = $request->ipmi_port;
+        $rack_space->subnet = $request->subnet;
 
         $rack_space->save();
 
