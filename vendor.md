@@ -76,7 +76,7 @@ composer install --no-dev --optimize-autoloader
 npm install
 
 # building assets
-npm build
+npm run build
 
 # Only run the command below if you are installing this Panel for the first time
 php artisan key:generate --force
