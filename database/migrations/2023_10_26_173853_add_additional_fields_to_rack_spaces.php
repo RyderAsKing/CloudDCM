@@ -13,7 +13,6 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('rack_spaces', function (Blueprint $table) {
-            // add switch_port, ipmi_port, subnet (all should be string and nullable)
             $table->string('switch_port')->nullable();
             $table->string('ipmi_port')->nullable();
             $table->string('subnet')->nullable();
