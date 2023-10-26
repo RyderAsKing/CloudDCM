@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RackController;
 use App\Http\Controllers\ProfileController;
 
 /*
@@ -33,18 +32,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name(
         'profile.destroy'
     );
-
-    Route::resource('racks', RackController::class);
-
-    Route::get('/racks/{rack}/spaces/{unit_number}', [
-        RackController::class,
-        'spaces',
-    ])->name('racks.spaces.show');
-
-    Route::patch('/racks/{rack}/spaces/{unit_number}', [
-        RackController::class,
-        'spaces_update',
-    ])->name('racks.spaces.update');
 });
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/racks.php';
+require __DIR__ . '/users.php';
