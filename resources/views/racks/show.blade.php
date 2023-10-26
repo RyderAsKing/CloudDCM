@@ -135,7 +135,7 @@
                                             </td>
                                             <td class="px-5 py-4 text-sm whitespace-nowrap">
                                                 @if($rackSpace->client_id != null) {{
-                                                $rackSpace->client_id }}@endif
+                                                $rackSpace->client_id }}@endif -
                                                 @if($rackSpace->client_email != null) {{
                                                 $rackSpace->client_email }} @else
                                                 Not assigned @endif </td>
