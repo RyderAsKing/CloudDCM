@@ -15,7 +15,22 @@ class RackController extends Controller
      */
     public function index()
     {
-        $racks = Rack::paginate(10);
+        $racks = [];
+        if (
+            auth()
+                ->user()
+                ->isSubUser()
+        ) {
+            $racks = auth()
+                ->user()
+                ->owner->racks()
+                ->paginate(10);
+        } else {
+            $racks = auth()
+                ->user()
+                ->racks()
+                ->paginate(10);
+        }
 
         return view('racks.index', compact('racks'));
     }
@@ -27,7 +42,7 @@ class RackController extends Controller
      */
     public function create()
     {
-        //
+        // showing the create form
         return view('racks.create');
     }
 
@@ -40,6 +55,17 @@ class RackController extends Controller
     public function store(Request $request)
     {
         //
+        if (
+            auth()
+                ->user()
+                ->isSubUser()
+        ) {
+            return redirect('/racks')->with(
+                'error',
+                'You are not allowed to add racks.'
+            );
+        }
+
         $request->validate([
             'name' => 'required|unique:racks|max:255',
             'description' => 'required',
@@ -76,9 +102,23 @@ class RackController extends Controller
     {
         // finding the rack with the id and returning it along with its rack spaces (lazy loading)
 
-        $rack = Rack::find($id);
+        $rack = [];
+        if (
+            auth()
+                ->user()
+                ->isSubUser()
+        ) {
+            $rack = auth()
+                ->user()
+                ->owner->racks()
+                ->findOrFail($id);
+        } else {
+            $rack = auth()
+                ->user()
+                ->racks()
+                ->findOrFail($id);
+        }
 
-        // dd($rack->rackSpaces->count()); gives 123
         return view('racks.show', compact('rack'));
     }
 
@@ -114,7 +154,23 @@ class RackController extends Controller
     public function destroy($id)
     {
         //
-        Rack::destroy($id);
+        if (
+            auth()
+                ->user()
+                ->isSubUser()
+        ) {
+            return redirect('/racks')->with(
+                'error',
+                'You are not allowed to delete racks.'
+            );
+        }
+
+        $rack = auth()
+            ->user()
+            ->racks()
+            ->findOrFail($id);
+
+        Rack::destroy($rack->id);
 
         return redirect('/racks')->with(
             'success',
@@ -124,9 +180,24 @@ class RackController extends Controller
 
     public function spaces($id, $unit_number)
     {
-        $rack = Rack::find($id);
+        $rack = [];
+        if (
+            auth()
+                ->user()
+                ->isSubUser()
+        ) {
+            $rack = auth()
+                ->user()
+                ->owner->racks()
+                ->findOrFail($id);
+        } else {
+            $rack = auth()
+                ->user()
+                ->racks()
+                ->findOrFail($id);
+        }
 
-        $rackSpace = RackSpace::where('rack_id', $id)
+        $rackSpace = RackSpace::where('rack_id', $rack->id)
             ->where('unit_number', $unit_number)
             ->first();
 
@@ -135,7 +206,23 @@ class RackController extends Controller
 
     public function spaces_update($id, $unit_number, Request $request)
     {
-        $rack_space = RackSpace::where('rack_id', $id)
+        if (
+            auth()
+                ->user()
+                ->isSubUser()
+        ) {
+            return redirect('/racks')->with(
+                'error',
+                'You are not allowed to update rack space.'
+            );
+        }
+
+        $rack = auth()
+            ->user()
+            ->racks()
+            ->findOrFail($id);
+
+        $rack_space = RackSpace::where('rack_id', $rack->id)
             ->where('unit_number', $unit_number)
             ->first();
 

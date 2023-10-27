@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(User::class, 'owner_id');
     }
+
+    public function isSubUser()
+    {
+        return $this->owner_id !== null;
+    }
 }
