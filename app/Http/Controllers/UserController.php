@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -46,6 +47,8 @@ class UserController extends Controller
     public function create()
     {
         // show the form for creating a new user
+
+        return view('users.create');
     }
 
     /**
@@ -56,7 +59,42 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // store a new user in the database
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'owner_id' => 'integer|exists:users,id|nullable',
+        ]);
+
+        if (
+            auth()
+                ->user()
+                ->hasRole('user') &&
+            !auth()
+                ->user()
+                ->hasRole('admin')
+        ) {
+            $request->merge([
+                'owner_id' => auth()->user()->id,
+            ]);
+        }
+
+        $user = new \App\Models\User();
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = bcrypt($request->input('password'));
+        $user->owner_id = $request->input('owner_id');
+        $user->save();
+
+        if ($request->owner_id != null) {
+            $user->assignRole('subuser');
+        } else {
+            $user->assignRole('user');
+        }
+
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'User created successfully!');
     }
 
     /**
@@ -102,5 +140,42 @@ class UserController extends Controller
     public function destroy($id)
     {
         // delete a user from the database
+    }
+
+    /**
+     * Impersonate the specified user.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function impersonate($id)
+    {
+        // get the user to impersonate
+        $user = \App\Models\User::find($id);
+
+        // impersonate the user
+        auth()
+            ->user()
+            ->impersonate($user);
+
+        // redirect to the home page
+        return redirect()->route('home');
+    }
+
+    public function search(Request $request)
+    {
+        $searchTerm = $request->input('term');
+        $results = User::where('email', 'like', '%' . $searchTerm . '%')
+            ->orWhere('name', 'like', '%' . $searchTerm . '%')
+            ->get(['id', 'email', 'name']);
+
+        $formattedResults = [];
+        foreach ($results as $user) {
+            $formattedResults[] = [
+                'id' => $user->id,
+                'text' => $user->email . ' (' . $user->name . ')',
+            ];
+        }
+        return response()->json($formattedResults);
     }
 }
