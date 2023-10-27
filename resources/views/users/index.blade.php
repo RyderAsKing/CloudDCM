@@ -66,16 +66,21 @@
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">{{$user->email}}</td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
                                             @if ($user->email_verified_at != null)
-                                            Yes
+
+                                            <span
+                                                class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Yes</span>
                                             @else
-                                            No
+                                            <span
+                                                class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">No</span>
                                             @endif
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
                                             @if ($user->owner_id != null)
-                                            Yes
+                                            <span
+                                                class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Yes</span>
                                             @else
-                                            No
+                                            <span
+                                                class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">No</span>
                                             @endif
                                         </td>
                                         <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
