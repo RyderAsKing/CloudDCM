@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     );
 });
 
+Route::impersonate();
+
 require __DIR__ . '/auth.php';
 require __DIR__ . '/racks.php';
 require __DIR__ . '/users.php';

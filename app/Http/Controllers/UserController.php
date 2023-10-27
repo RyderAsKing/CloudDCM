@@ -105,7 +105,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        // impersonate a user
+        if (
+            auth()
+                ->user()
+                ->hasRole('admin')
+        ) {
+            return redirect()->route('impersonate', $id);
+        }
     }
 
     /**

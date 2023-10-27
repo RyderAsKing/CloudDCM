@@ -41,6 +41,33 @@
             <main>
 
                 {{ $slot }}
+
+                @impersonating
+                <div x-data="{
+                        bannerVisible: false,
+                        bannerVisibleAfter: 300
+                    }" x-show="bannerVisible" x-transition:enter="transition ease-out duration-500"
+                    x-transition:enter-start="translate-y-full" x-transition:enter-end="translate-y-0"
+                    x-transition:leave="transition ease-in duration-300" x-transition:leave-start="translate-y-0"
+                    x-transition:leave-end="translate-y-full" x-init="
+                        setTimeout(()=>{ bannerVisible = true }, bannerVisibleAfter);
+                    "
+                    class="fixed bottom-0 left-0 w-full h-auto py-2 duration-300 ease-out bg-black shadow-sm sm:py-0 sm:h-10"
+                    x-cloak>
+                    <div class="flex items-center justify-between w-full h-full px-3 mx-auto max-w-7xl ">
+                        <a href="{{route('impersonate.leave')}}"
+                            class="flex flex-col justify-center w-full h-full text-xs leading-6 text-white duration-150 ease-out sm:flex-row sm:items-center opacity-80 hover:opacity-100">
+                            <span class="flex items-center">
+                                <strong class="font-semibold">Currently Impersonating
+                                    {{auth()->user()->name}}</strong><span
+                                    class="hidden w-px h-4 mx-3 rounded-full sm:block bg-neutral-700"></span>
+                            </span>
+                            <span class="block pt-1 pb-2 leading-none sm:inline sm:pt-0 sm:pb-0">Click here to stop
+                                impersonating</span>
+                        </a>
+                    </div>
+                </div>
+                @endImpersonating
             </main>
         </div>
     </body>

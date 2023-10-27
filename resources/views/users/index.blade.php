@@ -89,9 +89,14 @@
                                                 class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">No</span>
                                             @endif
                                         </td>
-                                        <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                        <td
+                                            class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap flex justify-end gap-2">
                                             <a class="text-blue-600 hover:text-blue-700"
                                                 href="{{route('users.edit', $user->id)}}">Edit</a>
+                                            @hasrole('admin')
+                                            <a class="text-blue-600 hover:text-blue-700"
+                                                href="{{route('users.show', $user->id)}}">Impersonate</a>
+                                            @endhasrole
                                         </td>
                                     </tr>
                                     @endforeach

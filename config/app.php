@@ -197,6 +197,7 @@ return [
          * Third Party Service Providers...
          */
         Spatie\Permission\PermissionServiceProvider::class,
+        Lab404\Impersonate\ImpersonateServiceProvider::class,
     ],
 
     /*
