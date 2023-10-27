@@ -91,7 +91,7 @@
                                         </td>
                                         <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                             <a class="text-blue-600 hover:text-blue-700"
-                                                href="{{route('racks.edit', $user->id)}}">Edit</a>
+                                                href="{{route('users.edit', $user->id)}}">Edit</a>
                                         </td>
                                     </tr>
                                     @endforeach

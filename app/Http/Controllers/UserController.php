@@ -117,6 +117,12 @@ class UserController extends Controller
     public function edit($id)
     {
         // show the form for editing a user's profile
+
+        // get the user from the database
+        $user = User::findOrFail($id);
+
+        // return the view with the user
+        return view('users.edit', compact('user'));
     }
 
     /**
