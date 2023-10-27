@@ -76,8 +76,10 @@
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
                                             @if ($user->owner_id != null)
-                                            <span
-                                                class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Yes</span>
+                                            <a href="{{ route('users.edit', $user->owner_id)}}">
+                                                <span
+                                                    class="bg-green-100 text-green-800 hover:text-blue-500 text-xs font-semibold px-2.5 py-0.5 rounded-full">Yes</span>
+                                            </a>
                                             @else
                                             <span
                                                 class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">No</span>
