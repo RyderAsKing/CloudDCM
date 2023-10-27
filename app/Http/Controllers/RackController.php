@@ -82,6 +82,7 @@ class RackController extends Controller
         for ($i = 1; $i <= $request->rack_size; $i++) {
             RackSpace::create([
                 'rack_id' => $rack->id,
+                'user_id' => auth()->user()->id,
                 'unit_number' => $i,
             ]);
         }

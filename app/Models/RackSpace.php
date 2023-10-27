@@ -11,6 +11,7 @@ class RackSpace extends Model
 
     protected $fillable = [
         'rack_id',
+        'user_id',
         'unit_number',
         'name',
         'description',
@@ -25,5 +26,10 @@ class RackSpace extends Model
     public function rack()
     {
         return $this->belongsTo(Rack::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

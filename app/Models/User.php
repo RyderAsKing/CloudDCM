@@ -68,4 +68,9 @@ class User extends Authenticatable
     {
         return $this->owner_id !== null;
     }
+
+    public function rackSpaces()
+    {
+        return $this->hasMany(RackSpace::class);
+    }
 }
