@@ -62,6 +62,10 @@
                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">{{$user->id}}
                                         </td>
                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">{{$user->name}}
+                                            @foreach($user->roles as $role)
+                                            <span
+                                                class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">{{$role->name}}</span>
+                                            @endforeach
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">{{$user->email}}</td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
