@@ -25,7 +25,7 @@
                         <label for="name" class="font-bold">Name</label>
                         <input type="text" name="name" id="name" placeholder="e.g. John Doe"
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value={{$user->name}}>
+                            value='{{$user->name}}'>
                         @error('name')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
@@ -36,7 +36,7 @@
                         <label for="email" class="font-bold">Email</label>
                         <input type="email" name="email" id="email" placeholder="e.g. admin@example.com"
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value={{$user->email}}>
+                            value='{{$user->email}}'>
                         @error('email')
                         <div class="text-red-500 mt-2 text-sm">
                             {{ $message }}
