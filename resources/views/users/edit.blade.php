@@ -18,7 +18,7 @@
                         {{ __("Update account's profile information and email address.") }}
                     </p>
                 </header>
-                <form action="{{route('users.update', [$user->id])}}" method="POST" class="mt-4">
+                <form action="{{route('users.update', [$user->id])}}" method="POST" class="mt-4 flex flex-col gap-2">
                     @method('PATCH')
                     @csrf
                     <div class="flex flex-col">

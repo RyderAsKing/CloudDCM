@@ -8,8 +8,18 @@
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl p-4 rounded-xl">
-                <form action="{{route('racks.spaces.update', [$rack->id, $rackSpace->unit_number])}}" method="POST">
+            <div class="bg-white overflow-hidden shadow-xl p-8 rounded-lg">
+                <header>
+                    <h2 class="text-lg font-medium text-gray-900">
+                        {{ __('Editing unit rack space ' . $rackSpace->unit_number) }}
+                    </h2>
+
+                    <p class="mt-1 text-sm text-gray-600">
+                        {{ __("Update information about the unit rack space.") }}
+                    </p>
+                </header>
+                <form action="{{route('racks.spaces.update', [$rack->id, $rackSpace->unit_number])}}" method="POST"
+                    class="mt-4 flex flex-col gap-2">
                     @method('PATCH')
                     @csrf
                     <div class="flex flex-col">
