@@ -1,1 +1,1 @@
-<h1>{{ env("APP_NAME") }}</h1>
+<h1>@if(auth()->user()->company_name != null){{auth()->user()->company_name}} @else {{ env("APP_NAME") }} @endif</h1>
