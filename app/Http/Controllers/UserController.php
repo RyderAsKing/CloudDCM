@@ -14,6 +14,28 @@ class UserController extends Controller
     public function index()
     {
         // list all users
+        // check if the user is admin or user
+        // if admin, show all users
+        // if user, show only users that belong to the owner_id of the user
+
+        // if the user is admin, show all users
+        if (
+            auth()
+                ->user()
+                ->hasRole('admin')
+        ) {
+            // get all users
+            $users = \App\Models\User::paginate(20);
+        } else {
+            // if the user is not admin, show only users that belong to the owner_id of the user
+            $users = \App\Models\User::where(
+                'owner_id',
+                auth()->user()->id
+            )->paginate(20);
+        }
+
+        // return the view with the users
+        return view('users.index', compact('users'));
     }
 
     /**
