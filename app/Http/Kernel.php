@@ -68,10 +68,10 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         // Custom middleware
-        'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
+        'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
         'permission' =>
-            \Spatie\Permission\Middlewares\PermissionMiddleware::class,
+            \Spatie\Permission\Middleware\PermissionMiddleware::class,
         'role_or_permission' =>
-            \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
+            \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
     ];
 }
