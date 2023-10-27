@@ -24,6 +24,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
+        @hasanyrole('admin|user')
         <div>
             <x-input-label for="company_name" :value="__('Company Name')" />
             <x-text-input id="company_name" name="company_name" type="text" class="mt-1 block w-full"
@@ -31,7 +32,7 @@
                 placeholder="eg. My company" />
             <x-input-error class="mt-2" :messages="$errors->get('company_name')" />
         </div>
-
+        @endhasanyrole
         <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"
