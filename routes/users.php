@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -8,4 +9,6 @@ use Illuminate\Support\Facades\Route;
 |--------------------------------------------------------------------------
 */
 
-Route::middleware(['auth', 'role:admin|user'])->group(function () {});
+Route::middleware(['auth', 'role:admin|user'])->group(function () {
+    Route::resource('users', UserController::class)->except(['show']);
+});
