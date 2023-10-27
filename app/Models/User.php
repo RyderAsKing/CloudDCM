@@ -23,6 +23,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'owner_id',
         'company_name',
         'company_logo',
     ];
@@ -56,5 +57,10 @@ class User extends Authenticatable
     public function canBeImpersonated(): bool
     {
         return !$this->hasRole('admin');
+    }
+
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
     }
 }
