@@ -142,26 +142,6 @@ class UserController extends Controller
         // delete a user from the database
     }
 
-    /**
-     * Impersonate the specified user.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function impersonate($id)
-    {
-        // get the user to impersonate
-        $user = \App\Models\User::find($id);
-
-        // impersonate the user
-        auth()
-            ->user()
-            ->impersonate($user);
-
-        // redirect to the home page
-        return redirect()->route('home');
-    }
-
     public function search(Request $request)
     {
         $searchTerm = $request->input('term');
