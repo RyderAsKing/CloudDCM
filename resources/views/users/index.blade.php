@@ -36,6 +36,7 @@
                             <table class="min-w-full divide-y divide-neutral-200">
                                 <thead class="bg-white">
                                     <tr class="text-neutral-500">
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">#</th>
                                         <th class="px-5 py-3 text-xs font-medium text-left uppercase">Name</th>
                                         <th class="px-5 py-3 text-xs font-medium text-left uppercase">Email
                                         </th>
@@ -50,17 +51,16 @@
                                     @if ($users->isEmpty())
 
                                     <tr class="bg-white text-neutral-500">
-                                        <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">No users found.
-                                        </td>
-                                        <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
-                                        <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
-                                        <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                        <td class="px-5 py-4 text-sm font-medium whitespace-nowrap" colspan="6">No users
+                                            found.
                                         </td>
                                     </tr>
                                     @endif
 
                                     @foreach ($users as $user)
                                     <tr class="text-neutral-800 bg-white">
+                                        <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">{{$user->id}}
+                                        </td>
                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">{{$user->name}}
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">{{$user->email}}</td>
