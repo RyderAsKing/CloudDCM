@@ -1,5 +1,5 @@
 @hasanyrole('admin|user')
-<h1>@if(auth()->user()->company_name != null){{auth()->user()->company_name}}
+<h1 class="border border-blue-300 p-2">@if(auth()->user()->company_name != null){{auth()->user()->company_name}}
     @else {{ env("APP_NAME") }} @endif</h1>
 @endhasanyrole
 
