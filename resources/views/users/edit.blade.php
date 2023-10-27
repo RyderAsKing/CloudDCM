@@ -8,8 +8,17 @@
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl p-4 rounded-xl">
-                <form action="{{route('users.update', [$user->id])}}" method="POST">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+                <header>
+                    <h2 class="text-lg font-medium text-gray-900">
+                        {{ __('Editing ' . $user->email) }}
+                    </h2>
+
+                    <p class="mt-1 text-sm text-gray-600">
+                        {{ __("Update account's profile information and email address.") }}
+                    </p>
+                </header>
+                <form action="{{route('users.update', [$user->id])}}" method="POST" class="mt-4">
                     @method('PATCH')
                     @csrf
                     <div class="flex flex-col">
