@@ -50,7 +50,7 @@ class RackController extends Controller
 
         $rack->name = $request->name;
         $rack->description = $request->description;
-
+        $rack->user_id = auth()->user()->id;
         $rack->save();
 
         for ($i = 1; $i <= $request->rack_size; $i++) {
