@@ -50,8 +50,25 @@ class UserController extends Controller
     public function create()
     {
         // show the form for creating a new user
+        // permission - only admin and user can create a user(or subuser)
 
-        return view('users.create');
+        // if the user is admin or a user is user, show the create form
+
+        if (
+            auth()
+                ->user()
+                ->hasRole('admin') ||
+            auth()
+                ->user()
+                ->hasRole('user')
+        ) {
+            return view('users.create');
+        } else {
+            // if the user is not admin or a user is not user, redirect to the users index page
+            return redirect()
+                ->route('users.index')
+                ->with('error', 'You are not allowed to access this page!');
+        }
     }
 
     /**
@@ -62,6 +79,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        // permission - only admin and user can create a user(or subuser)
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -108,6 +126,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
+        // permission - only admin can access this page
         if (
             auth()
                 ->user()
@@ -125,9 +144,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        // show the form for editing a user's profile
-
-        // get the user from the database
+        // permission - admin and owner of the user can edit the user
         $user = User::findOrFail($id);
         $permissions = [];
         if (
@@ -156,6 +173,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // permission - admin and owner of the user can update the user
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
@@ -203,6 +221,7 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
+        // permission - admin only can access this page
         if (
             auth()
                 ->user()
