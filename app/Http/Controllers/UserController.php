@@ -128,7 +128,19 @@ class UserController extends Controller
 
         // get the user from the database
         $user = User::findOrFail($id);
-        $permissions = Permission::all();
+        $permissions = [];
+        if (
+            $user->owner_id == auth()->user()->id ||
+            auth()
+                ->user()
+                ->hasRole('admin')
+        ) {
+            $permissions = Permission::all();
+        } else {
+            return redirect()
+                ->route('users.index')
+                ->with('error', 'You are not the owner of this user!');
+        }
 
         // return the view with the user
         return view('users.edit', compact('user', 'permissions'));
