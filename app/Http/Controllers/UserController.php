@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 class UserController extends Controller
 {
@@ -202,6 +203,15 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
+        if (
+            auth()
+                ->user()
+                ->hasRole('admin') == false
+        ) {
+            return redirect()
+                ->route('users.index')
+                ->with('error', 'You are not allowed to access this page!');
+        }
         $searchTerm = $request->input('term');
         $results = User::where('email', 'like', '%' . $searchTerm . '%')
             ->orWhere('name', 'like', '%' . $searchTerm . '%')
