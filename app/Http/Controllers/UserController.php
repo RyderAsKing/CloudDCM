@@ -143,8 +143,34 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // update a user's profile in the database
-        dd($request->all());
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email,' . $id,
+            'password' => 'nullable|min:8',
+            'permissions' => 'array',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        if ($user->owner_id != null && $user->owner_id != auth()->user()->id) {
+            return redirect()
+                ->route('users.index')
+                ->with('error', 'You are not the owner of this user!');
+        }
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+
+        if ($request->input('password') != null) {
+            $user->password = bcrypt($request->input('password'));
+        }
+        $user->save();
+
+        $user->syncPermissions($request->input('permissions'));
+
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'User updated successfully!');
     }
 
     /**

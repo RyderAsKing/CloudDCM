@@ -57,10 +57,10 @@
 
                     @if($user->hasRole('subuser'))
                     <div class="flex flex-col mt-2">
-                        <label for="roles" class="font-bold">Permission</label>
-                        <select class="roles-selector" name="permission[]" multiple="multiple">
+                        <label for="roles" class="font-bold">Permissions</label>
+                        <select class="roles-selector" name="permissions[]" multiple="multiple">
                             @foreach($permissions as $permission)
-                            <option value="{{$permission->id}}" @if($user->can($permission->name)) selected
+                            <option value="{{$permission->name}}" @if($user->can($permission->name)) selected
                                 @endif>{{$permission->name}}
                             </option>
                             @endforeach
@@ -71,7 +71,7 @@
                         </div>
                         @enderror
                     </div>
-                    @endhasrole
+                    @endif
 
 
                     <button type="submit"
