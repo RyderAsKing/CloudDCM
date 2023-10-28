@@ -151,8 +151,12 @@ class UserController extends Controller
         ]);
 
         $user = User::findOrFail($id);
-
-        if ($user->owner_id != null && $user->owner_id != auth()->user()->id) {
+        if (
+            $user->owner_id != auth()->user()->id ||
+            auth()
+                ->user()
+                ->hasRole('admin')
+        ) {
             return redirect()
                 ->route('users.index')
                 ->with('error', 'You are not the owner of this user!');
