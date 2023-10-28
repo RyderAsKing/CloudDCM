@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rack;
 use App\Models\RackSpace;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -14,6 +15,7 @@ class DashboardController extends Controller
     {
         $racks = [];
         $rackSpaces = [];
+        $users = [];
 
         if (
             auth()
@@ -22,6 +24,7 @@ class DashboardController extends Controller
         ) {
             $racks = Rack::all()->count();
             $rackSpaces = RackSpace::all()->count();
+            $users = User::all()->count();
         } elseif (
             auth()
                 ->user()
@@ -40,6 +43,6 @@ class DashboardController extends Controller
             )->count();
         }
 
-        return view('dashboard', compact('racks', 'rackSpaces'));
+        return view('dashboard', compact('racks', 'rackSpaces', 'users'));
     }
 }
