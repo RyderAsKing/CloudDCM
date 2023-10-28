@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -126,9 +128,10 @@ class UserController extends Controller
 
         // get the user from the database
         $user = User::findOrFail($id);
+        $permissions = Permission::all();
 
         // return the view with the user
-        return view('users.edit', compact('user'));
+        return view('users.edit', compact('user', 'permissions'));
     }
 
     /**
@@ -141,6 +144,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         // update a user's profile in the database
+        dd($request->all());
     }
 
     /**

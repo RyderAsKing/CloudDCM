@@ -55,6 +55,25 @@
                         @enderror
                     </div>
 
+                    @if($user->hasRole('subuser'))
+                    <div class="flex flex-col mt-2">
+                        <label for="roles" class="font-bold">Permission</label>
+                        <select class="roles-selector" name="permission[]" multiple="multiple">
+                            @foreach($permissions as $permission)
+                            <option value="{{$permission->id}}" @if($user->can($permission->name)) selected
+                                @endif>{{$permission->name}}
+                            </option>
+                            @endforeach
+                        </select>
+                        @error('roles')
+                        <div class="text-red-500 mt-2 text-sm">
+                            {{ $message }}
+                        </div>
+                        @enderror
+                    </div>
+                    @endhasrole
+
+
                     <button type="submit"
                         class="mt-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none"
                         style="width: fit-content;">Update &rarr;</button>
@@ -62,4 +81,9 @@
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+        $('.roles-selector').select2();
+        });
+    </script>
 </x-app-layout>
