@@ -80,7 +80,7 @@
     <script>
         $('#owner-search').select2({
             ajax: {
-                url: '/users/search',
+                url: '/search-user',
                 dataType: 'json',
                 delay: 250,
                 data: function (params) {

@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['auth', 'role:admin|user'])->group(function () {
     Route::resource('users', UserController::class);
 
-    Route::get('users/search', [UserController::class, 'search'])->name(
+    Route::get('search-user', [UserController::class, 'search'])->name(
         'users.search'
     );
 });
