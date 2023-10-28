@@ -151,21 +151,26 @@ class UserController extends Controller
         ]);
 
         $user = User::findOrFail($id);
-        if ($user->owner_id != auth()->user()->id) {
+        if (
+            $user->owner_id == auth()->user()->id ||
+            auth()
+                ->user()
+                ->hasRole('admin')
+        ) {
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+
+            if ($request->input('password') != null) {
+                $user->password = bcrypt($request->input('password'));
+            }
+            $user->save();
+
+            $user->syncPermissions($request->input('permissions'));
+        } else {
             return redirect()
                 ->route('users.index')
                 ->with('error', 'You are not the owner of this user!');
         }
-
-        $user->name = $request->input('name');
-        $user->email = $request->input('email');
-
-        if ($request->input('password') != null) {
-            $user->password = bcrypt($request->input('password'));
-        }
-        $user->save();
-
-        $user->syncPermissions($request->input('permissions'));
 
         return redirect()
             ->route('users.index')
