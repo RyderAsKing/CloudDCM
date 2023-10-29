@@ -15,22 +15,17 @@ class RackController extends Controller
      */
     public function index()
     {
-        $racks = [];
-        if (
-            auth()
-                ->user()
-                ->isSubUser()
-        ) {
-            $racks = auth()
+        $racks = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
                 ->user()
                 ->owner->racks()
-                ->paginate(10);
-        } else {
-            $racks = auth()
+                ->paginate(10)
+            : auth()
                 ->user()
                 ->racks()
                 ->paginate(10);
-        }
 
         return view('racks.index', compact('racks'));
     }
@@ -42,7 +37,8 @@ class RackController extends Controller
      */
     public function create()
     {
-        // showing the create form
+        $this->authorize('create', Rack::class);
+
         return view('racks.create');
     }
 
@@ -54,17 +50,7 @@ class RackController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        if (
-            auth()
-                ->user()
-                ->isSubUser()
-        ) {
-            return redirect('/racks')->with(
-                'error',
-                'You are not allowed to add racks.'
-            );
-        }
+        $this->authorize('create', Rack::class);
 
         $request->validate([
             'name' => 'required|unique:racks|max:255',
@@ -76,13 +62,22 @@ class RackController extends Controller
 
         $rack->name = $request->name;
         $rack->description = $request->description;
-        $rack->user_id = auth()->user()->id;
+        $rack->user_id = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()->user()->owner->id
+            : auth()->user()->id;
+
         $rack->save();
 
         for ($i = 1; $i <= $request->rack_size; $i++) {
             RackSpace::create([
                 'rack_id' => $rack->id,
-                'user_id' => auth()->user()->id,
+                'user_id' => auth()
+                    ->user()
+                    ->isSubUser()
+                    ? auth()->user()->owner->id
+                    : auth()->user()->id,
                 'unit_number' => $i,
             ]);
         }
@@ -101,24 +96,9 @@ class RackController extends Controller
      */
     public function show($id)
     {
-        // finding the rack with the id and returning it along with its rack spaces (lazy loading)
+        $rack = Rack::findOrFail($id);
 
-        $rack = [];
-        if (
-            auth()
-                ->user()
-                ->isSubUser()
-        ) {
-            $rack = auth()
-                ->user()
-                ->owner->racks()
-                ->findOrFail($id);
-        } else {
-            $rack = auth()
-                ->user()
-                ->racks()
-                ->findOrFail($id);
-        }
+        $this->authorize('show', $rack, Rack::class);
 
         return view('racks.show', compact('rack'));
     }
@@ -131,7 +111,9 @@ class RackController extends Controller
      */
     public function edit($id)
     {
-        //
+        $rack = Rack::findOrFail($id);
+
+        $this->authorize('update', $rack, Rack::class);
     }
 
     /**
@@ -143,7 +125,9 @@ class RackController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rack = Rack::findOrFail($id);
+
+        $this->authorize('update', $rack, Rack::class);
     }
 
     /**
@@ -154,24 +138,11 @@ class RackController extends Controller
      */
     public function destroy($id)
     {
-        //
-        if (
-            auth()
-                ->user()
-                ->isSubUser()
-        ) {
-            return redirect('/racks')->with(
-                'error',
-                'You are not allowed to delete racks.'
-            );
-        }
+        $rack = Rack::findOrFail($id);
 
-        $rack = auth()
-            ->user()
-            ->racks()
-            ->findOrFail($id);
+        $this->authorize('delete', $rack, Rack::class);
 
-        Rack::destroy($rack->id);
+        $rack->delete();
 
         return redirect('/racks')->with(
             'success',
