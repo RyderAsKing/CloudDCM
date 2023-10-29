@@ -19,15 +19,21 @@ class UserController extends Controller
     {
         $this->authorize('list', User::class);
 
-        if (
-            auth()
-                ->user()
-                ->hasRole('admin')
-        ) {
-            $users = User::paginate(20);
-        } else {
-            $users = User::where('owner_id', auth()->user()->id)->paginate(20);
-        }
+        // if (
+        //     auth()
+        //         ->user()
+        //         ->hasRole('admin')
+        // ) {
+        //     $users = User::paginate(20);
+        // } else {
+        //     $users = User::where('owner_id', auth()->user()->id)->paginate(20);
+        // }
+
+        $users = auth()
+            ->user()
+            ->isUser()
+            ? User::where('owner_id', auth()->user()->id)->paginate(20)
+            : User::paginate(20);
 
         // return the view with the users
         return view('users.index', compact('users'));
