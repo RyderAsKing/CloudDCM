@@ -17,25 +17,16 @@ class UserController extends Controller
      */
     public function index()
     {
-        // list all users
-        // check if the user is admin or user
-        // if admin, show all users
-        // if user, show only users that belong to the owner_id of the user
+        $this->authorize('list', User::class);
 
-        // if the user is admin, show all users
         if (
             auth()
                 ->user()
                 ->hasRole('admin')
         ) {
-            // get all users
-            $users = \App\Models\User::paginate(20);
+            $users = User::paginate(20);
         } else {
-            // if the user is not admin, show only users that belong to the owner_id of the user
-            $users = \App\Models\User::where(
-                'owner_id',
-                auth()->user()->id
-            )->paginate(20);
+            $users = User::where('owner_id', auth()->user()->id)->paginate(20);
         }
 
         // return the view with the users
@@ -49,26 +40,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        // show the form for creating a new user
-        // permission - only admin and user can create a user(or subuser)
+        $this->authorize('create', User::class);
 
-        // if the user is admin or a user is user, show the create form
-
-        if (
-            auth()
-                ->user()
-                ->hasRole('admin') ||
-            auth()
-                ->user()
-                ->hasRole('user')
-        ) {
-            return view('users.create');
-        } else {
-            // if the user is not admin or a user is not user, redirect to the users index page
-            return redirect()
-                ->route('users.index')
-                ->with('error', 'You are not allowed to access this page!');
-        }
+        return view('users.create');
     }
 
     /**
@@ -79,7 +53,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        // permission - only admin and user can create a user(or subuser)
+        $this->authorize('create', User::class);
+
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -90,10 +65,7 @@ class UserController extends Controller
         if (
             auth()
                 ->user()
-                ->hasRole('user') &&
-            !auth()
-                ->user()
-                ->hasRole('admin')
+                ->isUser()
         ) {
             $request->merge([
                 'owner_id' => auth()->user()->id,
@@ -126,14 +98,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        // permission - only admin can access this page
-        if (
-            auth()
-                ->user()
-                ->hasRole('admin')
-        ) {
-            return redirect()->route('impersonate', $id);
-        }
+        $this->authorize('impersonate', User::class);
+
+        return redirect()->route('impersonate', $id);
     }
 
     /**
@@ -144,23 +111,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        // permission - admin and owner of the user can edit the user
         $user = User::findOrFail($id);
-        $permissions = [];
-        if (
-            $user->owner_id == auth()->user()->id ||
-            auth()
-                ->user()
-                ->hasRole('admin')
-        ) {
-            $permissions = Permission::all();
-        } else {
-            return redirect()
-                ->route('users.index')
-                ->with('error', 'You are not the owner of this user!');
-        }
+        $this->authorize('update', $user, User::class);
+        $permissions = Permission::all();
 
-        // return the view with the user
         return view('users.edit', compact('user', 'permissions'));
     }
 
@@ -173,7 +127,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // permission - admin and owner of the user can update the user
+        $user = User::findOrFail($id);
+        $this->authorize('update', $user, User::class);
+
         $request->validate([
             'name' => 'required',
             'email' => 'required|email|unique:users,email,' . $id,
@@ -181,27 +137,15 @@ class UserController extends Controller
             'permissions' => 'array',
         ]);
 
-        $user = User::findOrFail($id);
-        if (
-            $user->owner_id == auth()->user()->id ||
-            auth()
-                ->user()
-                ->hasRole('admin')
-        ) {
-            $user->name = $request->input('name');
-            $user->email = $request->input('email');
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
 
-            if ($request->input('password') != null) {
-                $user->password = bcrypt($request->input('password'));
-            }
-            $user->save();
-
-            $user->syncPermissions($request->input('permissions'));
-        } else {
-            return redirect()
-                ->route('users.index')
-                ->with('error', 'You are not the owner of this user!');
+        if ($request->input('password') != null) {
+            $user->password = bcrypt($request->input('password'));
         }
+        $user->save();
+
+        $user->syncPermissions($request->input('permissions'));
 
         return redirect()
             ->route('users.index')
@@ -221,16 +165,8 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        // permission - admin only can access this page
-        if (
-            auth()
-                ->user()
-                ->hasRole('admin') == false
-        ) {
-            return redirect()
-                ->route('users.index')
-                ->with('error', 'You are not allowed to access this page!');
-        }
+        $this->authorize('search', User::class);
+
         $searchTerm = $request->input('term');
         $results = User::where('email', 'like', '%' . $searchTerm . '%')
             ->orWhere('name', 'like', '%' . $searchTerm . '%')

@@ -44,10 +44,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function racks()
-    {
-        return $this->hasMany(Rack::class);
-    }
+    // methods
 
     public function canImpersonate()
     {
@@ -59,14 +56,25 @@ class User extends Authenticatable
         return !$this->hasRole('admin');
     }
 
-    public function owner()
+    public function isUser()
     {
-        return $this->belongsTo(User::class, 'owner_id');
+        return $this->hasRole('user');
     }
 
     public function isSubUser()
     {
         return $this->owner_id !== null;
+    }
+
+    // relationships
+    public function owner()
+    {
+        return $this->belongsTo(User::class, 'owner_id');
+    }
+
+    public function racks()
+    {
+        return $this->hasMany(Rack::class);
     }
 
     public function rackSpaces()
