@@ -152,51 +152,32 @@ class RackController extends Controller
 
     public function spaces($id, $unit_number)
     {
-        $rack = [];
-        if (
-            auth()
-                ->user()
-                ->isSubUser()
-        ) {
-            $rack = auth()
-                ->user()
-                ->owner->racks()
-                ->findOrFail($id);
-        } else {
-            $rack = auth()
-                ->user()
-                ->racks()
-                ->findOrFail($id);
-        }
+        $rack = Rack::findOrFail($id);
 
-        $rackSpace = RackSpace::where('rack_id', $rack->id)
+        $this->authorize('update', $rack, Rack::class);
+
+        $rackSpace = $rack
+            ->rackSpaces()
             ->where('unit_number', $unit_number)
             ->first();
+
+        abort_if(!$rackSpace, 404);
 
         return view('racks.spaces.index', compact('rack', 'rackSpace'));
     }
 
     public function spaces_update($id, $unit_number, Request $request)
     {
-        if (
-            auth()
-                ->user()
-                ->isSubUser()
-        ) {
-            return redirect('/racks')->with(
-                'error',
-                'You are not allowed to update rack space.'
-            );
-        }
+        $rack = Rack::findOrFail($id);
 
-        $rack = auth()
-            ->user()
-            ->racks()
-            ->findOrFail($id);
+        $this->authorize('update', $rack, Rack::class);
 
-        $rack_space = RackSpace::where('rack_id', $rack->id)
+        $rackSpace = $rack
+            ->rackSpaces()
             ->where('unit_number', $unit_number)
             ->first();
+
+        abort_if(!$rackSpace, 404);
 
         $request->validate([
             'name' => 'string|max:255|nullable',
@@ -209,16 +190,16 @@ class RackController extends Controller
             'subnet' => 'string|nullable',
         ]);
 
-        $rack_space->name = $request->name;
-        $rack_space->description = $request->description;
-        $rack_space->client_email = $request->client_email;
-        $rack_space->client_id = $request->client_id;
-        $rack_space->hardware_type = $request->hardware_type;
-        $rack_space->switch_port = $request->switch_port;
-        $rack_space->ipmi_port = $request->ipmi_port;
-        $rack_space->subnet = $request->subnet;
+        $rackSpace->name = $request->name;
+        $rackSpace->description = $request->description;
+        $rackSpace->client_email = $request->client_email;
+        $rackSpace->client_id = $request->client_id;
+        $rackSpace->hardware_type = $request->hardware_type;
+        $rackSpace->switch_port = $request->switch_port;
+        $rackSpace->ipmi_port = $request->ipmi_port;
+        $rackSpace->subnet = $request->subnet;
 
-        $rack_space->save();
+        $rackSpace->save();
 
         return redirect('/racks/' . $id)->with(
             'success',
