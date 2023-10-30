@@ -11,30 +11,7 @@ class UserPolicy
 
     public function list(User $user)
     {
-        if ($user->hasRole('admin')) {
-            return true;
-        }
-        if ($user->hasRole('user')) {
-            return true;
-        }
-
-        return false;
-    }
-
-    public function view(User $user, User $model)
-    {
-        if ($user->hasRole('admin')) {
-            return true;
-        }
-        if ($user->hasRole('user')) {
-            if ($user->id === $model->owner_id) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        return false;
+        return $user->hasRole('admin') || $user->hasRole('user');
     }
 
     public function create(User $user)
@@ -44,17 +21,14 @@ class UserPolicy
 
     public function update(User $user, User $model)
     {
-        if ($user->hasRole('admin')) {
-            return true;
-        }
-        if ($user->hasRole('user')) {
-            if ($user->id === $model->owner_id) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-        return false;
+        return $user->hasRole('admin') ||
+            ($user->hasRole('user') && $user->id === $model->owner_id);
+    }
+
+    public function delete(User $user, User $model)
+    {
+        return $user->hasRole('admin') ||
+            ($user->hasRole('user') && $user->id === $model->owner_id);
     }
 
     public function impersonate(User $user)

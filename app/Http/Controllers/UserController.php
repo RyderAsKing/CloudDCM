@@ -19,23 +19,12 @@ class UserController extends Controller
     {
         $this->authorize('list', User::class);
 
-        // if (
-        //     auth()
-        //         ->user()
-        //         ->hasRole('admin')
-        // ) {
-        //     $users = User::paginate(20);
-        // } else {
-        //     $users = User::where('owner_id', auth()->user()->id)->paginate(20);
-        // }
-
         $users = auth()
             ->user()
             ->isUser()
             ? User::where('owner_id', auth()->user()->id)->paginate(20)
             : User::paginate(20);
 
-        // return the view with the users
         return view('users.index', compact('users'));
     }
 
@@ -68,24 +57,18 @@ class UserController extends Controller
             'owner_id' => 'integer|exists:users,id|nullable',
         ]);
 
-        if (
-            auth()
-                ->user()
-                ->isUser()
-        ) {
-            $request->merge([
-                'owner_id' => auth()->user()->id,
-            ]);
-        }
-
-        $user = new \App\Models\User();
+        $user = new User();
         $user->name = $request->input('name');
         $user->email = $request->input('email');
         $user->password = bcrypt($request->input('password'));
-        $user->owner_id = $request->input('owner_id');
+        $user->owner_id = auth()
+            ->user()
+            ->isUser()
+            ? auth()->user()->id
+            : $request->input('owner_id');
         $user->save();
 
-        if ($request->owner_id != null) {
+        if ($user->owner_id != null) {
             $user->assignRole('subuser');
         } else {
             $user->assignRole('user');
@@ -118,7 +101,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
+
         $this->authorize('update', $user, User::class);
+
         $permissions = Permission::all();
 
         return view('users.edit', compact('user', 'permissions'));
@@ -134,6 +119,7 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
+
         $this->authorize('update', $user, User::class);
 
         $request->validate([
@@ -149,6 +135,7 @@ class UserController extends Controller
         if ($request->input('password') != null) {
             $user->password = bcrypt($request->input('password'));
         }
+
         $user->save();
 
         $user->syncPermissions($request->input('permissions'));
@@ -166,7 +153,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        // delete a user from the database
+        $user = User::findOrFail($id);
+
+        $this->authorize('delete', $user, User::class);
+
+        $user->delete();
+
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'User deleted successfully!');
     }
 
     public function search(Request $request)
