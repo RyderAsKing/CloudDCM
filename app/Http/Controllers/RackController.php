@@ -21,10 +21,22 @@ class RackController extends Controller
             ? auth()
                 ->user()
                 ->owner->racks()
+                ->withCount('rackSpaces')
+                ->with([
+                    'rackSpaces' => function ($query) {
+                        $query->where('name', '!=', null);
+                    },
+                ])
                 ->paginate(10)
             : auth()
                 ->user()
                 ->racks()
+                ->withCount('rackSpaces')
+                ->with([
+                    'rackSpaces' => function ($query) {
+                        $query->where('name', '!=', null);
+                    },
+                ])
                 ->paginate(10);
 
         return view('racks.index', compact('racks'));

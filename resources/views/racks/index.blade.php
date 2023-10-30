@@ -60,11 +60,18 @@
 
                                     @foreach ($racks as $rack)
                                     <tr class="text-neutral-800 bg-white">
-                                        <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">{{$rack->name}}
+                                        <td class="px-5 py-4 text-sm font-medium whitespace-nowrap flex items-center">
+                                            {{$rack->name}}<span
+                                                class="bg-black text-white  text-xs font-semibold pl-2 pr-2.5 py-1 ml-1.5 rounded-full">
+                                                <span>{{ round(count($rack->rackSpaces) / $rack->rack_spaces_count *
+                                                    100) }}%
+                                                    Used</span>
+                                            </span>
+
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">{{$rack->description}}</td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
-                                            {{$rack->rackSpaces->count()}}
+                                            {{$rack->rack_spaces_count}}
                                         </td>
                                         <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                             <a class="text-blue-600 hover:text-blue-700"
