@@ -145,8 +145,15 @@
                                                 Not assigned @endif
                                             </td>
                                             <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                                @can('update', $rack)
                                                 <a class="text-blue-600 hover:text-blue-700"
                                                     href="{{route('racks.spaces.show', [$rack->id, $rackSpace->unit_number])}}">Edit</a>
+                                                @else
+                                                <span
+                                                    class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">No
+                                                    permissions</span>
+
+                                                @endcan
                                             </td>
                                         </tr>
                                         @endforeach
