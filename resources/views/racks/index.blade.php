@@ -63,7 +63,8 @@
                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap flex items-center">
                                             {{$rack->name}}<span
                                                 class="bg-black text-white  text-xs font-semibold pl-2 pr-2.5 py-1 ml-1.5 rounded-full">
-                                                <span>{{ round(count($rack->rackSpaces) / $rack->rack_spaces_count *
+                                                <span>{{ round(count($rack->rackSpaces) /
+                                                    $rack->rack_spaces_count *
                                                     100) }}%
                                                     Used</span>
                                             </span>

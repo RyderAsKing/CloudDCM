@@ -31,16 +31,20 @@ class DashboardController extends Controller
                 ->isSubUser()
         ) {
             $racks = Rack::where('user_id', auth()->user()->owner->id)->count();
-            $rackSpaces = RackSpace::where(
-                'user_id',
-                auth()->user()->owner->id
-            )->count();
+            $rackSpaces = auth()
+                ->user()
+                ->owner->racks()
+                ->withCount('rackSpaces')
+                ->get()
+                ->sum('rack_spaces_count');
         } else {
             $racks = Rack::where('user_id', auth()->user()->id)->count();
-            $rackSpaces = RackSpace::where(
-                'user_id',
-                auth()->user()->id
-            )->count();
+            $rackSpaces = auth()
+                ->user()
+                ->racks()
+                ->withCount('rackSpaces')
+                ->get()
+                ->sum('rack_spaces_count');
         }
 
         return view('dashboard', compact('racks', 'rackSpaces', 'users'));

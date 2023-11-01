@@ -13,12 +13,8 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('rack_spaces', function (Blueprint $table) {
-            //
-            $table
-                ->foreignId('user_id')
-                ->constrained()
-                ->onDelete('cascade')
-                ->after('id');
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
         });
     }
 
@@ -31,8 +27,10 @@ return new class extends Migration {
     {
         Schema::table('rack_spaces', function (Blueprint $table) {
             //
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
+            $table
+                ->foreignId('user_id')
+                ->nullable()
+                ->constrained();
         });
     }
 };
