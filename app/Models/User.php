@@ -72,6 +72,11 @@ class User extends Authenticatable
         return $this->belongsTo(User::class, 'owner_id');
     }
 
+    public function locations()
+    {
+        return $this->hasMany(Location::class);
+    }
+
     public function racks()
     {
         return $this->hasMany(Rack::class);
