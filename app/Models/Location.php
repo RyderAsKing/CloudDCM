@@ -15,4 +15,9 @@ class Location extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function racks()
+    {
+        return $this->hasMany(Rack::class);
+    }
 }

@@ -16,6 +16,7 @@ class DashboardController extends Controller
         $racks = [];
         $rackSpaces = [];
         $users = [];
+        $locations = [];
 
         if (
             auth()
@@ -37,6 +38,12 @@ class DashboardController extends Controller
                 ->withCount('rackSpaces')
                 ->get()
                 ->sum('rack_spaces_count');
+
+            $locations = auth()
+                ->user()
+                ->owner->locations()
+                ->with('racks')
+                ->get();
         } else {
             $racks = Rack::where('user_id', auth()->user()->id)->count();
             $rackSpaces = auth()
@@ -45,8 +52,17 @@ class DashboardController extends Controller
                 ->withCount('rackSpaces')
                 ->get()
                 ->sum('rack_spaces_count');
+
+            $locations = auth()
+                ->user()
+                ->locations()
+                ->with('racks')
+                ->get();
         }
 
-        return view('dashboard', compact('racks', 'rackSpaces', 'users'));
+        return view(
+            'dashboard',
+            compact('racks', 'rackSpaces', 'users', 'locations')
+        );
     }
 }
