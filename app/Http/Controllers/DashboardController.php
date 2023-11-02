@@ -9,55 +9,39 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    //
-
     public function index()
     {
-        $racks = [];
-        $rackSpaces = [];
-        $users = [];
+        $user = auth()->user();
+        $racks = 0;
+        $rackSpaces = 0;
+        $users = 0;
         $locations = [];
 
-        if (
-            auth()
-                ->user()
-                ->hasRole('admin')
-        ) {
-            $racks = Rack::all()->count();
-            $rackSpaces = RackSpace::all()->count();
-            $users = User::all()->count();
-        } elseif (
-            auth()
-                ->user()
-                ->isSubUser()
-        ) {
-            $racks = Rack::where('user_id', auth()->user()->owner->id)->count();
-            $rackSpaces = auth()
-                ->user()
-                ->owner->racks()
-                ->withCount('rackSpaces')
-                ->get()
-                ->sum('rack_spaces_count');
-
-            $locations = auth()
-                ->user()
-                ->owner->locations()
-                ->with('racks')
-                ->get();
+        if ($user->hasRole('admin')) {
+            $racks = Rack::count();
+            $rackSpaces = RackSpace::count();
+            $users = User::count();
         } else {
-            $racks = Rack::where('user_id', auth()->user()->id)->count();
-            $rackSpaces = auth()
-                ->user()
-                ->racks()
+            $query = Rack::where(
+                'user_id',
+                $user->isSubUser() ? $user->owner->id : $user->id
+            );
+
+            $racks = $query->count();
+            $rackSpaces = $query
                 ->withCount('rackSpaces')
                 ->get()
                 ->sum('rack_spaces_count');
 
-            $locations = auth()
-                ->user()
-                ->locations()
-                ->with('racks')
-                ->get();
+            $locations = $user->isSubUser()
+                ? $user->owner
+                    ->locations()
+                    ->with('racks')
+                    ->get()
+                : $user
+                    ->locations()
+                    ->with('racks')
+                    ->get();
         }
 
         return view(
