@@ -16,6 +16,8 @@ class DashboardController extends Controller
         $rackSpaces = 0;
         $users = 0;
         $locations = [];
+        $uncategorized = [];
+        // $uncategorized['racks'] = Rack::whereNull('location_id')->count();
 
         if ($user->hasRole('admin')) {
             $racks = Rack::count();
@@ -42,11 +44,27 @@ class DashboardController extends Controller
                     ->locations()
                     ->with('racks')
                     ->get();
+
+            $uncategorized['racks'] = $user->isSubUser()
+                ? $user->owner
+                    ->racks()
+                    ->whereNull('location_id')
+                    ->count()
+                : $user
+                    ->racks()
+                    ->whereNull('location_id')
+                    ->count();
         }
 
         return view(
             'dashboard',
-            compact('racks', 'rackSpaces', 'users', 'locations')
+            compact(
+                'racks',
+                'rackSpaces',
+                'users',
+                'locations',
+                'uncategorized'
+            )
         );
     }
 }

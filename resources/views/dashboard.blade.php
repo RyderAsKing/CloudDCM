@@ -48,6 +48,16 @@
                         <p class="text-gray-700">{{$location->description}}</p>
                     </div>
                     @endforeach
+                    <div
+                        class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
+                        <h2 class="text-lg font-semibold mb-1">Uncategorized <p class="text-green-700 text-sm">
+                                {{$uncategorized['racks']}} Racks added
+                            </p>
+                        </h2>
+                        <p class="text-gray-700">
+                            Racks/Devices that are not assigned to any location
+                        </p>
+                    </div>
                 </div>
                 @endif
 
