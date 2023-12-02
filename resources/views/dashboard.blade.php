@@ -25,7 +25,7 @@
 
                     @hasanyrole('user|subuser')
 
-                    @if(count($locations) < 1) <div
+                    @if(count($locations) < 1 && $uncategorized['racks'] < 1) <div
                         class="backdrop-blur-sm bg-white/20 p-6 rounded-md shadow-sm  border-2 border-gray-50 ">
                         <h2 class="text-xl font-semibold mb-2">Welcome to your dashboard</h2>
                         <p class="text-gray-700">Add a new location to get started with managing </p>
@@ -48,6 +48,7 @@
                         <p class="text-gray-700">{{$location->description}}</p>
                     </div>
                     @endforeach
+                    @if($uncategorized['racks'] > 0)
                     <div
                         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
                         <h2 class="text-lg font-semibold mb-1">Uncategorized <p class="text-green-700 text-sm">
@@ -58,6 +59,7 @@
                             Racks/Devices that are not assigned to any location
                         </p>
                     </div>
+                    @endif
                 </div>
                 @endif
 
