@@ -26,9 +26,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value='{{old(' name')}}'>
                         @error('name')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
@@ -37,9 +35,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value='{{old(' email')}}'>
                         @error('email')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
@@ -48,9 +44,7 @@
                             placeholder="e.g. I23VeryCool@#"
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50">
                         @error('password')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     @hasrole('admin')
@@ -64,9 +58,7 @@
                             <option value="none">None</option>
                         </select>
                         @error('owner_id')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     @endhasrole

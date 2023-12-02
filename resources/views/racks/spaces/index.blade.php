@@ -28,9 +28,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value="@if($rackSpace->name != null) {{$rackSpace->name}} @endif">
                         @error('name')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
@@ -40,9 +38,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value="@if($rackSpace->description != null) {{$rackSpace->description}} @endif">
                         @error('description')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
@@ -51,9 +47,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value="@if($rackSpace->client_email != null) {{$rackSpace->client_email}} @endif">
                         @error('client_email')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
@@ -62,9 +56,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value="@if($rackSpace->client_id != null){{$rackSpace->client_id}}@endif">
                         @error('client_id')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
@@ -73,9 +65,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value="@if($rackSpace->hardware_type != null) {{$rackSpace->hardware_type}} @endif">
                         @error('hardware_type')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
@@ -84,9 +74,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value="@if($rackSpace->ipmi_port != null) {{$rackSpace->ipmi_port}} @endif">
                         @error('ipmi_port')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
@@ -95,9 +83,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value="@if($rackSpace->switch_port != null) {{$rackSpace->switch_port}} @endif">
                         @error('switch_port')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
@@ -106,9 +92,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value="@if($rackSpace->subnet != null) {{$rackSpace->subnet}} @endif">
                         @error('subnet')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
 

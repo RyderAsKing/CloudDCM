@@ -6,8 +6,6 @@
     </x-slot>
 
     <div class="py-12">
-        {{-- ask user to input rack name, description, and rack size. everything should be styled using tailwind --}}
-
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <header>
@@ -27,9 +25,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value={{old('name')}}>
                         @error('name')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
@@ -38,9 +34,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value={{old('description')}}>
                         @error('description')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
@@ -49,9 +43,7 @@
                             class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
                             value={{old('rack_space')}}>
                         @error('rack_size')
-                        <div class="text-red-500 mt-2 text-sm">
-                            {{ $message }}
-                        </div>
+                        <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <button type="submit"
