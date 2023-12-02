@@ -22,27 +22,26 @@
                     @csrf
                     <div class="flex flex-col">
                         <label for="name" class="font-bold">Name</label>
-                        <input type="text" name="name" id="name" placeholder="e.g. John Doe"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value='{{old(' name')}}'>
+
+                        <x-text-input name="name" label="Name" placeholder="e.g. John Doe" value="{{old('name')}}" />
                         @error('name')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="email" class="font-bold">Email</label>
-                        <input type="email" name="email" id="email" placeholder="e.g. admin@example.com"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value='{{old(' email')}}'>
+
+                        <x-text-input name="email" label="Email" placeholder="e.g. admin@example.com "
+                            value="{{old('email')}}" />
                         @error('email')
-                        <x-input-error :messages="$message" />
+                        <x-input-error :messages=" $message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="password" class="font-bold">Password</label>
-                        <input autocomplete="new-password" type="password" name="password" id="password"
-                            placeholder="e.g. I23VeryCool@#"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50">
+
+                        <x-text-input type="password" name="password" label="Password" placeholder="e.g. I23VeryCool@#"
+                            autocomplete="new-password" />
                         @error('password')
                         <x-input-error :messages="$message" />
                         @enderror

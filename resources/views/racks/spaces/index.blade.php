@@ -24,78 +24,70 @@
                     @csrf
                     <div class="flex flex-col">
                         <label for="name" class="font-bold">Name</label>
-                        <input type="text" name="name" id="name" placeholder="e.g. dal.xyz.com"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value="@if($rackSpace->name != null) {{$rackSpace->name}} @endif">
+
+                        <x-text-input name="name" label="Name" placeholder="e.g. dal.xyz.com"
+                            value="{{$rackSpace->name ?? ''}}" />
                         @error('name')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="description" class="font-bold"> Description</label>
-                        <input type="text" name="description" id="description"
-                            placeholder="e.g. This server is used for ..."
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value="@if($rackSpace->description != null) {{$rackSpace->description}} @endif">
+
+                        <x-text-input name="description" label="Description"
+                            placeholder="e.g. This server is used for ..." value="{{$rackSpace->description ?? ''}}" />
                         @error('description')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="client_email" class="font-bold"> Client Email</label>
-                        <input type="text" name="client_email" id="client_email" placeholder="e.g. admin@example.com"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value="@if($rackSpace->client_email != null) {{$rackSpace->client_email}} @endif">
+                        <x-text-input type="email" name="client_email" label="Client Email"
+                            placeholder="e.g. admin@example.com" value="{{$rackSpace->client_email ?? ''}}" />
                         @error('client_email')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="client_id" class="font-bold"> Client ID</label>
-                        <input type="number" name="client_id" id="client_id" placeholder="e.g. 123"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value="@if($rackSpace->client_id != null){{$rackSpace->client_id}}@endif">
+                        <x-text-input type="number" name="client_id" label="Client ID" placeholder="e.g. 123"
+                            value="{{$rackSpace->client_id ?? ''}}" />
                         @error('client_id')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="hardware_type" class="font-bold"> Hardware Type/Model</label>
-                        <input type="text" name="hardware_type" id="hardware_type" placeholder="e.g. HP DL380 G7"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value="@if($rackSpace->hardware_type != null) {{$rackSpace->hardware_type}} @endif">
+                        <x-text-input name="hardware_type" label="Hardware Type/Model" placeholder="e.g. HP DL380 G7"
+                            value="{{$rackSpace->hardware_type ?? ''}}" />
                         @error('hardware_type')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="ipmi_port" class="font-bold"> IPMI Port</label>
-                        <input type="text" name="ipmi_port" id="ipmi_port" placeholder="e.g. Port 0/14, WAN: 0/39"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value="@if($rackSpace->ipmi_port != null) {{$rackSpace->ipmi_port}} @endif">
+                        <x-text-input name="ipmi_port" label="IPMI Port" placeholder="e.g. Port 0/14, WAN: 0/39"
+                            value="{{$rackSpace->ipmi_port ?? ''}}" />
                         @error('ipmi_port')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="switch_port" class="font-bold"> Switch Port</label>
-                        <input type="text" name="switch_port" id="switch_port" placeholder="e.g. Port 0/14"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value="@if($rackSpace->switch_port != null) {{$rackSpace->switch_port}} @endif">
+                        <x-text-input name="switch_port" label="Switch Port" placeholder="e.g. Port 0/14"
+                            value="{{$rackSpace->switch_port ?? ''}}" />
                         @error('switch_port')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="subnet" class="font-bold"> Subnet</label>
-                        <input type="text" name="subnet" id="subnet" placeholder="e.g. 127.0.0.1/24"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value="@if($rackSpace->subnet != null) {{$rackSpace->subnet}} @endif">
+                        <x-text-input name="subnet" label="Subnet" placeholder="e.g. 127.0.0.1/24"
+                            value="{{$rackSpace->subnet ?? ''}}" />
                         @error('subnet')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
-
                     <button type="submit"
                         class="mt-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none"
                         style="width: fit-content;">Update &rarr;</button>

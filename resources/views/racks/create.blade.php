@@ -21,27 +21,23 @@
                     @csrf
                     <div class="flex flex-col">
                         <label for="name" class="font-bold">Rack Name</label>
-                        <input type="text" name="name" id="name" placeholder="e.g. Rack 1"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value={{old('name')}}>
+                        <x-text-input name="name" label="Rack Name" placeholder="e.g. Rack 1" value="{{old('name')}}" />
                         @error('name')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="description" class="font-bold">Rack Description</label>
-                        <input type="text" name="description" id="description" placeholder="e.g. Very cool rack"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value={{old('description')}}>
+                        <x-text-input name="description" label="Rack Description" placeholder="e.g. Very cool rack"
+                            value="{{old('description')}}" />
                         @error('description')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="rack_size" class="font-bold">Rack Size</label>
-                        <input type="number" name="rack_size" id="rack_size" placeholder="eg 42"
-                            class="flex w-full h-10 px-3 py-2 text-sm bg-white border rounded-md border-neutral-300 ring-offset-background placeholder:text-neutral-500 focus:border-neutral-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-neutral-400 disabled:cursor-not-allowed disabled:opacity-50"
-                            value={{old('rack_space')}}>
+                        <x-text-input type="number" name="rack_size" label="Rack Size" placeholder="eg 42"
+                            value="{{old('rack_size')}}" />
                         @error('rack_size')
                         <x-input-error :messages="$message" />
                         @enderror
