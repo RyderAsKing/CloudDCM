@@ -14,23 +14,14 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        //
-        // three permissions - create, update and delete
-
-        $permissions = [
-            [
-                'name' => 'create',
-            ],
-            [
-                'name' => 'update',
-            ],
-            [
-                'name' => 'delete',
-            ],
-        ];
+        $permissions = ['create', 'update', 'delete'];
 
         foreach ($permissions as $permission) {
-            Permission::create($permission);
+            if (!Permission::where('name', $permission)->first()) {
+                Permission::create(['name' => $permission]);
+            } else {
+                echo "Permission $permission already exists.\n";
+            }
         }
     }
 }

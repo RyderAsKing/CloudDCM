@@ -19,9 +19,11 @@ class RoleSeeder extends Seeder
         $roles = ['admin', 'user', 'subuser'];
 
         foreach ($roles as $role) {
-            Role::create([
-                'name' => $role,
-            ]);
+            if (!Role::where('name', $role)->first()) {
+                Role::create(['name' => $role]);
+            } else {
+                echo "Role $role already exists.\n";
+            }
         }
     }
 }

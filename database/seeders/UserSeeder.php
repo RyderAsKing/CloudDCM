@@ -14,14 +14,15 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        //
-
-        $user = \App\Models\User::create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
-            'password' => bcrypt('password'),
-        ]);
-
-        $user->assignRole('admin');
+        if (!\App\Models\User::where('email', 'admin@example.com')->first()) {
+            $user = \App\Models\User::create([
+                'name' => 'Admin User',
+                'email' => 'admin@example.com',
+                'password' => bcrypt('password'),
+            ]);
+            $user->assignRole('admin');
+        } else {
+            echo "Admin User already exists.\n";
+        }
     }
 }
