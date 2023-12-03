@@ -25,6 +25,10 @@ class RackPolicy
                 return null;
             }
         }
+
+        if ($user->hasRole('admin')) {
+            return true;
+        }
         return false;
     }
 

@@ -44,11 +44,21 @@
                             class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                             <div>
                                 {{ Auth::user()->name }}
-                                @foreach(Auth::user()->roles as $role)
+                                @hasrole('user')
                                 <span
-                                    class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">{{$role->name}}</span>
-                                @endforeach
+                                    class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">user</span>
+                                @endhasrole
 
+                                @hasrole('subuser')
+
+                                <span
+                                    class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">subuser</span>
+                                @endhasrole
+
+                                @hasrole('admin')
+                                <span
+                                    class="bg-blue-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">admin</span>
+                                @endhasrole
                             </div>
 
                             <div class="ml-1">
@@ -121,8 +131,7 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }} <span
-                        class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">{{$role->name}}</span>
+                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}
                 </div>
                 <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
 
