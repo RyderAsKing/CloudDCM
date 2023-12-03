@@ -10,14 +10,11 @@ class RackPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function before(User $user)
     {
-        //
+        if (!$user->hasRole('colocation_manager')) {
+            return false;
+        }
     }
 
     public function show(User $user, Rack $rack)
