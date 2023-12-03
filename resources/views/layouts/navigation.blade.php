@@ -16,6 +16,8 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+
+                @hasrole('colocation_manager')
                 @hasanyrole('user|subuser')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('racks.index')" :active="request()->routeIs('racks.index')">
@@ -23,6 +25,7 @@
                     </x-nav-link>
                 </div>
                 @endhasanyrole
+                @endhasrole
 
                 @hasanyrole('admin|user')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -101,11 +104,13 @@
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
+            @hasrole('colocation_manager')
             @hasanyrole('user|subuser')
             <x-responsive-nav-link :href="route('racks.index')" :active="request()->routeIs('racks.index')">
                 {{ __('Racks') }}
             </x-responsive-nav-link>
             @endhasanyrole
+            @endhasrole
 
             @hasanyrole('admin|user')
             <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
