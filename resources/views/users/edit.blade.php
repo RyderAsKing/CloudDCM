@@ -73,6 +73,21 @@
                     </div>
                     @endif
 
+                    @hasrole('admin')
+                    <h3 class="mt-2">Modules</h3>
+                    <div class="flex flex-row items-center gap-2">
+                        <input type="checkbox" id="colocation_manager" name="colocation_manager"
+                            @if($user->hasRole('colocation_manager')) checked @endif">
+                        <label for="colocation_manager"> Colocation Manager</label>
+                    </div>
+                    <div class="flex flex-row items-center gap-2">
+                        <input type="checkbox" id="customer_relationship_manager" name="customer_relationship_manager"
+                            @if($user->hasRole('customer_relationship_manager')) checked @endif>
+                        <label for=" customer_relationship_manager"> Customer Relationship Manager</label><br>
+                    </div>
+                    @endhasrole
+
+
                     <div class="flex justify-between">
                         <button type="submit"
                             class="mt-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none"

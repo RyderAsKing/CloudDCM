@@ -70,6 +70,7 @@
                         <input type="checkbox" id="customer_relationship_manager" name="customer_relationship_manager">
                         <label for="customer_relationship_manager"> Customer Relationship Manager</label><br>
                     </div>
+                    @endhasrole
 
 
                     @endhasrole

@@ -55,6 +55,8 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
             'owner_id' => 'integer|exists:users,id|nullable',
+            'colocation_manager' => 'nullable',
+            'customer_relationship_manager' => 'nullable',
         ]);
 
         $user = new User();
@@ -72,6 +74,14 @@ class UserController extends Controller
             $user->assignRole('subuser');
         } else {
             $user->assignRole('user');
+
+            if ($request->input('colocation_manager') != null) {
+                $user->assignRole('colocation_manager');
+            }
+
+            if ($request->input('customer_relationship_manager') != null) {
+                $user->assignRole('customer_relationship_manager');
+            }
         }
 
         return redirect()
@@ -127,6 +137,8 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $id,
             'password' => 'nullable|min:8',
             'permissions' => 'array',
+            'colocation_manager' => 'nullable',
+            'customer_relationship_manager' => 'nullable',
         ]);
 
         $user->name = $request->input('name');
@@ -138,6 +150,23 @@ class UserController extends Controller
 
         $user->save();
 
+        if (
+            auth()
+                ->user()
+                ->hasRole('admin')
+        ) {
+            if ($request->input('colocation_manager') != null) {
+                $user->assignRole('colocation_manager');
+            } else {
+                $user->removeRole('colocation_manager');
+            }
+
+            if ($request->input('customer_relationship_manager') != null) {
+                $user->assignRole('customer_relationship_manager');
+            } else {
+                $user->removeRole('customer_relationship_manager');
+            }
+        }
         $user->syncPermissions($request->input('permissions'));
 
         return redirect()

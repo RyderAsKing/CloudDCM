@@ -12,9 +12,20 @@ class RackPolicy
 
     public function before(User $user)
     {
-        if (!$user->hasRole('colocation_manager')) {
-            return false;
+        // if user is a subuser then get the owner of the user and check if the owner has the role 'colocation_manager'
+        // if yes then return null so that the user can perform all the actions
+        // else return false so that the user cannot perform any action
+
+        if ($user->hasRole('colocation_manager')) {
+            return null;
         }
+
+        if ($user->isSubUser()) {
+            if ($user->owner->hasRole('colocation_manager')) {
+                return null;
+            }
+        }
+        return false;
     }
 
     public function show(User $user, Rack $rack)
