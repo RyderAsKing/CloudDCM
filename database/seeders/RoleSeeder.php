@@ -16,7 +16,13 @@ class RoleSeeder extends Seeder
     public function run()
     {
         //
-        $roles = ['admin', 'user', 'subuser'];
+        $roles = [
+            'admin',
+            'user',
+            'subuser',
+            'colocation_manager',
+            'customer_relationship_manager',
+        ];
 
         foreach ($roles as $role) {
             if (!Role::where('name', $role)->first()) {
