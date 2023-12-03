@@ -15,7 +15,7 @@ class RackController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', Rack::class);
+        $this->authorize('view', Rack::class);
 
         $racks = auth()
             ->user()

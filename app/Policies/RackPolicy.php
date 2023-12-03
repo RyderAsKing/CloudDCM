@@ -28,6 +28,12 @@ class RackPolicy
         return false;
     }
 
+    public function view()
+    {
+        // the before method is called before this method
+        return true;
+    }
+
     public function show(User $user, Rack $rack)
     {
         // the following checks are performed and if any one is true then the user is authorized to view the rack
