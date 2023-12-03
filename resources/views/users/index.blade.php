@@ -94,9 +94,11 @@
                                             <a class="text-blue-600 hover:text-blue-700"
                                                 href="{{route('users.edit', $user->id)}}">Edit</a>
                                             @hasrole('admin')
+                                            @if ($user->id != Auth::user()->id)
                                             <a class="text-blue-600 hover:text-blue-700"
                                                 href="{{route('users.show', $user->id)}}">Impersonate</a>
                                             @endhasrole
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
