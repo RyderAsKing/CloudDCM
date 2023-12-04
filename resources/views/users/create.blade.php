@@ -67,14 +67,22 @@
 
 
                     <h3 class="mt-2">Modules</h3>
+                    @can('edit-modules', 'colocation_manager')
                     <div class="flex flex-row items-center gap-2">
-                        <input type="checkbox" id="colocation_manager" name="colocation_manager">
+                        <input type="checkbox" id="colocation_manager" name="colocation_manager"
+                            @if($user->hasRole('colocation_manager'))
+                        checked @endif">
                         <label for="colocation_manager"> Colocation Manager</label>
                     </div>
+                    @endcan
+
+                    @can('edit-modules', 'customer_relationship_manager')
                     <div class="flex flex-row items-center gap-2">
-                        <input type="checkbox" id="customer_relationship_manager" name="customer_relationship_manager">
-                        <label for="customer_relationship_manager"> Customer Relationship Manager</label><br>
+                        <input type="checkbox" id="customer_relationship_manager" name="customer_relationship_manager"
+                            @if($user->hasRole('customer_relationship_manager')) checked @endif>
+                        <label for=" customer_relationship_manager"> Customer Relationship Manager</label><br>
                     </div>
+                    @endcan
                     @endhasanyrole
 
 
