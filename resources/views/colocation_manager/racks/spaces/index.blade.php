@@ -18,8 +18,8 @@
                         {{ __("Update information about the unit rack space.") }}
                     </p>
                 </header>
-                <form action="{{route('racks.spaces.update', [$rack->id, $rackSpace->unit_number])}}" method="POST"
-                    class="mt-4 flex flex-col gap-2">
+                <form action="{{route('colocation_manager.racks.spaces.update', [$rack->id, $rackSpace->unit_number])}}"
+                    method="POST" class="mt-4 flex flex-col gap-2">
                     @method('PATCH')
                     @csrf
                     <div class="flex flex-col">

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Colocation_Manager;
 
+use App\Http\Controllers\Controller;
 use App\Models\Rack;
 use App\Models\RackSpace;
 use Illuminate\Http\Request;
@@ -41,7 +42,7 @@ class RackController extends Controller
                 ])
                 ->paginate(10);
 
-        return view('racks.index', compact('racks'));
+        return view('colocation_manager.racks.index', compact('racks'));
     }
 
     /**
@@ -53,7 +54,7 @@ class RackController extends Controller
     {
         $this->authorize('create', Rack::class);
 
-        return view('racks.create');
+        return view('colocation_manager.racks.create');
     }
 
     /**
@@ -91,10 +92,9 @@ class RackController extends Controller
             ]);
         }
 
-        return redirect('/racks')->with(
-            'success',
-            'Rack has been added successfully.'
-        );
+        return redirect()
+            ->route('colocation_manager.racks.index')
+            ->with('success', 'Rack has been added successfully.');
     }
 
     /**
@@ -109,7 +109,7 @@ class RackController extends Controller
 
         $this->authorize('show', $rack, Rack::class);
 
-        return view('racks.show', compact('rack'));
+        return view('colocation_manager.racks.show', compact('rack'));
     }
 
     /**
@@ -153,10 +153,9 @@ class RackController extends Controller
 
         $rack->delete();
 
-        return redirect('/racks')->with(
-            'success',
-            'Rack has been deleted successfully.'
-        );
+        return redirect()
+            ->route('colocation_manager.racks.index')
+            ->with('success', 'Rack has been deleted successfully.');
     }
 
     public function spaces($id, $unit_number)
@@ -172,7 +171,10 @@ class RackController extends Controller
 
         abort_if(!$rackSpace, 404);
 
-        return view('racks.spaces.index', compact('rack', 'rackSpace'));
+        return view(
+            'colocation_manager.racks.spaces.index',
+            compact('rack', 'rackSpace')
+        );
     }
 
     public function spaces_update($id, $unit_number, Request $request)
@@ -210,9 +212,8 @@ class RackController extends Controller
 
         $rackSpace->save();
 
-        return redirect('/racks/' . $id)->with(
-            'success',
-            'Rack space has been added successfully.'
-        );
+        return redirect()
+            ->route('colocation_manager.racks.show', $id)
+            ->with('success', 'Rack space has been added successfully.');
     }
 }

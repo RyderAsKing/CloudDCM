@@ -41,7 +41,7 @@
                                     class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-100 focus:ring-offset-2">
                                     Go back &larr;
                                 </button>
-                                <form action="{{route('racks.destroy', $rack)}}" method="post">
+                                <form action="{{route('colocation_manager.racks.destroy', $rack)}}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit"
@@ -66,7 +66,7 @@
                 @foreach ($rack->rackSpaces->reverse() as $rackSpace)
                 <div class="rack-unit bg-gray-900 text-white flex justify-between text-xs" style="padding: .5rem">
                     <span><a class="hover:text-blue-300"
-                            href="{{route('racks.spaces.show', [$rack->id, $rackSpace->unit_number])}}">#{{$rackSpace->unit_number}}
+                            href="{{route('colocation_manager.racks.spaces.show', [$rack->id, $rackSpace->unit_number])}}">#{{$rackSpace->unit_number}}
                             &rarr;</a></span><span>@if($rackSpace->name !=
                         null) {{
                         $rackSpace->name }} @else
@@ -147,7 +147,7 @@
                                             <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                                 @can('update', $rack)
                                                 <a class="text-blue-600 hover:text-blue-700"
-                                                    href="{{route('racks.spaces.show', [$rack->id, $rackSpace->unit_number])}}">Edit</a>
+                                                    href="{{route('colocation_manager.racks.spaces.show', [$rack->id, $rackSpace->unit_number])}}">Edit</a>
                                                 @else
                                                 <span
                                                     class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">No
