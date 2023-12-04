@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Colocation_Manager;
 
 use App\Http\Controllers\Controller;
 use App\Models\Rack;
+use App\Policies\Colocation_Manager\RackPolicy;
 use App\Models\RackSpace;
 use Illuminate\Http\Request;
 

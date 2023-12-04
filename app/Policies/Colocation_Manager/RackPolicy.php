@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Policies;
+namespace App\Policies\Colocation_Manager;
 
 use App\Models\Rack;
 use App\Models\User;
@@ -15,7 +15,6 @@ class RackPolicy
         // if user is a subuser then get the owner of the user and check if the owner has the role 'colocation_manager'
         // if yes then return null so that the user can perform all the actions
         // else return false so that the user cannot perform any action
-
         if ($user->hasRole('colocation_manager')) {
             return null;
         }
