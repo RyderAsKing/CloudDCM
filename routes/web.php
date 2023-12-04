@@ -37,7 +37,10 @@ Route::middleware('auth')->group(function () {
 
 Route::impersonate();
 
+// general
 require __DIR__ . '/auth.php';
 require __DIR__ . '/users.php';
 
+// modules
 require __DIR__ . '/colocation_manager.php';
+require __DIR__ . '/customer_relationship_manager.php';
