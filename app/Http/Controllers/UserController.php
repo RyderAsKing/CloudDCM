@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Gate;
+use Spatie\Permission\Models\Permission;
 use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 class UserController extends Controller
@@ -74,14 +75,20 @@ class UserController extends Controller
             $user->assignRole('subuser');
         } else {
             $user->assignRole('user');
+        }
 
-            if ($request->input('colocation_manager') != null) {
-                $user->assignRole('colocation_manager');
-            }
+        if (
+            $request->input('colocation_manager') != null &&
+            Gate::allows('edit-modules', 'colocation_manager')
+        ) {
+            $user->assignRole('colocation_manager');
+        }
 
-            if ($request->input('customer_relationship_manager') != null) {
-                $user->assignRole('customer_relationship_manager');
-            }
+        if (
+            $request->input('customer_relationship_manager') != null &&
+            Gate::allows('edit-modules', 'customer_relationship_manager')
+        ) {
+            $user->assignRole('customer_relationship_manager');
         }
 
         return redirect()
@@ -150,23 +157,22 @@ class UserController extends Controller
 
         $user->save();
 
-        if (
-            auth()
-                ->user()
-                ->hasRole('admin')
-        ) {
+        if (Gate::allows('edit-modules', 'colocation_manager')) {
             if ($request->input('colocation_manager') != null) {
                 $user->assignRole('colocation_manager');
             } else {
                 $user->removeRole('colocation_manager');
             }
+        }
 
+        if (Gate::allows('edit-modules', 'customer_relationship_manager')) {
             if ($request->input('customer_relationship_manager') != null) {
                 $user->assignRole('customer_relationship_manager');
             } else {
                 $user->removeRole('customer_relationship_manager');
             }
         }
+
         $user->syncPermissions($request->input('permissions'));
 
         return redirect()
