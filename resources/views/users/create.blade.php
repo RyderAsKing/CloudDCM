@@ -46,6 +46,7 @@
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
+
                     @hasrole('admin')
                     <div class="flex flex-col mt-2">
                         <label for="owner_id" class="font-bold">Owner of the user <span
@@ -60,6 +61,10 @@
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
+                    @endhasrole
+
+                    @hasanyrole('admin|user')
+
 
                     <h3 class="mt-2">Modules</h3>
                     <div class="flex flex-row items-center gap-2">
@@ -70,7 +75,7 @@
                         <input type="checkbox" id="customer_relationship_manager" name="customer_relationship_manager">
                         <label for="customer_relationship_manager"> Customer Relationship Manager</label><br>
                     </div>
-                    @endhasrole
+                    @endhasanyrole
 
 
                     <button type="submit"
