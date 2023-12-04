@@ -22,7 +22,7 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('colocation_manager.racks.index')"
                         :active="request()->routeIs('colocation_manager.racks.index')">
-                        {{ __('Racks') }}
+                        {{ __('Colocation Manager') }}
                     </x-nav-link>
                 </div>
                 @endhasanyrole
@@ -119,7 +119,7 @@
             @hasanyrole('user|subuser')
             <x-responsive-nav-link :href="route('colocation_manager.racks.index')"
                 :active="request()->routeIs('colocation_manager.racks.index')">
-                {{ __('Racks') }}
+                {{ __('Colocation Manager') }}
             </x-responsive-nav-link>
             @endhasanyrole
             @endhasrole
