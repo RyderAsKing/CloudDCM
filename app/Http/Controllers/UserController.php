@@ -11,6 +11,13 @@ use Symfony\Component\VarDumper\Caster\RedisCaster;
 
 class UserController extends Controller
 {
+    private function massRemoveRole($users, $role)
+    {
+        foreach ($users as $user) {
+            $user->removeRole($role);
+        }
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -162,6 +169,12 @@ class UserController extends Controller
                 $user->assignRole('colocation_manager');
             } else {
                 $user->removeRole('colocation_manager');
+
+                // if the user is not subuser then remove the roles from all his subusers
+                if ($user->owner_id == null) {
+                    $subusers = User::where('owner_id', $user->id)->get();
+                    $this->massRemoveRole($subusers, 'colocation_manager');
+                }
             }
         }
 
@@ -170,6 +183,15 @@ class UserController extends Controller
                 $user->assignRole('customer_relationship_manager');
             } else {
                 $user->removeRole('customer_relationship_manager');
+
+                // if the user is not subuser then remove the roles from all his subusers
+                if ($user->owner_id == null) {
+                    $subusers = User::where('owner_id', $user->id)->get();
+                    $this->massRemoveRole(
+                        $subusers,
+                        'customer_relationship_manager'
+                    );
+                }
             }
         }
 
