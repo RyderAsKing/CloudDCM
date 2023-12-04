@@ -19,11 +19,11 @@ class RackPolicy
             return null;
         }
 
-        if ($user->isSubUser()) {
-            if ($user->owner->hasRole('colocation_manager')) {
-                return null;
-            }
-        }
+        // if ($user->isSubUser()) {
+        //     if ($user->owner->hasRole('colocation_manager')) {
+        //         return null;
+        //     }
+        // }
 
         if ($user->hasRole('admin')) {
             return true;
