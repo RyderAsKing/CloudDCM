@@ -74,6 +74,7 @@
                     @endif
 
                     @hasrole('admin')
+                    @if(!$user->hasRole('subuser'))
                     <h3 class="mt-2">Modules</h3>
                     <div class="flex flex-row items-center gap-2">
                         <input type="checkbox" id="colocation_manager" name="colocation_manager"
@@ -85,6 +86,7 @@
                             @if($user->hasRole('customer_relationship_manager')) checked @endif>
                         <label for=" customer_relationship_manager"> Customer Relationship Manager</label><br>
                     </div>
+                    @endif
                     @endhasrole
 
 
