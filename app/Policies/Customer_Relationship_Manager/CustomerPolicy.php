@@ -12,11 +12,11 @@ class CustomerPolicy
 
     public function before(User $user)
     {
-        if ($user->has('customer_relationship_manager')) {
+        if ($user->hasRole('customer_relationship_manager')) {
             return null;
         }
 
-        if ($user->has('admin')) {
+        if ($user->hasRole('admin')) {
             return true;
         }
         return false;

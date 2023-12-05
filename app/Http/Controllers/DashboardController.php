@@ -12,12 +12,12 @@ class DashboardController extends Controller
     public function index()
     {
         $user = auth()->user();
+
         $racks = 0;
         $rackSpaces = 0;
         $users = 0;
         $locations = [];
         $uncategorized = [];
-        // $uncategorized['racks'] = Rack::whereNull('location_id')->count();
 
         if ($user->hasRole('admin')) {
             $racks = Rack::count();
