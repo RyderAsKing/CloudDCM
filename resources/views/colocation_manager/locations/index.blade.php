@@ -32,8 +32,16 @@
                 Add Location +
             </a>
             <div class="flex flex-col">
+                <div class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm  border-2 border-gray-50 ">
+                    <h2 class="text-xl font-semibold mb-4">Welcome to Colocation Manager</h2>
+                    <p class="text-gray-700">Here you can manage locations and their racks</p>
+                    @if(count($locations) < 2) <p class="text-gray-700">You have no locations yet, click the button
+                        above to get started</p>
 
+                        @endif
+                </div>
                 <div class="mt-2 grid grid-cols-3 gap-2">
+
                     @foreach ($locations as $location)
                     @if(isset($location->name))
                     <a href="{{route('colocation_manager.locations.show', $location->id)}}"
