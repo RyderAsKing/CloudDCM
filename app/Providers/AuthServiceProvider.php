@@ -15,6 +15,8 @@ class AuthServiceProvider extends ServiceProvider
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        'App\Models\Location' =>
+            'App\Policies\Colocation_Manager\LocationPolicy',
         'App\Models\Rack' => 'App\Policies\Colocation_Manager\RackPolicy',
         'App\Models\Customer' =>
             'App\Policies\Customer_Relationship_Manager\CustomerPolicy',
