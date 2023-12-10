@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\Colocation_Manager\RackController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Colocation_Manager\RackController;
+use App\Http\Controllers\Colocation_Manager\LocationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,7 @@ Route::prefix('colocation_manager')
     ->name('colocation_manager.')
     ->middleware('auth')
     ->group(function () {
+        Route::resource('locations', LocationController::class);
         Route::resource('racks', RackController::class);
 
         Route::get('/racks/{rack}/spaces/{unit_number}', [

@@ -20,8 +20,8 @@
                 @hasrole('colocation_manager')
                 @hasanyrole('user|subuser')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('colocation_manager.racks.index')"
-                        :active="request()->routeIs('colocation_manager.racks.index')">
+                    <x-nav-link :href="route('colocation_manager.locations.index')"
+                        :active="request()->routeIs('colocation_manager.locations.index')">
                         {{ __('Colocation Manager') }}
                     </x-nav-link>
                 </div>
@@ -117,8 +117,8 @@
         <div class="pt-2 pb-3 space-y-1">
             @hasrole('colocation_manager')
             @hasanyrole('user|subuser')
-            <x-responsive-nav-link :href="route('colocation_manager.racks.index')"
-                :active="request()->routeIs('colocation_manager.racks.index')">
+            <x-responsive-nav-link :href="route('colocation_manager.locations.index')"
+                :active="request()->routeIs('colocation_manager.locations.index')">
                 {{ __('Colocation Manager') }}
             </x-responsive-nav-link>
             @endhasanyrole

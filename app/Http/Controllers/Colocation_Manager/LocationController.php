@@ -17,6 +17,36 @@ class LocationController extends Controller
     {
         //
         $this->authorize('view', Location::class);
+
+        //
+        $locations = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->locations()
+                ->paginate(10)
+            : auth()
+                ->user()
+                ->locations()
+                ->paginate(10);
+
+        // check if there is any rack which is not assigned to any location and add it to the locations array as $location['uncategorized']
+        $locations['uncategorized'] = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->racks()
+                ->where('location_id', null)
+                ->count()
+            : auth()
+                ->user()
+                ->racks()
+                ->where('location_id', null)
+                ->count();
+
+        return view('colocation_manager.locations.index', compact('locations'));
     }
 
     /**
@@ -51,8 +81,35 @@ class LocationController extends Controller
     public function show($id)
     {
         $location = Location::findOrFail($id);
-
         $this->authorize('show', $location, Location::class);
+
+        $racks = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->racks()
+                ->where('location_id', $id)
+                ->withCount('rackSpaces')
+                ->with([
+                    'rackSpaces' => function ($query) {
+                        $query->where('name', '!=', null);
+                    },
+                ])
+                ->paginate(10)
+            : auth()
+                ->user()
+                ->racks()
+                ->where('location_id', $id)
+                ->withCount('rackSpaces')
+                ->with([
+                    'rackSpaces' => function ($query) {
+                        $query->where('name', '!=', null);
+                    },
+                ])
+                ->paginate(10);
+
+        return view('colocation_manager.racks.index', compact('racks'));
     }
 
     /**
