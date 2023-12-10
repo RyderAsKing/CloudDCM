@@ -55,7 +55,18 @@ class RackController extends Controller
     {
         $this->authorize('create', Rack::class);
 
-        return view('colocation_manager.racks.create');
+        $locations = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->locations()
+                ->get()
+            : auth()
+                ->user()
+                ->locations()
+                ->get();
+        return view('colocation_manager.racks.create', compact('locations'));
     }
 
     /**
@@ -72,6 +83,7 @@ class RackController extends Controller
             'name' => 'required|unique:racks|max:255',
             'description' => 'required',
             'rack_size' => 'numeric|required|min:1|max:256',
+            'location' => 'numeric|nullable',
         ]);
 
         $rack = new Rack();
@@ -83,6 +95,10 @@ class RackController extends Controller
             ->isSubUser()
             ? auth()->user()->owner->id
             : auth()->user()->id;
+
+        if ($request->location) {
+            $rack->location_id = $request->location;
+        }
 
         $rack->save();
 
