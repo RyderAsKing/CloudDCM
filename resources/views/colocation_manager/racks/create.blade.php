@@ -46,7 +46,7 @@
                     <div class="flex flex-col mt-2">
                         <label for="rack_size" class="font-bold">Location</label>
                         <select name="location" id="location">
-                            <option>Uncategorized</option>
+                            <option value=" ">Uncategorized</option>
                             @foreach ($locations as $location)
                             <option value="{{ $location->id }}">{{ $location->name }}</option>
                             @endforeach

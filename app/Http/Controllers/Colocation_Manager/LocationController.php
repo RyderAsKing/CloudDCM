@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Colocation_Manager;
 
+use App\Models\Rack;
 use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -175,5 +176,17 @@ class LocationController extends Controller
         $location = Location::findOrFail($id);
 
         $this->authorize('delete', $location, Location::class);
+
+        $racks = Rack::where('location_id', $id)->get();
+
+        foreach ($racks as $rack) {
+            $rack->location_id = null;
+            $rack->save();
+        }
+
+        $location->delete();
+        return redirect()
+            ->route('colocation_manager.locations.index')
+            ->with('success', 'Location deleted successfully');
     }
 }
