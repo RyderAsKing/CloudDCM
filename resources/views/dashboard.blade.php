@@ -12,10 +12,12 @@
                     {{-- total count of users --}}
                     <x-user.widget :users="$users" />
 
-                    {{-- locations = collection of locations with racks, uncategorizied = total number of racks without
-                    a location, racks = total number of racks, rackSpaces = total number of rackSpaces --}}
-                    <x-colocation_manager.widget :locations="$locations" :uncategorized="$uncategorized" :racks="$racks"
-                        :rackSpaces="$rackSpaces" />
+                    {{-- colocationManager['locations'] = collection of locations with racks,
+                    colocationManager['locations']['uncategorizied'] = total number of racks without
+                    a location, $colocationManager['racks'] = total number of racks, $colocationManager['rackSpaces'] =
+                    total number of rackSpaces --}}
+
+                    <x-colocation_manager.widget :colocation_manager="$colocation_manager" />
                 </div>
             </div>
         </div>

@@ -2,7 +2,8 @@
 @can('view', App\Models\Rack::class)
 <h1 class="text-xl font-bold mt-6">Your Locations</h1>
 <div class="mt-2 grid grid-cols-3 gap-2">
-    @foreach ($locations as $location)
+    @foreach ($colocationManager['locations'] as $location)
+    @if(isset($location->name))
     <div
         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
         <h2 class="text-lg font-semibold mb-1">{{$location->name}} <p class="text-green-700 text-sm">
@@ -11,12 +12,13 @@
         </h2>
         <p class="text-gray-700">{{$location->description}}</p>
     </div>
+    @endif
     @endforeach
-    @if($uncategorized['racks'] > 0)
+    @if($colocationManager['locations']['uncategorized'] > 0)
     <div
         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
         <h2 class="text-lg font-semibold mb-1">Uncategorized <p class="text-green-700 text-sm">
-                {{$uncategorized['racks']}} Racks added
+                {{$colocationManager['locations']['uncategorized']}} Racks added
             </p>
         </h2>
         <p class="text-gray-700">
@@ -35,7 +37,7 @@
                 Added
             </h5>
         </a>
-        <p class="mb-4 text-neutral-500">There are a total of <strong>{{$racks}}</strong>
+        <p class="mb-4 text-neutral-500">There are a total of <strong>{{$colocationManager['racks']}}</strong>
             racks added.
         </p>
     </div>
@@ -46,7 +48,7 @@
             </h5>
         </a>
         <p class="mb-4 text-neutral-500">There are a total of
-            <strong>{{$rackSpaces}}</strong> unit rack space added.
+            <strong>{{$colocationManager['rackSpaces']}}</strong> unit rack space added.
         </p>
     </div>
 </div>
