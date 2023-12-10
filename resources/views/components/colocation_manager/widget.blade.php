@@ -4,18 +4,18 @@
 <div class="mt-2 grid grid-cols-3 gap-2">
     @foreach ($colocationManager['locations'] as $location)
     @if(isset($location->name))
-    <div
+    <a href="{{route('colocation_manager.location.show', $location->id)}}"
         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
         <h2 class="text-lg font-semibold mb-1">{{$location->name}} <p class="text-green-700 text-sm">
                 {{count($location->racks)}} Racks added
             </p>
         </h2>
         <p class="text-gray-700">{{$location->description}}</p>
-    </div>
+    </a>
     @endif
     @endforeach
     @if($colocationManager['locations']['uncategorized'] > 0)
-    <div
+    <a href="{{route('colocation_manager.racks.index')}}"
         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
         <h2 class="text-lg font-semibold mb-1">Uncategorized <p class="text-green-700 text-sm">
                 {{$colocationManager['locations']['uncategorized']}} Racks added
@@ -24,7 +24,7 @@
         <p class="text-gray-700">
             Racks/Devices that are not assigned to any location
         </p>
-    </div>
+    </a>
     @endif
 </div>
 @endcan
