@@ -58,6 +58,8 @@ class LocationController extends Controller
     {
         //
         $this->authorize('create', Location::class);
+
+        return view('colocation_manager.locations.create');
     }
 
     /**
@@ -68,8 +70,27 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $this->authorize('create', Location::class);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]);
+
+        $location = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->locations()
+                ->create($request->all())
+            : auth()
+                ->user()
+                ->locations()
+                ->create($request->all());
+
+        return redirect()
+            ->route('colocation_manager.locations.index')
+            ->with('success', 'Location created successfully');
     }
 
     /**
