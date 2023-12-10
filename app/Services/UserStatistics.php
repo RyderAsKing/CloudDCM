@@ -9,11 +9,11 @@ class UserStatistics
 {
     public function getUserStatistics($user)
     {
-        if ($user->hasRole('colocation_manager')) {
-            $user_statistics[
-                'colocation_manager'
-            ] = $this->getColocationManaagerStatistics($user);
-        }
+        $user_statistics = [
+            'colocation_manager' => $this->getColocationManaagerStatistics(
+                $user
+            ),
+        ];
 
         return $user_statistics;
     }

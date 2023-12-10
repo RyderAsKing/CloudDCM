@@ -28,6 +28,7 @@
     @endif
 </div>
 @endcan
+@endhasanyrole
 
 @can('view', App\Models\Rack::class)
 <div class="mt02 grid grid-cols-2 gap-2">
@@ -53,4 +54,3 @@
     </div>
 </div>
 @endcan
-@endhasanyrole
