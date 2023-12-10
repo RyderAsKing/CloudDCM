@@ -52,7 +52,7 @@ class LocationController extends Controller
     {
         $location = Location::findOrFail($id);
 
-        $this->authorize('view', $location);
+        $this->authorize('show', $location, Location::class);
     }
 
     /**
