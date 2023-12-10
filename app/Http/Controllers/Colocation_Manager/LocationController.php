@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Colocation_Manager;
 
-use App\Http\Controllers\Controller;
+use App\Models\Location;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class LocationController extends Controller
 {
@@ -15,6 +16,7 @@ class LocationController extends Controller
     public function index()
     {
         //
+        $this->authorize('view', Location::class);
     }
 
     /**
@@ -25,6 +27,7 @@ class LocationController extends Controller
     public function create()
     {
         //
+        $this->authorize('create', Location::class);
     }
 
     /**
@@ -36,6 +39,7 @@ class LocationController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', Location::class);
     }
 
     /**
@@ -46,7 +50,9 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        //
+        $location = Location::findOrFail($id);
+
+        $this->authorize('view', $location);
     }
 
     /**
@@ -58,6 +64,9 @@ class LocationController extends Controller
     public function edit($id)
     {
         //
+        $location = Location::findOrFail($id);
+
+        $this->authorize('update', $location, Location::class);
     }
 
     /**
@@ -70,6 +79,10 @@ class LocationController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $location = Location::findOrFail($id);
+
+        $this->authorize('update', $location, Location::class);
     }
 
     /**
@@ -81,5 +94,8 @@ class LocationController extends Controller
     public function destroy($id)
     {
         //
+        $location = Location::findOrFail($id);
+
+        $this->authorize('delete', $location, Location::class);
     }
 }
