@@ -18,9 +18,22 @@ class CustomerController extends Controller
         //
         $this->authorize('view', Customer::class);
 
-        return view('customer_relationship_manager.customers.index', [
-            'customers' => Customer::all(),
-        ]);
+        $customers = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->customers()
+                ->paginate(10)
+            : auth()
+                ->user()
+                ->customers()
+                ->paginate(10);
+
+        return view(
+            'customer_relationship_manager.customers.index',
+            compact('customers')
+        );
     }
 
     /**
