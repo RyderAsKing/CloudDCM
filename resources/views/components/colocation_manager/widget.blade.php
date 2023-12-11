@@ -4,7 +4,7 @@
 <div class="mt-2 grid grid-cols-3 gap-2">
     @foreach ($colocationManager['locations'] as $location)
     @if(isset($location->name))
-    <a href="{{route('colocation_manager.location.show', $location->id)}}"
+    <a href="{{route('colocation_manager.locations.show', $location->id)}}"
         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
         <h2 class="text-lg font-semibold mb-1">{{$location->name}} <p class="text-green-700 text-sm">
                 {{count($location->racks)}} Racks added
