@@ -32,6 +32,8 @@ class CustomerController extends Controller
     {
         //
         $this->authorize('create', Customer::class);
+
+        return view('customer_relationship_manager.customers.create');
     }
 
     /**
