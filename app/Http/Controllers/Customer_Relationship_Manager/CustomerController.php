@@ -60,23 +60,6 @@ class CustomerController extends Controller
         //
         $this->authorize('create', Customer::class);
 
-        //         'user_id',
-        // 'company_name', REQUIRED
-        // 'phone',
-        // 'email',
-        // 'contact_name',
-        // 'address',
-        // 'city',
-        // 'sales_person',
-        // 'num_desktops',
-        // 'num_notebooks',
-        // 'num_printers',
-        // 'num_servers',
-        // 'num_firewalls',
-        // 'num_wifi_access_points',
-        // 'num_switches',
-        // 'quote_provided',
-
         $request->validate([
             'company_name' => 'required',
             'phone' => 'nullable',
@@ -124,6 +107,11 @@ class CustomerController extends Controller
         $customer = Customer::findOrFail($id);
 
         $this->authorize('show', $customer, Customer::class);
+
+        return view(
+            'customer_relationship_manager.customers.show',
+            compact('customer')
+        );
     }
 
     /**
