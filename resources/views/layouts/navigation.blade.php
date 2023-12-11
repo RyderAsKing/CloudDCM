@@ -17,16 +17,25 @@
                     </x-nav-link>
                 </div>
 
-                @hasrole('colocation_manager')
                 @hasanyrole('user|subuser')
+                @hasrole('colocation_manager')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('colocation_manager.locations.index')"
                         :active="request()->routeIs('colocation_manager.locations.index')">
                         {{ __('Colocation Manager') }}
                     </x-nav-link>
                 </div>
-                @endhasanyrole
                 @endhasrole
+
+                @hasrole('customer_relationship_manager')
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('customer_relationship_manager.customers.index')"
+                        :active="request()->routeIs('customer_relationship_manager.customers.index')">
+                        {{ __('Customer Relationship (CRM)') }}
+                    </x-nav-link>
+                </div>
+                @endhasrole
+                @endhasanyrole
 
                 @hasanyrole('admin|user')
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -115,14 +124,23 @@
             </x-responsive-nav-link>
         </div>
         <div class="pt-2 pb-3 space-y-1">
-            @hasrole('colocation_manager')
             @hasanyrole('user|subuser')
+            @hasrole('colocation_manager')
             <x-responsive-nav-link :href="route('colocation_manager.locations.index')"
                 :active="request()->routeIs('colocation_manager.locations.index')">
                 {{ __('Colocation Manager') }}
             </x-responsive-nav-link>
-            @endhasanyrole
             @endhasrole
+
+            @hasrole('customer_relationship_manager')
+
+            <x-responsive-nav-link :href="route('customer_relationship_manager.customers.index')"
+                :active="request()->routeIs('customer_relationship_manager.customers.index')">
+                {{ __('CRM') }}
+            </x-responsive-nav-link>
+
+            @endhasrole
+            @endhasanyrole
 
             @hasanyrole('admin|user')
             <x-responsive-nav-link :href="route('users.index')" :active="request()->routeIs('users.index')">
