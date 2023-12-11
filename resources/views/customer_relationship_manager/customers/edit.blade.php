@@ -17,8 +17,9 @@
                         {{ __("Edit a customer that you have already added to the CRM") }}
                     </p>
                 </header>
-                <form action="{{ route('customer_relationship_manager.customers.store') }}" method="POST"
-                    class="mt-4 flex flex-col gap-2">
+                <form action="{{ route('customer_relationship_manager.customers.update', $customer->id) }}"
+                    method="POST" class="mt-4 flex flex-col gap-2">
+                    @method('PATCH')
                     @csrf
                     <div class="flex flex-col mt-2">
                         <label for="company_name" class="font-bold">Company Name*</label>
