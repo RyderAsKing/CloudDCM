@@ -34,7 +34,7 @@
                     </div>
 
                 </div>
-                <hr>
+                <hr class="mt-2">
                 <div class="my-2">
                     <ul>
                         <li>Number of Desktops: {{$customer->num_desktops}}</li>

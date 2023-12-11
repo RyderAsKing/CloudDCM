@@ -126,6 +126,11 @@ class CustomerController extends Controller
         $customer = Customer::findOrFail($id);
 
         $this->authorize('update', $customer, Customer::class);
+
+        return view(
+            'customer_relationship_manager.customers.edit',
+            compact('customer')
+        );
     }
 
     /**
@@ -141,6 +146,30 @@ class CustomerController extends Controller
         $customer = Customer::findOrFail($id);
 
         $this->authorize('update', $customer, Customer::class);
+
+        $request->validate([
+            'company_name' => 'required',
+            'phone' => 'nullable',
+            'email' => 'nullable',
+            'contact_name' => 'nullable',
+            'address' => 'nullable',
+            'city' => 'nullable',
+            'sales_person' => 'nullable',
+            'num_desktops' => 'nullable|numeric|min:0',
+            'num_notebooks' => 'nullable|numeric|min:0',
+            'num_printers' => 'nullable|numeric|min:0',
+            'num_servers' => 'nullable|numeric|min:0',
+            'num_firewalls' => 'nullable|numeric|min:0',
+            'num_wifi_access_points' => 'nullable|numeric|min:0',
+            'num_switches' => 'nullable|numeric|min:0',
+            'quote_provided' => 'nullable',
+        ]);
+
+        $customer->update($request->all());
+
+        return redirect()
+            ->route('customer_relationship_manager.customers.index')
+            ->with('success', 'Customer updated!');
     }
 
     /**
@@ -154,5 +183,11 @@ class CustomerController extends Controller
         $customer = Customer::findOrFail($id);
 
         $this->authorize('delete', $customer, Customer::class);
+
+        $customer->delete();
+
+        return redirect()
+            ->route('customer_relationship_manager.customers.index')
+            ->with('success', 'Customer deleted!');
     }
 }
