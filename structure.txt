@@ -5,4 +5,4 @@ ALL IN ONE SOFTWARE User -
 			-rackspaces (name, description, additional_fields, rack_id)
 
 - Customer Relationship Manager
-	- Customer (company_name, phone, email. contact_name, attempted_contact, city, address, sale_person, sale_price, devices)
+	- Customer (company_name, phone, email, contact_name,  city, address, sales_person, quote_provided, devices)
