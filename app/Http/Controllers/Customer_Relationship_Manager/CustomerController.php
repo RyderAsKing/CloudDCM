@@ -59,6 +59,57 @@ class CustomerController extends Controller
     {
         //
         $this->authorize('create', Customer::class);
+
+        //         'user_id',
+        // 'company_name', REQUIRED
+        // 'phone',
+        // 'email',
+        // 'contact_name',
+        // 'address',
+        // 'city',
+        // 'sales_person',
+        // 'num_desktops',
+        // 'num_notebooks',
+        // 'num_printers',
+        // 'num_servers',
+        // 'num_firewalls',
+        // 'num_wifi_access_points',
+        // 'num_switches',
+        // 'quote_provided',
+
+        $request->validate([
+            'company_name' => 'required',
+            'phone' => 'nullable',
+            'email' => 'nullable',
+            'contact_name' => 'nullable',
+            'address' => 'nullable',
+            'city' => 'nullable',
+            'sales_person' => 'nullable',
+            'num_desktops' => 'nullable|numeric|min:0',
+            'num_notebooks' => 'nullable|numeric|min:0',
+            'num_printers' => 'nullable|numeric|min:0',
+            'num_servers' => 'nullable|numeric|min:0',
+            'num_firewalls' => 'nullable|numeric|min:0',
+            'num_wifi_access_points' => 'nullable|numeric|min:0',
+            'num_switches' => 'nullable|numeric|min:0',
+            'quote_provided' => 'nullable',
+        ]);
+
+        $customer = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->customers()
+                ->create($request->all())
+            : auth()
+                ->user()
+                ->customers()
+                ->create($request->all());
+
+        return redirect()
+            ->route('customer_relationship_manager.customers.index')
+            ->with('success', 'Customer created!');
     }
 
     /**
