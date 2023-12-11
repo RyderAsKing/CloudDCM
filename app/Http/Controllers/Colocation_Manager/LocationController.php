@@ -146,6 +146,8 @@ class LocationController extends Controller
         $location = Location::findOrFail($id);
 
         $this->authorize('update', $location, Location::class);
+
+        return view('colocation_manager.locations.edit', compact('location'));
     }
 
     /**
@@ -162,6 +164,17 @@ class LocationController extends Controller
         $location = Location::findOrFail($id);
 
         $this->authorize('update', $location, Location::class);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]);
+
+        $location->update($request->all());
+
+        return redirect()
+            ->route('colocation_manager.locations.index')
+            ->with('success', 'Location updated successfully');
     }
 
     /**
