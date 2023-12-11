@@ -140,6 +140,23 @@ class RackController extends Controller
         $rack = Rack::findOrFail($id);
 
         $this->authorize('update', $rack, Rack::class);
+
+        $locations = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->locations()
+                ->get()
+            : auth()
+                ->user()
+                ->locations()
+                ->get();
+
+        return view(
+            'colocation_manager.racks.edit',
+            compact('rack', 'locations')
+        );
     }
 
     /**
@@ -154,6 +171,27 @@ class RackController extends Controller
         $rack = Rack::findOrFail($id);
 
         $this->authorize('update', $rack, Rack::class);
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'location' => 'numeric|nullable',
+        ]);
+
+        $rack->name = $request->name;
+        $rack->description = $request->description;
+
+        if ($request->location) {
+            $rack->location_id = $request->location;
+        } else {
+            $rack->location_id = null;
+        }
+
+        $rack->save();
+
+        return redirect()
+            ->route('colocation_manager.racks.index')
+            ->with('success', 'Rack has been updated successfully.');
     }
 
     /**
