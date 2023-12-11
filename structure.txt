@@ -1,0 +1,8 @@
+ALL IN ONE SOFTWARE User -
+- Colocation Manager
+	- locations (name, description)
+		- racks (name, description, rackSize, location_id=null)
+			-rackspaces (name, description, additional_fields, rack_id)
+
+- Customer Relationship Manager
+	- Customer (company_name, phone, email. contact_name, attempted_contact, city, address, sale_person, sale_price, devices)
