@@ -21,7 +21,7 @@
                     class="mt-4 flex flex-col gap-2">
                     @csrf
                     <div class="flex flex-col">
-                        <label for="name" class="font-bold">location Name</label>
+                        <label for="name" class="font-bold">Location Name</label>
                         <x-text-input name="name" label="location Name" placeholder="e.g. location 1"
                             value="{{old('name')}}" />
                         @error('name')
@@ -29,7 +29,7 @@
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
-                        <label for="description" class="font-bold">location Description</label>
+                        <label for="description" class="font-bold">Location Description</label>
                         <x-text-input name="description" label="location Description"
                             placeholder="e.g. Very cool location" value="{{old('description')}}" />
                         @error('description')
