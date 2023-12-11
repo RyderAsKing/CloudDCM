@@ -25,6 +25,7 @@ class RackController extends Controller
             ? auth()
                 ->user()
                 ->owner->racks()
+                ->where('location_id', '=', null)
                 ->withCount('rackSpaces')
                 ->with([
                     'rackSpaces' => function ($query) {
@@ -35,6 +36,7 @@ class RackController extends Controller
             : auth()
                 ->user()
                 ->racks()
+                ->where('location_id', '=', null)
                 ->withCount('rackSpaces')
                 ->with([
                     'rackSpaces' => function ($query) {
