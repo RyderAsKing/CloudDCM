@@ -28,8 +28,14 @@
                 Add customer +
             </a>
             <div class="flex flex-col">
-
-                <div class="overflow-x-auto">
+                <div class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm  border-2 border-gray-50 ">
+                    <h2 class="text-xl font-semibold mb-4">Welcome to Customer Relationship Manager</h2>
+                    <p class="text-gray-700">Here you can manage your customers </p>
+                    @if(count($customers) < 1) <p class="text-gray-700">You have no customers yet, click the button
+                        above to get started</p>
+                        @endif
+                </div>
+                <div class="overflow-x-auto mt-2">
                     <div class="inline-block min-w-full">
                         <div class="overflow-hidden border rounded-lg">
                             <table class="min-w-full divide-y divide-neutral-200">
