@@ -13,22 +13,60 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
         $this->authorize('view', Customer::class);
 
-        $customers = auth()
-            ->user()
-            ->isSubUser()
-            ? auth()
+        $customers = [];
+
+        if ($request->has('search')) {
+            $customers = auth()
                 ->user()
-                ->owner->customers()
-                ->paginate(10)
-            : auth()
+                ->isSubUser()
+                ? auth()
+                    ->user()
+                    ->owner->customers()
+                    ->where(
+                        'company_name',
+                        'like',
+                        '%' . $request->search . '%'
+                    )
+                    ->orWhere(
+                        'contact_name',
+                        'like',
+                        '%' . $request->search . '%'
+                    )
+                    ->orWhere('email', 'like', '%' . $request->search . '%')
+                    ->paginate(10)
+                : auth()
+                    ->user()
+                    ->customers()
+                    ->where(
+                        'company_name',
+                        'like',
+                        '%' . $request->search . '%'
+                    )
+                    ->orWhere(
+                        'contact_name',
+                        'like',
+                        '%' . $request->search . '%'
+                    )
+                    ->orWhere('email', 'like', '%' . $request->search . '%')
+                    ->paginate(10);
+        } else {
+            $customers = auth()
                 ->user()
-                ->customers()
-                ->paginate(10);
+                ->isSubUser()
+                ? auth()
+                    ->user()
+                    ->owner->customers()
+                    ->paginate(10)
+                : auth()
+                    ->user()
+                    ->customers()
+                    ->paginate(10);
+        }
 
         return view(
             'customer_relationship_manager.customers.index',
