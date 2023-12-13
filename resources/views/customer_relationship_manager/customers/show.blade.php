@@ -42,8 +42,10 @@
                             @endswitch
                         </p>
 
+                        @if(isset($customer->url))
                         <a href="{{$customer->url}}">Website:
                             <span class="hover:text-blue-900 underline">{{$customer->url}}</span></a>
+                        @endif
                         <div class="flex gap-2 ">
                             <p>Customer created {{$customer->created_at->diffForHumans()}}</p><span>-</span>
                             <p>Customer updated {{$customer->updated_at->diffForHumans()}}</p>
