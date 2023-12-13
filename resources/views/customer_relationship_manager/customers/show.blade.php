@@ -8,8 +8,8 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="max-w bg-white border rounded-lg shadow-sm p-7 border-neutral-200/60 mb-2">
-                <div class="grid grid-cols-2 gap-2">
-                    <div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="flex flex-col gap-2">
                         <h5 class="text-xl font-bold leading-none tracking-tight text-neutral-900 mb-1">
                             {{$customer->contact_name}}
                             <span
@@ -42,8 +42,8 @@
                             @endswitch
                         </p>
 
-                        <a href="{{$customer->url}}">Website: {{$customer->url}}</a>
-                        <div class="flex gap-2 mt-2">
+                        <a href="{{$customer->url}}" class="text-blue-900">{{$customer->url}}</a>
+                        <div class="flex gap-2 ">
                             <p>Customer created {{$customer->created_at->diffForHumans()}}</p><span>-</span>
                             <p>Customer updated {{$customer->updated_at->diffForHumans()}}</p>
                         </div>
@@ -52,13 +52,13 @@
                         <h5 class="text-xl font-bold leading-none tracking-tight text-neutral-900 mb-1">
                             Address
                         </h5>
-                        <a href="mailto:{{$customer->email}}">{{$customer->email}}</a>
-                        <p class=" text-neutral-500">{{$customer->address}}
-                        </p>
-                        <p class=" text-neutral-500">{{$customer->city}}
-                        </p>
-                        <a href="tel:{{$customer->phone}}" class="mb-4 text-neutral-500">
-                            {{$customer->phone}}
+                        @if(isset($customer->email))<a href="mailto:{{$customer->email}}">{{$customer->email}}</a>@endif
+                        @if(isset($customer->address))<p class=" text-neutral-500">{{$customer->address}}
+                        </p>@endif
+                        @if(isset($customer->city))<p class=" text-neutral-500">{{$customer->city}}
+                        </p>@endif
+                        @if(isset($customer->phone))<a href="tel:{{$customer->phone}}" class="mb-4 text-neutral-500">
+                            {{$customer->phone}}@endif
                         </a>
                     </div>
 
@@ -67,24 +67,35 @@
                 <div class="grid grid-cols-2 gap-2 items-center">
                     <div>
                         <ul>
-                            <li>Number of Desktops: {{$customer->num_desktops}}</li>
-                            <li>Number of Notebooks: {{$customer->num_notebooks}}</li>
-                            <li>Number of Printers: {{$customer->num_printers}}</li>
-                            <li>Number of Servers: {{$customer->num_servers}}</li>
-                            <li>Number of Firewalls: {{$customer->num_firewalls}}</li>
-                            <li>Number of Wifi Access Points: {{$customer->num_wifi_access_points}}</li>
-                            <li>Number of Switches: {{$customer->num_switches}}</li>
+                            @if(isset($customer->num_desktops))<li>Number of Desktops: {{$customer->num_desktops}}</li>
+                            @endif
+                            @if(isset($customer->num_notebooks))<li>Number of Notebooks: {{$customer->num_notebooks}}
+                            </li>@endif
+                            @if(isset($customer->num_printers))<li>Number of Printers: {{$customer->num_printers}}</li>
+                            @endif
+                            @if(isset($customer->num_servers))<li>Number of Servers: {{$customer->num_servers}}</li>
+                            @endif
+                            @if(isset($customer->num_firewalls))<li>Number of Firewalls: {{$customer->num_firewalls}}
+                            </li>@endif
+                            @if(isset($customer->num_wifi_access_points))<li>Number of Wifi Access Points:
+                                {{$customer->num_wifi_access_points}}</li>@endif
+                            @if(isset($customer->num_switches))<li>Number of Switches: {{$customer->num_switches}}</li>
+                            @endif
 
                         </ul>
                     </div>
+
+                    @if(isset($customer->notes))
                     <div>
                         <span class="font-bold">Notes:</span>
                         <code>{{Str::limit($customer->notes, 256)}}</code>
                     </div>
+                    @endif
                 </div>
 
-                <hr>
+                @if(isset($customer->quote_provided))
                 <div class="text-3xl mt-2">Quote Provided: <strong>{{$customer->quote_provided}}</strong></div>
+                @endif
 
                 <div class="my-4 flex gap-2">
                     <div x-data="{ modalOpen: false }" @keydown.escape.window="modalOpen = false"
