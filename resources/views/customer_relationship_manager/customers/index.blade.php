@@ -50,6 +50,7 @@
                                 <thead class="bg-white">
                                     <tr class="text-neutral-500">
                                         <th class="px-5 py-3 text-xs font-medium text-left uppercase">Company Name</th>
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Status
                                         <th class="px-5 py-3 text-xs font-medium text-left uppercase">Phone
                                         </th>
                                         <th class="px-5 py-3 text-xs font-medium text-left uppercase">Email</th>
@@ -64,6 +65,7 @@
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
                                         <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                         </td>
                                     </tr>
@@ -74,6 +76,31 @@
                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap flex items-center">
                                             {{$customer->company_name}}
                                         </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                            @switch($customer->status)
+                                            @case('potential')
+                                            <span
+                                                class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Potential</span>
+                                            @break
+                                            @case('active')
+                                            <span
+                                                class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Active</span>
+                                            @break
+                                            @case('cancelled')
+                                            <span
+                                                class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Cancelled</span>
+                                            @break
+                                            @case('not_interested')
+                                            <span
+                                                class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Not
+                                                Interested</span>
+                                            @break
+                                            @default
+                                            <span
+                                                class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Unkown</span>
+                                            @endswitch
+                                        </td>
+
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">{{$customer->phone}}</td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
                                             {{$customer->email}}

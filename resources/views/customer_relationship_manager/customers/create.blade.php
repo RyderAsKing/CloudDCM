@@ -20,23 +20,54 @@
                 <form action="{{ route('customer_relationship_manager.customers.store') }}" method="POST"
                     class="mt-4 flex flex-col gap-2">
                     @csrf
-                    <div class="flex flex-col mt-2">
-                        <label for="company_name" class="font-bold">Company Name*</label>
-                        <x-text-input name="company_name" label="Company Name" placeholder="e.g. Example LLC"
-                            value="{{old('company_name')}}" />
-                        @error('company_name')
-                        <x-input-error :messages="$message" />
-                        @enderror
-                    </div>
-                    <div class="flex flex-col mt-2">
-                        <label for="phone" class="font-bold">Phone</label>
-                        <x-text-input name="phone" label="Phone" placeholder="e.g. +1 824739921"
-                            value="{{old('phone')}}" />
-                        @error('phone')
-                        <x-input-error :messages="$message" />
-                        @enderror
-                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <div class="flex flex-col mt-2">
+                                <label for="company_name" class="font-bold">Company Name*</label>
+                                <x-text-input name="company_name" label="Company Name" placeholder="e.g. Example LLC"
+                                    value="{{old('company_name')}}" />
+                                @error('company_name')
+                                <x-input-error :messages="$message" />
+                                @enderror
+                            </div>
+                            <div class="flex flex-col mt-2">
+                                <label for="phone" class="font-bold">Phone</label>
+                                <x-text-input name="phone" label="Phone" placeholder="e.g. +1 824739921"
+                                    value="{{old('phone')}}" />
+                                @error('phone')
+                                <x-input-error :messages="$message" />
+                                @enderror
+                            </div>
+                            <div class="flex flex-col mt-2">
+                                <label for="website" class="font-bold">Website</label>
+                                <x-text-input name="url" label="URL" placeholder="e.g. example.com"
+                                    value="{{old('url')}}" />
+                                @error('url')
+                                <x-input-error :messages="$message" />
+                                @enderror
+                            </div>
+                        </div>
+                        <div>
+                            <label for="notes" class="font-bold">Notes</label>
+                            <textarea type="text" placeholder="Type your note here." name="notes"
+                                class="flex w-full h-32 border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"></textarea>
+                            @error('notes')
+                            <x-input-error :messages="$message" />
+                            @enderror
 
+                            <label for="status" class="mt-2 font-bold">Status</label>
+                            <select name="status" id="status"
+                                class="w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                                <option value="potential" selected>potential</option>
+                                <option value="active">active</option>
+                                <option value="cancelled">cancelled</option>
+                                <option value="not_interested">not interested</option>
+                            </select>
+                            @error('status')
+                            <x-input-error :messages="$message" />
+                            @enderror
+                        </div>
+                    </div>
 
                     <div class="flex flex-col mt-2">
                         <label for="email" class="font-bold">Email</label>

@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="max-w bg-white border rounded-lg shadow-sm p-7 border-neutral-200/60 mb-2">
-                <div class="grid grid-cols-2">
+                <div class="grid grid-cols-2 gap-2">
                     <div>
                         <h5 class="text-xl font-bold leading-none tracking-tight text-neutral-900 mb-1">
                             {{$customer->contact_name}}
@@ -16,8 +16,37 @@
                                 class="bg-gray-900 text-gray-200 text-sm font-semibold px-2.5 py-0.5 rounded-full ">{{$customer->company_name}}</span>
                         </h5>
 
-                        <p>Customer created {{$customer->created_at->diffForHumans()}}</p>
-                        <p>Customer updated {{$customer->updated_at->diffForHumans()}}</p>
+
+                        <p>Status:
+                            @switch($customer->status)
+                            @case('potential')
+                            <span
+                                class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Potential</span>
+                            @break
+                            @case('active')
+                            <span
+                                class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Active</span>
+                            @break
+                            @case('cancelled')
+                            <span
+                                class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Cancelled</span>
+                            @break
+                            @case('not_interested')
+                            <span
+                                class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Not
+                                Interested</span>
+                            @break
+                            @default
+                            <span
+                                class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Unkown</span>
+                            @endswitch
+                        </p>
+
+                        <a href="{{$customer->url}}">Website: {{$customer->url}}</a>
+                        <div class="flex gap-2 mt-2">
+                            <p>Customer created {{$customer->created_at->diffForHumans()}}</p><span>-</span>
+                            <p>Customer updated {{$customer->updated_at->diffForHumans()}}</p>
+                        </div>
                     </div>
                     <div>
                         <h5 class="text-xl font-bold leading-none tracking-tight text-neutral-900 mb-1">
@@ -34,19 +63,26 @@
                     </div>
 
                 </div>
-                <hr class="mt-2">
-                <div class="my-2">
-                    <ul>
-                        <li>Number of Desktops: {{$customer->num_desktops}}</li>
-                        <li>Number of Notebooks: {{$customer->num_notebooks}}</li>
-                        <li>Number of Printers: {{$customer->num_printers}}</li>
-                        <li>Number of Servers: {{$customer->num_servers}}</li>
-                        <li>Number of Firewalls: {{$customer->num_firewalls}}</li>
-                        <li>Number of Wifi Access Points: {{$customer->num_wifi_access_points}}</li>
-                        <li>Number of Switches: {{$customer->num_switches}}</li>
+                <hr class="my-2">
+                <div class="grid grid-cols-2 gap-2 items-center">
+                    <div>
+                        <ul>
+                            <li>Number of Desktops: {{$customer->num_desktops}}</li>
+                            <li>Number of Notebooks: {{$customer->num_notebooks}}</li>
+                            <li>Number of Printers: {{$customer->num_printers}}</li>
+                            <li>Number of Servers: {{$customer->num_servers}}</li>
+                            <li>Number of Firewalls: {{$customer->num_firewalls}}</li>
+                            <li>Number of Wifi Access Points: {{$customer->num_wifi_access_points}}</li>
+                            <li>Number of Switches: {{$customer->num_switches}}</li>
 
-                    </ul>
+                        </ul>
+                    </div>
+                    <div>
+                        <span class="font-bold">Notes:</span>
+                        <code>{{Str::limit($customer->notes, 256)}}</code>
+                    </div>
                 </div>
+
                 <hr>
                 <div class="text-3xl mt-2">Quote Provided: <strong>{{$customer->quote_provided}}</strong></div>
 

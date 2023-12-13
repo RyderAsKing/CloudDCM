@@ -27,6 +27,9 @@ class Customer extends Model
         'num_wifi_access_points',
         'num_switches',
         'quote_provided',
+        'notes',
+        'url',
+        'status',
     ];
 
     public function user()

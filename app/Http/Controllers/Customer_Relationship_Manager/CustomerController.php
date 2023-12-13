@@ -100,6 +100,9 @@ class CustomerController extends Controller
 
         $request->validate([
             'company_name' => 'required',
+            'notes' => 'nullable',
+            'url' => 'nullable',
+            'status' => 'nullable',
             'phone' => 'nullable',
             'email' => 'nullable',
             'contact_name' => 'nullable',
@@ -187,6 +190,9 @@ class CustomerController extends Controller
 
         $request->validate([
             'company_name' => 'required',
+            'notes' => 'nullable',
+            'url' => 'nullable',
+            'status' => 'nullable',
             'phone' => 'nullable',
             'email' => 'nullable',
             'contact_name' => 'nullable',
