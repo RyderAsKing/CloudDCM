@@ -38,7 +38,7 @@ class CustomerController extends Controller
                         '%' . $request->search . '%'
                     )
                     ->orWhere('email', 'like', '%' . $request->search . '%')
-                    ->paginate(10)
+                    ->paginate(50)
                 : auth()
                     ->user()
                     ->customers()
@@ -53,7 +53,7 @@ class CustomerController extends Controller
                         '%' . $request->search . '%'
                     )
                     ->orWhere('email', 'like', '%' . $request->search . '%')
-                    ->paginate(10);
+                    ->paginate(50);
         } else {
             $customers = auth()
                 ->user()
@@ -61,11 +61,11 @@ class CustomerController extends Controller
                 ? auth()
                     ->user()
                     ->owner->customers()
-                    ->paginate(10)
+                    ->paginate(50)
                 : auth()
                     ->user()
                     ->customers()
-                    ->paginate(10);
+                    ->paginate(50);
         }
 
         return view(
