@@ -74,7 +74,7 @@
                                     @foreach ($customers as $customer)
                                     <tr class="text-neutral-800 bg-white">
                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap flex items-center">
-                                            {{$customer->company_name}}
+                                            {{Str::limit($customer->company_name, 45)}}
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
                                             @switch($customer->status)
@@ -101,9 +101,10 @@
                                             @endswitch
                                         </td>
 
-                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{$customer->phone}}</td>
-                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
-                                            {{$customer->email}}
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{Str::limit($customer->phone,
+                                            45)}}</td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{Str::limit($customer->email,
+                                            45)}}
                                         </td>
                                         <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                             <a class="text-blue-600 hover:text-blue-700"

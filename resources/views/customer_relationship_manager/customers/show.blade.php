@@ -42,7 +42,8 @@
                             @endswitch
                         </p>
 
-                        <a href="{{$customer->url}}" class="text-blue-900">{{$customer->url}}</a>
+                        <a href="{{$customer->url}}">Website:
+                            <span class="hover:text-blue-900 underline">{{$customer->url}}</span></a>
                         <div class="flex gap-2 ">
                             <p>Customer created {{$customer->created_at->diffForHumans()}}</p><span>-</span>
                             <p>Customer updated {{$customer->updated_at->diffForHumans()}}</p>
@@ -88,7 +89,7 @@
                     @if(isset($customer->notes))
                     <div>
                         <span class="font-bold">Notes:</span>
-                        <code>{{Str::limit($customer->notes, 256)}}</code>
+                        <code>{{Str::limit($customer->notes, 2000)}}</code>
                     </div>
                     @endif
                 </div>
