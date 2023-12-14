@@ -36,6 +36,10 @@
                                 class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Not
                                 Interested</span>
                             @break
+                            @case('contacted')
+                            <span
+                                class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Contacted</span>
+                            @break
                             @default
                             <span
                                 class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Unkown</span>

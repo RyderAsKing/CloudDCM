@@ -62,6 +62,7 @@
                                 <option value="active">active</option>
                                 <option value="cancelled">cancelled</option>
                                 <option value="not_interested">not interested</option>
+                                <option value="contacted">contacted</option>
                             </select>
                             @error('status')
                             <x-input-error :messages="$message" />

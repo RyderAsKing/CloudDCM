@@ -69,6 +69,9 @@
                                     @endif>cancelled</option>
                                 <option value="not_interested" @if($customer->status == 'not_interested') selected
                                     @endif>not interested</option>
+
+                                <option value="contacted" @if($customer->status == 'contacted') selected
+                                    @endif>contacted</option>
                             </select>
                             @error('status')
                             <x-input-error :messages="$message" />
