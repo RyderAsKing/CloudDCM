@@ -15,7 +15,11 @@ return new class extends Migration {
         Schema::table('customers', function (Blueprint $table) {
             //
             if (!Schema::hasColumn('customers', 'user_id')) {
-                $table->foreignId('user_id');
+                $table
+                    ->foreignId('user_id')
+                    ->nullable()
+                    ->constrained()
+                    ->onDelete('cascade');
             }
         });
     }
