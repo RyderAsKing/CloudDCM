@@ -31,4 +31,9 @@ Route::prefix('colocation_manager')
             RackController::class,
             'spaces_destroy',
         ])->name('racks.spaces.destroy');
+
+        Route::get('/racks/{rack}/spaces/{unit_number}/move', [
+            RackController::class,
+            'spaces_move',
+        ])->name('racks.spaces.move');
     });

@@ -162,6 +162,9 @@
                                                         Delete
                                                     </button>
                                                 </form>
+
+                                                <a class="text-blue-600 hover:text-blue-700"
+                                                    href="{{route('colocation_manager.racks.spaces.move', [$rack->id, $rackSpace->unit_number])}}">Move</a>
                                                 @else
                                                 <span
                                                     class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">No

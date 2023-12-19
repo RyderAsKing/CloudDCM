@@ -301,4 +301,26 @@ class RackController extends Controller
             ->back()
             ->with('success', 'Rack space has been cleared successfully.');
     }
+
+    public function spaces_move($id, $unit_number)
+    {
+        $rack = Rack::findOrFail($id);
+
+        $this->authorize('update', $rack, Rack::class);
+
+        $rackSpace = $rack
+            ->rackSpaces()
+            ->where('unit_number', $unit_number)
+            ->first();
+
+        $rackSpaces = $rack
+            ->rackSpaces()
+            ->where('name', null)
+            ->get();
+
+        return view(
+            'colocation_manager.racks.spaces.move',
+            compact('rackSpaces', 'rackSpace', 'rack')
+        );
+    }
 }
