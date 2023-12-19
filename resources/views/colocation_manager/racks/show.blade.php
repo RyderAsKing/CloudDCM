@@ -147,10 +147,21 @@
                                                 $rackSpace->hardware_type }} @else
                                                 Not assigned @endif
                                             </td>
-                                            <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                            <td
+                                                class="px-5 py-4 text-sm font-medium flex gap-2 items-center justify-end">
                                                 @can('update', $rack)
                                                 <a class="text-blue-600 hover:text-blue-700"
                                                     href="{{route('colocation_manager.racks.spaces.show', [$rack->id, $rackSpace->unit_number])}}">Edit</a>
+
+                                                <form
+                                                    action="{{route('colocation_manager.racks.spaces.destroy', [$rack->id, $rackSpace->unit_number])}}"
+                                                    method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="text-blue-600 hover:text-blue-700">
+                                                        Delete
+                                                    </button>
+                                                </form>
                                                 @else
                                                 <span
                                                     class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">No

@@ -26,4 +26,9 @@ Route::prefix('colocation_manager')
             RackController::class,
             'spaces_update',
         ])->name('racks.spaces.update');
+
+        Route::delete('/racks/{rack}/spaces/{unit_number}', [
+            RackController::class,
+            'spaces_destroy',
+        ])->name('racks.spaces.destroy');
     });

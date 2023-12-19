@@ -1,8 +1,19 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Editing a rack space') }}
-        </h2>
+        <div class="flex justify-between">
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('Editing a rack space') }}
+            </h2>
+
+            <form method="post"
+                action="{{route('colocation_manager.racks.spaces.destroy', [$rack->id, $rackSpace->unit_number])}}">
+                @csrf
+                @method('DELETE')
+                <x-primary-button type="submit" class="bg-red-500 hover:bg-red-600">
+                    Delete X
+                </x-primary-button>
+            </form>
+        </div>
     </x-slot>
 
     <div class="py-12">

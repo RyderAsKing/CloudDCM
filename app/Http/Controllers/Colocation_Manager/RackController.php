@@ -273,4 +273,32 @@ class RackController extends Controller
             ->route('colocation_manager.racks.show', $id)
             ->with('success', 'Rack space has been added successfully.');
     }
+
+    public function spaces_destroy($id, $unit_number)
+    {
+        $rack = Rack::findOrFail($id);
+
+        $this->authorize('update', $rack, Rack::class);
+
+        $rackSpace = $rack
+            ->rackSpaces()
+            ->where('unit_number', $unit_number)
+            ->first();
+
+        abort_if(!$rackSpace, 404);
+
+        $rackSpace->name = null;
+        $rackSpace->description = null;
+        $rackSpace->client_email = null;
+        $rackSpace->client_id = null;
+        $rackSpace->hardware_type = null;
+        $rackSpace->switch_port = null;
+        $rackSpace->ipmi_port = null;
+        $rackSpace->subnet = null;
+        $rackSpace->save();
+
+        return redirect()
+            ->back()
+            ->with('success', 'Rack space has been cleared successfully.');
+    }
 }
