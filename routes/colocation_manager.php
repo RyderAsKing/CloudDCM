@@ -36,4 +36,9 @@ Route::prefix('colocation_manager')
             RackController::class,
             'spaces_move',
         ])->name('racks.spaces.move');
+
+        Route::patch('/racks/{rack}/spaces/{unit_number}/move', [
+            RackController::class,
+            'spaces_move_store',
+        ])->name('racks.spaces.move.store');
     });

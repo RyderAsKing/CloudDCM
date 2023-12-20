@@ -323,4 +323,69 @@ class RackController extends Controller
             compact('rackSpaces', 'rackSpace', 'rack')
         );
     }
+
+    public function spaces_move_store($id, $unit_number, Request $request)
+    {
+        $rack = Rack::findOrFail($id);
+
+        $this->authorize('update', $rack, Rack::class);
+
+        $request->validate([
+            'moveto' => 'required|numeric',
+        ]);
+
+        $rackSpace = $rack
+            ->rackSpaces()
+            ->where('unit_number', $unit_number)
+            ->first();
+
+        $rackSpaceToMove = $rack
+            ->rackSpaces()
+            ->where('unit_number', $request->moveto)
+            ->first();
+
+        abort_if(!$rackSpace, 404);
+        abort_if(!$rackSpaceToMove, 404);
+
+        // swap the spaces
+
+        $temp = $rackSpace->name;
+        $rackSpace->name = $rackSpaceToMove->name;
+        $rackSpaceToMove->name = $temp;
+
+        $temp = $rackSpace->description;
+        $rackSpace->description = $rackSpaceToMove->description;
+        $rackSpaceToMove->description = $temp;
+
+        $temp = $rackSpace->client_email;
+        $rackSpace->client_email = $rackSpaceToMove->client_email;
+        $rackSpaceToMove->client_email = $temp;
+
+        $temp = $rackSpace->client_id;
+        $rackSpace->client_id = $rackSpaceToMove->client_id;
+        $rackSpaceToMove->client_id = $temp;
+
+        $temp = $rackSpace->hardware_type;
+        $rackSpace->hardware_type = $rackSpaceToMove->hardware_type;
+        $rackSpaceToMove->hardware_type = $temp;
+
+        $temp = $rackSpace->switch_port;
+        $rackSpace->switch_port = $rackSpaceToMove->switch_port;
+        $rackSpaceToMove->switch_port = $temp;
+
+        $temp = $rackSpace->ipmi_port;
+        $rackSpace->ipmi_port = $rackSpaceToMove->ipmi_port;
+        $rackSpaceToMove->ipmi_port = $temp;
+
+        $temp = $rackSpace->subnet;
+        $rackSpace->subnet = $rackSpaceToMove->subnet;
+        $rackSpaceToMove->subnet = $temp;
+
+        $rackSpace->save();
+        $rackSpaceToMove->save();
+
+        return redirect()
+            ->route('colocation_manager.racks.show', $id)
+            ->with('success', 'Rack space has been moved successfully.');
+    }
 }
