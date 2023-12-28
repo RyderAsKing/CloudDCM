@@ -17,7 +17,7 @@ class LocationController extends Controller
     public function index()
     {
         //
-        $this->authorize('view', Location::class);
+        $this->authorize('view', [Location::class, 'colocation']);
 
         //
         $locations = auth()
@@ -60,7 +60,7 @@ class LocationController extends Controller
     public function create()
     {
         //
-        $this->authorize('create', Location::class);
+        $this->authorize('create', [Location::class, 'colocation']);
 
         return view('colocation_manager.locations.create');
     }
@@ -73,7 +73,7 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', Location::class);
+        $this->authorize('create', [Location::class, 'colocation']);
         $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',
@@ -109,7 +109,7 @@ class LocationController extends Controller
     public function show($id)
     {
         $location = Location::findOrFail($id);
-        $this->authorize('show', $location, Location::class);
+        $this->authorize('show', [$location, 'colocation']);
 
         $racks = auth()
             ->user()
@@ -151,7 +151,7 @@ class LocationController extends Controller
         //
         $location = Location::findOrFail($id);
 
-        $this->authorize('update', $location, Location::class);
+        $this->authorize('update', [$location, 'colocation']);
 
         return view('colocation_manager.locations.edit', compact('location'));
     }
@@ -169,7 +169,7 @@ class LocationController extends Controller
 
         $location = Location::findOrFail($id);
 
-        $this->authorize('update', $location, Location::class);
+        $this->authorize('update', [$location, 'colocation']);
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -194,7 +194,7 @@ class LocationController extends Controller
         //
         $location = Location::findOrFail($id);
 
-        $this->authorize('delete', $location, Location::class);
+        $this->authorize('delete', [$location, 'colocation']);
 
         $racks = Rack::where('location_id', $id)->get();
 
