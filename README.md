@@ -7,9 +7,8 @@
 -   [ ] Mobile navbar revamp
 -   [x] UI Update (spacing and sizing)
 -   [x] UI update (links and buttons)
+-   [x] Changed LocationPolicy to a root policy (applies for both colocation_manager and vps_manager)
 
 ### For future update
 
-change LocationPolicy and make it a root policy instead of Colocation_Manager sub policy.
-pass an additional attribute to LocationPolicy "for" which determines whether its vps manager or colocation manager (eg. colocation/vps)
-perform a check by checking of the user has roles
+create VPS manager (locations)
