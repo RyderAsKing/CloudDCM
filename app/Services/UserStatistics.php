@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Rack;
+use App\Models\Customer;
 use App\Models\RackSpace;
 
 class UserStatistics
@@ -11,6 +12,9 @@ class UserStatistics
     {
         $user_statistics = [
             'colocation_manager' => $this->getColocationManaagerStatistics(
+                $user
+            ),
+            'customer_relationship_manager' => $this->getCustomerRelationshipManagerStatistics(
                 $user
             ),
         ];
@@ -68,5 +72,20 @@ class UserStatistics
         }
 
         return $colocation;
+    }
+
+    public function getCustomerRelationshipManagerStatistics($user)
+    {
+        $customer = ['customers' => 0];
+
+        if ($user->hasRole('admin')) {
+            $customer['customers'] = Customer::count();
+        } else {
+            $customer['customers'] = $user->isSubUser()
+                ? $user->owner->customers()->count()
+                : $user->customers()->count();
+        }
+
+        return $customer;
     }
 }

@@ -27,6 +27,7 @@ class DashboardController extends Controller
         return view('dashboard', [
             'users' => $users,
             'colocation_manager' => $user_statistics['colocation_manager'],
+            'customer_relationship_manager' => $user_statistics['customer_relationship_manager'],
         ]);
     }
 }
