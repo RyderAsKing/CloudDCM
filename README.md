@@ -5,3 +5,5 @@
 -   [x] VPS manager database migrations, models, factories
 -   [x] Desktop navbar revamp
 -   [ ] Mobile navbar revamp
+-   [x] UI Update (spacing and sizing)
+-   [x] UI update (links and buttons)
