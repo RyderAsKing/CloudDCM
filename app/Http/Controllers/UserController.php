@@ -98,6 +98,13 @@ class UserController extends Controller
             $user->assignRole('customer_relationship_manager');
         }
 
+        if (
+            $request->input('vps_manager') != null &&
+            Gate::allows('edit-modules', 'vps_manager')
+        ) {
+            $user->assignRole('vps_manager');
+        }
+
         return redirect()
             ->route('users.index')
             ->with('success', 'User created successfully!');
@@ -194,6 +201,22 @@ class UserController extends Controller
                 }
             }
         }
+
+        if (Gate::allows('edit-modules', 'vps_manager')) {
+            if ($request->input('vps_manager') != null) {
+                $user->assignRole('vps_manager');
+            } else {
+                $user->removeRole('vps_manager');
+
+                // if the user is not subuser then remove the roles from all his subusers
+                if ($user->owner_id == null) {
+                    $subusers = User::where('owner_id', $user->id)->get();
+                    $this->massRemoveRole($subusers, 'vps_manager');
+                }
+            }
+        }
+
+        // vps_manager
 
         $user->syncPermissions($request->input('permissions'));
 

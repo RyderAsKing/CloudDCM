@@ -90,6 +90,15 @@
                         <label for=" customer_relationship_manager"> Customer Relationship Manager</label><br>
                     </div>
                     @endcan
+
+                    @can('edit-modules', 'vps_manager')
+                    <div class="flex flex-row items-center gap-2">
+                        <input type="checkbox" id="vps_manager" name="vps_manager" @if($user->hasRole('vps_manager'))
+                        checked @endif>
+                        <label for="vps_manager"> VPS Manager</label><br>
+                    </div>
+                    @endcan
+
                     @endhasanyrole
 
 
