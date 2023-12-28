@@ -37,12 +37,14 @@
                 <div class="pl-60">
                     @if (isset($header))
                     <header class="bg-white shadow">
-                        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                        <div class=" mx-auto py-8 px-4 sm:px-6 lg:px-8">
                             {{ $header }}
                         </div>
                     </header>
                     @endif
-                    {{ $slot }}
+                    <div class="py-6 px-6">
+                        {{ $slot }}
+                    </div>
                 </div>
 
                 @impersonating

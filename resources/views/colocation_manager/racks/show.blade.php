@@ -61,8 +61,8 @@
     </x-slot>
 
 
-    <div class="py-12">
-        <div class="grid grid-cols-5 gap-2 mx-auto sm:px-6 lg:px-8">
+    <div>
+        <div class="grid grid-cols-5 gap-2 mx-auto ">
             <div class="rack rounded-xl bg-gray-200"
                 style="display: flex; flex-direction: column; gap: .1rem; border: 1px solid #200; padding: .5rem; height: fit-content;">
                 <p>Server Rack: {{$rack->name}}</p>

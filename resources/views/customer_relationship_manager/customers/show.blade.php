@@ -5,8 +5,8 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+    <div>
+        <div class=" mx-auto ">
             <div class="max-w bg-white border rounded-lg shadow-sm p-7 border-neutral-200/60 mb-2">
                 <div class="grid grid-cols-2 gap-4">
                     <div class="flex flex-col gap-2">

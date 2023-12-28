@@ -1,6 +1,6 @@
 @hasrole('admin')
-<div class="backdrop-blur-sm bg-white/20 p-6 rounded-md shadow-sm  border-2 border-gray-50 ">
-    <h2 class="text-xl font-semibold mb-4">Welcome to admin dashboard</h2>
+<div class="backdrop-blur-sm bg-white/20 rounded-md  ">
+    <h2 class="text-xl font-semibold mb-2">Welcome to admin dashboard</h2>
     <p class="text-gray-700">Here you can manage users and their subusers</p>
 
     <a href="{{ route('users.index') }}"
@@ -32,7 +32,7 @@
 @endhasanyrole
 
 @hasrole('admin')
-<div class="mt-2 grid grid-cols-2 gap-2">
+<div class="mt-6 grid grid-cols-2 gap-2">
     <div class=" bg-white border rounded-lg shadow-sm p-7 border-neutral-200/60">
         <a href="#_" class="block mb-3">
             <h5 class="text-xl font-bold leading-none tracking-tight text-neutral-900">Total Users
