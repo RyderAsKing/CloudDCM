@@ -24,10 +24,9 @@
             @endif
 
             <div class="flex justify-between">
-                <a href="{{route('customer_relationship_manager.customers.create')}}" type="button"
-                    class="mb-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tcustomering-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">
+                <x-primary-link href="{{route('customer_relationship_manager.customers.create')}}" class="mb-2">
                     Add customer +
-                </a>
+                </x-primary-link>
 
                 <form action="{{route('customer_relationship_manager.customers.index')}}" class="flex gap-2 my-2">
                     <x-text-input name="search" placeholder="eg. Something LLC">

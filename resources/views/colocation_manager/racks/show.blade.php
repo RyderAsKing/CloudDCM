@@ -7,12 +7,13 @@
 
             <div x-data="{ modalOpen: false }" @keydown.escape.window="modalOpen = false" :class="{ 'z-40': modalOpen }"
                 class="relative w-auto h-auto">
-                <a href="{{route('colocation_manager.racks.edit', $rack)}}"
-                    class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 bg-gray-400 rounded-md hover:bg-gray-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-700 focus:shadow-outline focus:outline-none">Edit
-                    &rarr;</a>
-                <button @click="modalOpen=true"
-                    class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 bg-red-600 rounded-md hover:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-700 focus:shadow-outline focus:outline-none">Delete
-                    &cross;</button>
+                <x-primary-link href="{{route('colocation_manager.racks.edit', $rack)}}">
+                    Edit
+                    &rarr;</x-primary-link>
+                <x-danger-button @click="modalOpen=true"
+                    class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 bg-red-600 rounded-md hover:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-700 focus:shadow-outline focus:outline-none">
+                    Delete
+                    &cross;</x-danger-button>
                 <template x-teleport="body">
                     <div x-show="modalOpen"
                         class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen" x-cloak>

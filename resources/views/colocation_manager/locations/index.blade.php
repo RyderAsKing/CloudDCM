@@ -27,10 +27,9 @@
             </div>
             @endif
 
-            <a href="{{route('colocation_manager.locations.create')}}" type="button"
-                class="mb-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">
+            <x-primary-link class="mb-2" href="{{route('colocation_manager.locations.create')}}" type="button">
                 Add Location +
-            </a>
+            </x-primary-link>
             <div class="flex flex-col">
                 <div class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm  border-2 border-gray-50 ">
                     <h2 class="text-xl font-semibold mb-4">Welcome to Colocation Manager</h2>
@@ -41,7 +40,6 @@
                         @endif
                 </div>
                 <div class="mt-2 grid grid-cols-3 gap-2">
-
                     @foreach ($locations as $location)
                     @if(isset($location->name))
                     <div

@@ -103,15 +103,14 @@
 
 
                     <div class="flex justify-between">
-                        <button type="submit"
-                            class="mt-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none"
-                            style="width: fit-content;">Update &rarr;</button>
+                        <x-primary-button class="mt-2" style="width: fit-content;">Update &rarr;</x-primary-button>
 
                         <div x-data="{ modalOpen: false }" @keydown.escape.window="modalOpen = false"
                             :class="{ 'z-40': modalOpen }" class="relative w-auto h-auto">
-                            <button @click="modalOpen=true" type="button"
-                                class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 bg-red-600 rounded-md hover:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-700 focus:shadow-outline focus:outline-none">Delete
-                                &cross;</button>
+                            <x-danger-button @click="modalOpen=true" type="button"
+                                class="inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 bg-red-600 rounded-md hover:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-700 focus:shadow-outline focus:outline-none">
+                                Delete
+                                &cross;</x-danger-button>
                             <template x-teleport="body">
                                 <div x-show="modalOpen"
                                     class="fixed top-0 left-0 z-[99] flex items-center justify-center w-screen h-screen"

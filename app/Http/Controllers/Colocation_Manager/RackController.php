@@ -26,7 +26,6 @@ class RackController extends Controller
                 ->user()
                 ->owner->racks()
                 ->where('location_id', '=', null)
-                ->where('for', '=', 'colocation')
                 ->withCount('rackSpaces')
                 ->with([
                     'rackSpaces' => function ($query) {
@@ -38,7 +37,6 @@ class RackController extends Controller
                 ->user()
                 ->racks()
                 ->where('location_id', '=', null)
-                ->where('for', '=', 'colocation')
                 ->withCount('rackSpaces')
                 ->with([
                     'rackSpaces' => function ($query) {

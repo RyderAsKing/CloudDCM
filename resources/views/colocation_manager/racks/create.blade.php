@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div>
         <div class="mx-auto ">
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <header>
@@ -56,9 +56,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit"
-                        class="mt-2 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none"
-                        style="width: fit-content;">Add Rack +</button>
+                    <x-primary-button class="mt-2" style="width: fit-content;">Add Rack +</x-primary-button>
                 </form>
             </div>
         </div>
