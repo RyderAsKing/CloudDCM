@@ -26,10 +26,12 @@ class LocationController extends Controller
             ? auth()
                 ->user()
                 ->owner->locations()
+                ->where('for', '=', 'colocation')
                 ->paginate(10)
             : auth()
                 ->user()
                 ->locations()
+                ->where('for', '=', 'colocation')
                 ->paginate(10);
 
         // check if there is any rack which is not assigned to any location and add it to the locations array as $location['uncategorized']
@@ -88,6 +90,10 @@ class LocationController extends Controller
                 ->user()
                 ->locations()
                 ->create($request->all());
+
+        $location->for = 'colocation';
+
+        $location->save();
 
         return redirect()
             ->route('colocation_manager.locations.index')

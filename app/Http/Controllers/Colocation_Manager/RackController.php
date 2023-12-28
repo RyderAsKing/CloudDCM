@@ -26,6 +26,7 @@ class RackController extends Controller
                 ->user()
                 ->owner->racks()
                 ->where('location_id', '=', null)
+                ->where('for', '=', 'colocation')
                 ->withCount('rackSpaces')
                 ->with([
                     'rackSpaces' => function ($query) {
@@ -37,6 +38,7 @@ class RackController extends Controller
                 ->user()
                 ->racks()
                 ->where('location_id', '=', null)
+                ->where('for', '=', 'colocation')
                 ->withCount('rackSpaces')
                 ->with([
                     'rackSpaces' => function ($query) {
@@ -63,10 +65,12 @@ class RackController extends Controller
             ? auth()
                 ->user()
                 ->owner->locations()
+                ->where('for', '=', 'colocation')
                 ->get()
             : auth()
                 ->user()
                 ->locations()
+                ->where('for', '=', 'colocation')
                 ->get();
         return view('colocation_manager.racks.create', compact('locations'));
     }
@@ -149,10 +153,12 @@ class RackController extends Controller
             ? auth()
                 ->user()
                 ->owner->locations()
+                ->where('for', '=', 'colocation')
                 ->get()
             : auth()
                 ->user()
                 ->locations()
+                ->where('for', '=', 'colocation')
                 ->get();
 
         return view(

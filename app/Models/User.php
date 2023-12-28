@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\VPS;
 use App\Models\Customer;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
@@ -91,5 +92,10 @@ class User extends Authenticatable
     public function customers()
     {
         return $this->hasMany(Customer::class);
+    }
+
+    public function vpss()
+    {
+        return $this->hasMany(VPS::class);
     }
 }

@@ -22,6 +22,7 @@ class RoleSeeder extends Seeder
             'subuser',
             'colocation_manager',
             'customer_relationship_manager',
+            'vps_manager',
         ];
 
         foreach ($roles as $role) {
