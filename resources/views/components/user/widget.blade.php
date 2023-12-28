@@ -3,12 +3,11 @@
     <h2 class="text-xl font-semibold mb-2">Welcome to admin dashboard</h2>
     <p class="text-gray-700">Here you can manage users and their subusers</p>
 
-    <x-primary-button href="{{ route('users.index') }}"
-        class="mt-4 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">
+    <x-primary-link href="{{ route('users.index') }}" class="mt-4">
         Manage
         now
         &rarr;
-    </x-primary-button>
+    </x-primary-link>
 </div>
 @endhasrole
 
@@ -18,16 +17,14 @@
     <p class="text-gray-700">Here are the modules you have access to </p>
 
     @can('view', App\Models\Rack::class)
-    <x-primary-button href="{{ route('colocation_manager.locations.index') }}"
-        class="mt-4 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">
-        Colocation Manager &rarr; </x-primary-button>
+    <x-primary-link href="{{ route('colocation_manager.locations.index') }}" class="mt-4">
+        Colocation Manager &rarr; </x-primary-link>
     @endcan
 
     @can('view', App\Models\Customer::class)
-    <x-primary-button href="{{route('customer_relationship_manager.customers.index')}}"
-        class="mt-4 inline-flex items-center justify-center px-4 py-2 text-sm font-medium tracking-wide text-white transition-colors duration-200 rounded-md bg-neutral-950 hover:bg-neutral-900 focus:ring-2 focus:ring-offset-2 focus:ring-neutral-900 focus:shadow-outline focus:outline-none">
+    <x-primary-link href="{{route('customer_relationship_manager.customers.index')}}" class="mt-4">
         Customer Relationship Manager &rarr;
-    </x-primary-button>
+    </x-primary-link>
     @endhasrole
 </div>
 @endhasanyrole
