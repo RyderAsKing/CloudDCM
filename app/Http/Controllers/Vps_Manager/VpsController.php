@@ -42,6 +42,22 @@ class VpsController extends Controller
     public function create()
     {
         //
+        $this->authorize('create', VPS::class);
+
+        $locations = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->locations()
+                ->where('for', '=', 'vps')
+                ->get()
+            : auth()
+                ->user()
+                ->locations()
+                ->where('for', '=', 'vps')
+                ->get();
+        return view('vps_manager.vpss.create', compact('locations'));
     }
 
     /**
