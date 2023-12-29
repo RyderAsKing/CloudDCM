@@ -17,7 +17,7 @@
                         {{ __("Create a new location that you want to manage") }}
                     </p>
                 </header>
-                <form action="{{ route('colocation_manager.locations.store') }}" method="POST"
+                <form action="{{ route('vps_manager.locations.store') }}" method="POST"
                     class="mt-4 flex flex-col gap-2">
                     @csrf
                     <div class="flex flex-col">

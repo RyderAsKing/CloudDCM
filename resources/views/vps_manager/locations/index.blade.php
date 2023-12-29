@@ -27,16 +27,15 @@
             </div>
             @endif
 
-            <x-primary-link class="mb-2" href="{{route('colocation_manager.locations.create')}}" type="button">
+            <x-primary-link class="mb-2" href="{{route('vps_manager.locations.create')}}" type="button">
                 Add Location +
             </x-primary-link>
             <div class="flex flex-col">
                 <div class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm  border-2 border-gray-50 ">
-                    <h2 class="text-xl font-semibold mb-4">Welcome to Colocation Manager</h2>
-                    <p class="text-gray-700">Here you can manage locations and their racks</p>
-                    @if(count($locations) < 2) <p class="text-gray-700">You have no locations yet, click the button
-                        above to get started</p>
-
+                    <h2 class="text-xl font-semibold mb-4">Welcome to VPS Manager</h2>
+                    <p class="text-gray-700">Here you can manage locations/groups and their VPS</p>
+                    @if(count($locations) < 2) <p class="text-gray-700">You have no locations yet, add a new location to
+                        get started.</p>
                         @endif
                 </div>
                 <div class="mt-2 grid grid-cols-3 gap-2">
@@ -47,13 +46,13 @@
                         <h2 class="text-lg font-semibold mb-1 flex justify-between">{{$location->name}}
 
 
-                            <a class="text-md" href="{{route('colocation_manager.locations.edit', $location->id)}}">Edit
+                            <a class="text-md" href="{{route('vps_manager.locations.edit', $location->id)}}">Edit
                                 &rarr;</a>
 
                         </h2>
-                        <a href="{{route('colocation_manager.locations.show', $location->id)}}">
+                        <a href="{{route('vps_manager.locations.show', $location->id)}}">
                             <p class="text-green-700 text-sm font-bold">
-                                {{count($location->racks)}} Racks added
+                                {{count($location->vpss)}} VPSs added
                             </p>
                             <p class="text-gray-700">{{$location->description}}</p>
                         </a>
@@ -61,16 +60,15 @@
                     @endif
                     @endforeach
                     @if($locations['uncategorized'] > 0)
-                    <a href="{{route('colocation_manager.racks.index')}}"
+                    <a href="{{route('vps_manager.locations.index')}}"
                         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
                         <h2 class="text-lg font-semibold mb-1">Uncategorized <p class="text-green-700 text-sm">
-                                {{$locations['uncategorized']}} Racks added
+                                {{$locations['uncategorized']}} VPSs added
                             </p>
                         </h2>
                         <p class="text-gray-700">
-                            Racks/Devices that are not assigned to any location
+                            VPS's that are not assigned to any location/group
                         </p>
-
                     </a>
                     @endif
                 </div>

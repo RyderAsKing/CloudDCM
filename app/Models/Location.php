@@ -21,7 +21,7 @@ class Location extends Model
         return $this->hasMany(Rack::class);
     }
 
-    public function vps()
+    public function vpss()
     {
         return $this->hasMany(Vps::class);
     }

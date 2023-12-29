@@ -41,8 +41,7 @@
                                     class="inline-flex items-center justify-center h-10 px-4 py-2 text-sm font-medium transition-colors border rounded-md focus:outline-none focus:ring-2 focus:ring-neutral-100 focus:ring-offset-2">
                                     Go back &larr;
                                 </button>
-                                <form action="{{route('colocation_manager.locations.destroy', $location->id)}}"
-                                    method="post">
+                                <form action="{{route('vps_manager.locations.destroy', $location->id)}}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <button type="submit"
@@ -68,7 +67,7 @@
 
 
                 </header>
-                <form action="{{ route('colocation_manager.locations.update', $location) }}" method="POST"
+                <form action="{{ route('vps_manager.locations.update', $location) }}" method="POST"
                     class="mt-4 flex flex-col gap-2">
                     @method('PATCH')
                     @csrf

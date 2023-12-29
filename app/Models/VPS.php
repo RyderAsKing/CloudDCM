@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class VPS extends Model
 {
     use HasFactory;
+    protected $table = 'vps';
 
     protected $fillable = [
         'hostname',

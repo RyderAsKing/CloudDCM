@@ -35,6 +35,14 @@
                     <span class="mx-2 text-sm font-medium">Customer Relationship (CRM)</span>
                 </a>
                 @endhasrole
+
+                @hasrole('vps_manager')
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    href="{{route('vps_manager.locations.index')}}">
+
+                    <span class="mx-2 text-sm font-medium">VPS Manager</span>
+                </a>
+                @endhasrole
             </div>
             @endhasanyrole
 
