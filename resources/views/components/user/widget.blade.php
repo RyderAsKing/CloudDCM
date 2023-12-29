@@ -25,6 +25,12 @@
     <x-primary-link href="{{route('customer_relationship_manager.customers.index')}}" class="mt-4">
         Customer Relationship Manager &rarr;
     </x-primary-link>
+
+    @can('view', App\Models\VPS::class)
+    <x-primary-link href="{{route('vps_manager.locations.index')}}" class="mt-4">
+        VPS Manager &rarr;
+    </x-primary-link>
+    @endcan
     @endhasrole
 </div>
 @endhasanyrole

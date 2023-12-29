@@ -14,11 +14,14 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        // Colocation Manager
         'App\Models\Location' => 'App\Policies\LocationPolicy',
         'App\Models\Rack' => 'App\Policies\Colocation_Manager\RackPolicy',
+        // Customer relationship manager
         'App\Models\Customer' =>
             'App\Policies\Customer_Relationship_Manager\CustomerPolicy',
+        // VPS Manager
+        'App\Models\VPS' => 'App\Policies\Vps_Manager\VpsPolicy',
     ];
 
     /**
