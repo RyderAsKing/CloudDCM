@@ -111,33 +111,21 @@ class LocationController extends Controller
         $location = Location::findOrFail($id);
         $this->authorize('show', [$location, 'vps']);
 
-        $racks = auth()
+        $vpss = auth()
             ->user()
             ->isSubUser()
             ? auth()
                 ->user()
-                ->owner->racks()
-                ->where('location_id', $id)
-                ->withCount('rackSpaces')
-                ->with([
-                    'rackSpaces' => function ($query) {
-                        $query->where('name', '!=', null);
-                    },
-                ])
+                ->owner->vpss()
+                ->where('location_id', '=', $id)
                 ->paginate(10)
             : auth()
                 ->user()
-                ->racks()
-                ->where('location_id', $id)
-                ->withCount('rackSpaces')
-                ->with([
-                    'rackSpaces' => function ($query) {
-                        $query->where('name', '!=', null);
-                    },
-                ])
+                ->vpss()
+                ->where('location_id', '=', $id)
                 ->paginate(10);
 
-        return view('vps_manager.racks.index', compact('racks'));
+        return view('vps_manager.vpss.index', compact('vpss'));
     }
 
     /**

@@ -53,10 +53,12 @@ class UserStatistics
             $colocation['locations'] = $user->isSubUser()
                 ? $user->owner
                     ->locations()
+                    ->where('for', '=', 'colocation')
                     ->with('racks')
                     ->get()
                 : $user
                     ->locations()
+                    ->where('for', '=', 'colocation')
                     ->with('racks')
                     ->get();
 

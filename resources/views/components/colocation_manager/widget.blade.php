@@ -1,6 +1,6 @@
 @hasanyrole('user|subuser')
 @can('view', App\Models\Rack::class)
-<h1 class="text-xl font-bold mt-6">Your Locations</h1>
+<h1 class="text-xl font-bold mt-6">Your Locations (Colocation Manager)</h1>
 <div class="mt-2 grid grid-cols-3 gap-2">
     @foreach ($colocationManager['locations'] as $location)
     @if(isset($location->name))
