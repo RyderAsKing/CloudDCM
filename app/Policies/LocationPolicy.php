@@ -12,7 +12,7 @@ class LocationPolicy
 
     private function for(User $user, $for)
     {
-        echo 'for check performed ' . $for . "\n";
+        // echo 'for check performed ' . $for . "\n";
 
         if ($for === 'colocation') {
             return $user->hasRole('colocation_manager');
