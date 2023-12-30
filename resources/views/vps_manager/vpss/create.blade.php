@@ -20,45 +20,46 @@
                 <form action="{{ route('vps_manager.vpss.store') }}" method="POST" class="mt-4 flex flex-col gap-2">
                     @csrf
                     <div class="flex flex-col">
-                        <label for="name" class="font-bold">Hostname</label>
-                        <x-text-input name="name" label="Hostname" placeholder="e.g. vps 1" value="{{old('name')}}" />
-                        @error('name')
+                        <label for="hostname" class="font-bold">Hostname</label>
+                        <x-text-input name="hostname" label="Hostname" placeholder="e.g. vps 1"
+                            value="{{old('name')}}" />
+                        @error('hostname')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
-                        <label for="description" class="font-bold">IP address</label>
+                        <label for="ip_address" class="font-bold">IP address</label>
                         <x-text-input name="ip_address" label="IP address" placeholder="e.g. Very cool vps"
-                            value="{{old('description')}}" />
-                        @error('description')
+                            value="{{old('ip_address')}}" />
+                        @error('ip_address')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
-                        <label for="vps_size" class="font-bold">Username</label>
-                        <x-text-input type="number" name="username" label="User" placeholder="eg 42"
-                            value="{{old('vps_size')}}" />
-                        @error('vps_size')
+                        <label for="username" class="font-bold">Username</label>
+                        <x-text-input type="text" name="username" label="User" placeholder="eg 42"
+                            value="{{old('username')}}" />
+                        @error('username')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
-                        <label for="vps_size" class="font-bold">Password</label>
+                        <label for="password" class="font-bold">Password</label>
                         <x-text-input name="password" label="User" placeholder="eg VeryStrongPass12#$"
-                            value="{{old('vps_size')}}" />
-                        @error('vps_size')
+                            value="{{old('password')}}" />
+                        @error('password')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
                     <div class="flex flex-col mt-2">
-                        <label for="vps_size" class="font-bold">Location</label>
-                        <select name="location" id="location">
+                        <label for="location_id" class="font-bold">Location</label>
+                        <select name="location_id" id="location_id">
                             <option value=" ">Uncategorized</option>
                             @foreach ($locations as $location)
                             <option value="{{ $location->id }}">{{ $location->name }}</option>
                             @endforeach
                         </select>
-                        @error('location')
+                        @error('location_id')
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>

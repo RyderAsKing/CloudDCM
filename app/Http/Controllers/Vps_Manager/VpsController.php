@@ -15,7 +15,6 @@ class VpsController extends Controller
      */
     public function index()
     {
-        dd('he');
         $this->authorize('view', VPS::class);
 
         $vpss = auth()
@@ -24,12 +23,10 @@ class VpsController extends Controller
             ? auth()
                 ->user()
                 ->owner->vpss()
-                ->where('location_id', '=', null)
                 ->paginate(10)
             : auth()
                 ->user()
                 ->vpss()
-                ->where('location_id', '=', null)
                 ->paginate(10);
 
         return view('vps_manager.vpss.index', compact('vpss'));
@@ -69,6 +66,33 @@ class VpsController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorize('create', VPS::class);
+
+        $this->validate($request, [
+            'hostname' => 'required',
+            'ip_address' => 'nullable|string',
+            'username' => 'nullable|string',
+            'password' => 'nullable|string',
+            'location_id' => 'required|integer',
+        ]);
+
+        $vps = new VPS();
+        $vps->hostname = $request->hostname;
+        $vps->ip_address = $request->ip_address;
+        $vps->username = $request->username;
+        $vps->password = $request->password;
+        $vps->location_id = $request->location_id;
+        $vps->user_id = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()->user()->owner->id
+            : auth()->user()->id;
+
+        $vps->save();
+
+        return redirect()
+            ->route('vps_manager.vpss.index')
+            ->with('success', 'VPS created successfully');
     }
 
     /**
