@@ -9,6 +9,8 @@
                 <label class="px-3 text-xs text-gray-500 uppercase dark:text-gray-400">general</label>
                 <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                     href="{{route('dashboard')}}">
+                    <i class="fa fa-thin  fa-table-columns "></i>
+
                     <span class="mx-2 text-sm font-medium">Dashboard</span>
                 </a>
             </div>
@@ -21,7 +23,7 @@
 
                 <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                     href="{{route('colocation_manager.locations.index')}}">
-
+                    <i class="fa fa-thin fa-server"></i>
                     <span class="mx-2 text-sm font-medium">Colocation Manager</span>
                 </a>
                 @endhasrole
@@ -29,15 +31,15 @@
                 @hasrole('customer_relationship_manager')
                 <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                     href="{{route('customer_relationship_manager.customers.index')}}">
-
-                    <span class="mx-2 text-sm font-medium">Customer Relationship (CRM)</span>
+                    <i class="fa fa-thin fa-users"></i>
+                    <span class="mx-2 text-sm font-medium">Customer Relationship </span>
                 </a>
                 @endhasrole
 
                 @hasrole('vps_manager')
                 <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                     href="{{route('vps_manager.locations.index')}}">
-
+                    <i class="fa fa-thin fa-cloud"></i>
                     <span class="mx-2 text-sm font-medium">VPS Manager</span>
                 </a>
                 @endhasrole
@@ -50,7 +52,7 @@
 
                 <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
                     href="{{route('users.index')}}">
-
+                    <i class="fa fa-thin fa-user"></i>
                     <span class="mx-2 text-sm font-medium">Users</span>
                 </a>
             </div>
