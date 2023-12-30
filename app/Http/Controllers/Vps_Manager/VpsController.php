@@ -182,5 +182,14 @@ class VpsController extends Controller
     public function destroy($id)
     {
         //
+        $vps = VPS::findOrFail($id);
+
+        $this->authorize('delete', $vps);
+
+        $vps->delete();
+
+        return redirect()
+            ->route('vps_manager.vpss.index')
+            ->with('success', 'VPS deleted successfully');
     }
 }
