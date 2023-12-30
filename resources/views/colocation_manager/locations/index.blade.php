@@ -30,6 +30,9 @@
             <x-primary-link class="mb-2" href="{{route('colocation_manager.locations.create')}}" type="button">
                 Add Location +
             </x-primary-link>
+            <x-primary-link class="mb-2" href="{{route('colocation_manager.racks.create')}}" type="button">
+                Add Rack +
+            </x-primary-link>
             <div class="flex flex-col">
                 <div class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm  border-2 border-gray-50 ">
                     <h2 class="text-xl font-semibold mb-4">Welcome to Colocation Manager</h2>
