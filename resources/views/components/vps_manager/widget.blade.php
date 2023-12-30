@@ -7,7 +7,7 @@
     <a href="{{route('vps_manager.locations.show', $location->id)}}"
         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
         <h2 class="text-lg font-semibold mb-1">{{$location->name}} <p class="text-green-700 text-sm">
-                {{count($location->racks)}} VPS's added
+                {{count($location->vpss)}} {{Str::plural('VPS', count($location->vpss))}} added
             </p>
         </h2>
         <p class="text-gray-700">{{$location->description}}</p>
@@ -18,7 +18,8 @@
     <a href="{{route('vps_manager.vpss.index')}}"
         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
         <h2 class="text-lg font-semibold mb-1">Uncategorized <p class="text-green-700 text-sm">
-                {{$vpsManager['locations']['uncategorized']}} VPS's added
+                {{$vpsManager['locations']['uncategorized']}} {{Str::plural('VPS',
+                $vpsManager['locations']['uncategorized'])}} added
             </p>
         </h2>
         <p class="text-gray-700">

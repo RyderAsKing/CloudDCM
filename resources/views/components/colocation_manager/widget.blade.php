@@ -7,7 +7,7 @@
     <a href="{{route('colocation_manager.locations.show', $location->id)}}"
         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
         <h2 class="text-lg font-semibold mb-1">{{$location->name}} <p class="text-green-700 text-sm">
-                {{count($location->racks)}} Racks added
+                {{count($location->racks)}} {{Str::plural('Rack', count($location->racks))}} added
             </p>
         </h2>
         <p class="text-gray-700">{{$location->description}}</p>
@@ -18,7 +18,8 @@
     <a href="{{route('colocation_manager.racks.index')}}"
         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
         <h2 class="text-lg font-semibold mb-1">Uncategorized <p class="text-green-700 text-sm">
-                {{$colocationManager['locations']['uncategorized']}} Racks added
+                {{$colocationManager['locations']['uncategorized']}} {{Str::plural('Rack',
+                $colocationManager['locations']['uncategorized'])}} added
             </p>
         </h2>
         <p class="text-gray-700">
