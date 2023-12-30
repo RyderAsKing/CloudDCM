@@ -18,8 +18,11 @@
 
                 <x-colocation_manager.widget :colocation_manager="$colocation_manager" />
 
+                <x-vps_manager.widget :vps_manager="$vps_manager" />
+
                 <x-customer_relationship_manager.widget
                     :customer_relationship_manager="$customer_relationship_manager" />
+
             </div>
         </div>
 </x-app-layout>

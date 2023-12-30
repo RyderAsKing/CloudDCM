@@ -17,6 +17,7 @@ class UserStatistics
             'customer_relationship_manager' => $this->getCustomerRelationshipManagerStatistics(
                 $user
             ),
+            'vps_manager' => $this->getVpsManagerStatistics($user),
         ];
 
         return $user_statistics;
@@ -89,5 +90,34 @@ class UserStatistics
         }
 
         return $customer;
+    }
+
+    public function getVpsManagerStatistics($user)
+    {
+        $vps = ['locations' => []];
+
+        $vps['locations'] = $user->isSubUser()
+            ? $user->owner
+                ->locations()
+                ->where('for', '=', 'vps')
+                ->with('racks')
+                ->get()
+            : $user
+                ->locations()
+                ->where('for', '=', 'vps')
+                ->with('racks')
+                ->get();
+
+        $vps['locations']['uncategorized'] = $user->isSubUser()
+            ? $user->owner
+                ->vpss()
+                ->whereNull('location_id')
+                ->count()
+            : $user
+                ->vpss()
+                ->whereNull('location_id')
+                ->count();
+
+        return $vps;
     }
 }
