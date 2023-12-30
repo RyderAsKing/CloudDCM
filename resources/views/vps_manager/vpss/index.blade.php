@@ -44,6 +44,8 @@
                                         </th>
                                         <th class="px-5 py-3 text-xs font-medium text-left uppercase">Password
                                         </th>
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Location
+                                        </th>
                                         <th class="px-5 py-3 text-xs font-medium text-right uppercase">Actions</th>
                                     </tr>
                                 </thead>
@@ -53,6 +55,9 @@
                                     <tr class="bg-white text-neutral-500">
                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">No VPS's found.
                                         </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
                                         <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                         </td>
@@ -144,6 +149,8 @@
                                                 </button>
                                             </div>
                                         </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{$vps->location != null ?
+                                            $vps->location->name : 'Uncategorized'}}</td>
                                         <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                             <a class="text-blue-600 hover:text-blue-700"
                                                 href="{{route('vps_manager.vpss.show', $vps->id)}}">View</a>

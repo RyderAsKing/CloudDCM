@@ -41,6 +41,7 @@
                                         <th class="px-5 py-3 text-xs font-medium text-left uppercase">Description
                                         </th>
                                         <th class="px-5 py-3 text-xs font-medium text-left uppercase">Size</th>
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Location</th>
                                         <th class="px-5 py-3 text-xs font-medium text-right uppercase">Actions</th>
                                     </tr>
                                 </thead>
@@ -50,6 +51,7 @@
                                     <tr class="bg-white text-neutral-500">
                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">No racks found.
                                         </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
                                         <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
@@ -72,6 +74,9 @@
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">{{$rack->description}}</td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
                                             {{$rack->rack_spaces_count}}
+                                        </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                            {{$rack->location != null ? $rack->location->name : 'Uncategorized'}}
                                         </td>
                                         <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                             <a class="text-blue-600 hover:text-blue-700"

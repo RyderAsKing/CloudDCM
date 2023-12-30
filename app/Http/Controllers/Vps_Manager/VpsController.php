@@ -73,7 +73,7 @@ class VpsController extends Controller
             'ip_address' => 'nullable|string',
             'username' => 'nullable|string',
             'password' => 'nullable|string',
-            'location_id' => 'required|integer',
+            'location_id' => 'nullable|integer',
         ]);
 
         $vps = new VPS();
@@ -81,7 +81,9 @@ class VpsController extends Controller
         $vps->ip_address = $request->ip_address;
         $vps->username = $request->username;
         $vps->password = $request->password;
-        $vps->location_id = $request->location_id;
+        if ($request->location_id) {
+            $vps->location_id = $request->location_id;
+        }
         $vps->user_id = auth()
             ->user()
             ->isSubUser()
