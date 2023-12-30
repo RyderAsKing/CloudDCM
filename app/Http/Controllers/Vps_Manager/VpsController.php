@@ -114,9 +114,27 @@ class VpsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(VPS $vpss)
     {
         //
+        $vps = $vpss;
+        $this->authorize('update', $vps);
+
+        $locations = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->locations()
+                ->where('for', '=', 'vps')
+                ->get()
+            : auth()
+                ->user()
+                ->locations()
+                ->where('for', '=', 'vps')
+                ->get();
+
+        return view('vps_manager.vpss.edit', compact('vps', 'locations'));
     }
 
     /**
@@ -126,9 +144,33 @@ class VpsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, VPS $vpss)
     {
         //
+        $this->validate($request, [
+            'hostname' => 'required',
+            'ip_address' => 'nullable|string',
+            'username' => 'nullable|string',
+            'password' => 'nullable|string',
+            'location_id' => 'nullable|integer',
+        ]);
+
+        $vps = $vpss;
+
+        $this->authorize('update', $vps);
+
+        $vps->hostname = $request->hostname;
+        $vps->ip_address = $request->ip_address;
+        $vps->username = $request->username;
+        $vps->password = $request->password;
+
+        $vps->location_id = $request->location_id;
+
+        $vps->save();
+
+        return redirect()
+            ->route('vps_manager.vpss.index')
+            ->with('success', 'VPS updated successfully');
     }
 
     /**

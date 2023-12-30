@@ -153,7 +153,7 @@
                                             $vps->location->name : 'Uncategorized'}}</td>
                                         <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                             <a class="text-blue-600 hover:text-blue-700"
-                                                href="{{route('vps_manager.vpss.show', $vps->id)}}">View</a>
+                                                href="{{route('vps_manager.vpss.edit', $vps)}}">Edit</a>
                                         </td>
                                     </tr>
                                     @endforeach
