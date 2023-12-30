@@ -8,6 +8,10 @@
 -   [x] UI Update (spacing and sizing)
 -   [x] UI update (links and buttons)
 -   [x] Changed LocationPolicy to a root policy (applies for both colocation_manager and vps_manager)
+-   [x] VPS manager widget for users
+-   [x] Fontawesome for desktop Navigation
+-   [x] VPS.mgr CRUD location
+-   [ ] VPS.mgr CRUD VPS
 
 ### For future update
 
