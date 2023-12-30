@@ -64,7 +64,7 @@
                     @endif
                     @endforeach
                     @if($locations['uncategorized'] > 0)
-                    <a href="{{route('vps_manager.locations.index')}}"
+                    <a href="{{route('vps_manager.vpss.index')}}"
                         class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm hover:shadow-md cursor-pointer border-2 border-gray-50 transition">
                         <h2 class="text-lg font-semibold mb-1">Uncategorized <p class="text-green-700 text-sm">
                                 {{$locations['uncategorized']}} VPSs added
