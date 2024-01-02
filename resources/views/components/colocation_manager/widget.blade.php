@@ -32,7 +32,7 @@
 @endhasanyrole
 
 @can('view', App\Models\Rack::class)
-<div class="mt02 grid grid-cols-2 gap-2">
+<div class=" grid grid-cols-3 gap-2">
     <div class="mt-4 bg-white border-2 border-gray-50 rounded-md shadow-sm p-7 ">
         <span class="block mb-3">
             <h5 class="text-xl font-bold leading-none tracking-tight text-neutral-900">Total Racks

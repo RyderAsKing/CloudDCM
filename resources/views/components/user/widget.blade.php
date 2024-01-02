@@ -36,8 +36,8 @@
 @endhasanyrole
 
 @hasrole('admin')
-<div class="mt-6  gap-2">
-    <div class=" bg-white border rounded-lg shadow-sm p-7 border-neutral-200/60">
+<div class="mt-6 grid grid-cols-3 gap-2">
+    <div class="bg-white border rounded-lg shadow-sm p-7 border-neutral-200/60">
         <a href="#_" class="block mb-3">
             <h5 class="text-xl font-bold leading-none tracking-tight text-neutral-900">Total Users
                 Created
