@@ -118,7 +118,41 @@
                         <x-input-error :messages="$message" />
                         @enderror
                     </div>
+                    <hr>
+                    <div class="grid grid-cols-3 gap-2">
+                        <h3 class="text-md font-bold col-span-3 mt-2">Specifications</h3>
+                        <div class="flex flex-col ">
+                            <label for="cpu" class="font-bold">CPU (vCores)</label>
 
+                            <select name="cpu" id="cpu"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                                <option value=" ">Unkown</option>
+                                @for($i = 1; $i < 17; $i++) <option value="{{ $i }}" @if($vps->cpu == $i) selected
+                                    @endif>{{ $i }}</option>
+                                    @endfor
+                            </select>
+                            @error('cpu')
+                            <x-input-error :messages="$message" />
+                            @enderror
+                        </div>
+
+                        <div class="flex flex-col ">
+                            <label for="memory" class="font-bold">Memory</label>
+                            <x-text-input name="memory" label="Memory" placeholder="eg 4 GB" value="{{$vps->memory}}" />
+                            @error('memory')
+                            <x-input-error :messages="$message" />
+                            @enderror
+                        </div>
+
+                        <div class="flex flex-col ">
+                            <label for="storage" class="font-bold">Storage</label>
+                            <x-text-input name="storage" label="Storage" placeholder="eg 100 GB"
+                                value="{{$vps->storage}}" />
+                            @error('storage')
+                            <x-input-error :messages="$message" />
+                            @enderror
+                        </div>
+                    </div>
                     <x-primary-button class="mt-2" style="width: fit-content;">Edit vps &rarr;</x-primary-button>
                 </form>
             </div>

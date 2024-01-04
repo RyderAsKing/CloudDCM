@@ -37,7 +37,7 @@
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="username" class="font-bold">Username</label>
-                        <x-text-input type="text" name="username" label="User" placeholder="eg 42"
+                        <x-text-input type="text" name="username" label="User" placeholder="eg root"
                             value="{{old('username')}}" />
                         @error('username')
                         <x-input-error :messages="$message" />
@@ -53,7 +53,8 @@
                     </div>
                     <div class="flex flex-col mt-2">
                         <label for="location_id" class="font-bold">Location</label>
-                        <select name="location_id" id="location_id">
+                        <select name="location_id" id="location_id"
+                            class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
                             <option value=" ">Uncategorized</option>
                             @foreach ($locations as $location)
                             <option value="{{ $location->id }}">{{ $location->name }}</option>
@@ -62,6 +63,44 @@
                         @error('location_id')
                         <x-input-error :messages="$message" />
                         @enderror
+                    </div>
+
+                    {{-- cpu, memory and storage information --}}
+
+                    <hr>
+                    <div class="grid grid-cols-3 gap-2">
+                        <h3 class="text-md font-bold col-span-3 mt-2">Specifications</h3>
+                        <div class="flex flex-col ">
+                            <label for="cpu" class="font-bold">CPU (vCores)</label>
+
+                            <select name="cpu" id="cpu"
+                                class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm">
+                                <option value=" ">Unkown</option>
+                                @for($i = 1; $i < 17; $i++) <option value="{{ $i }}">{{ $i }}</option>
+                                    @endfor
+                            </select>
+                            @error('cpu')
+                            <x-input-error :messages="$message" />
+                            @enderror
+                        </div>
+
+                        <div class="flex flex-col ">
+                            <label for="memory" class="font-bold">Memory</label>
+                            <x-text-input name="memory" label="Memory" placeholder="eg 4 GB"
+                                value="{{old('memory')}}" />
+                            @error('memory')
+                            <x-input-error :messages="$message" />
+                            @enderror
+                        </div>
+
+                        <div class="flex flex-col ">
+                            <label for="storage" class="font-bold">Storage</label>
+                            <x-text-input name="storage" label="Storage" placeholder="eg 100 GB"
+                                value="{{old('storage')}}" />
+                            @error('storage')
+                            <x-input-error :messages="$message" />
+                            @enderror
+                        </div>
                     </div>
 
                     <x-primary-button class="mt-2" style="width: fit-content;">Add vps +</x-primary-button>

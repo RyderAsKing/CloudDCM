@@ -74,6 +74,9 @@ class VpsController extends Controller
             'username' => 'nullable|string',
             'password' => 'nullable|string',
             'location_id' => 'nullable|integer',
+            'cpu' => 'nullable|string',
+            'memory' => 'nullable|string',
+            'storage' => 'nullable|string',
         ]);
 
         $vps = new VPS();
@@ -81,6 +84,12 @@ class VpsController extends Controller
         $vps->ip_address = $request->ip_address;
         $vps->username = $request->username;
         $vps->password = $request->password;
+
+        // specifications
+        $vps->cpu = $request->cpu;
+        $vps->memory = $request->memory;
+        $vps->storage = $request->storage;
+
         if ($request->location_id) {
             $vps->location_id = $request->location_id;
         }
@@ -153,6 +162,9 @@ class VpsController extends Controller
             'username' => 'nullable|string',
             'password' => 'nullable|string',
             'location_id' => 'nullable|integer',
+            'cpu' => 'nullable|string',
+            'memory' => 'nullable|string',
+            'storage' => 'nullable|string',
         ]);
 
         $vps = $vpss;
@@ -165,6 +177,11 @@ class VpsController extends Controller
         $vps->password = $request->password;
 
         $vps->location_id = $request->location_id;
+
+        // specifications
+        $vps->cpu = $request->cpu;
+        $vps->memory = $request->memory;
+        $vps->storage = $request->storage;
 
         $vps->save();
 
