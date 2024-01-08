@@ -11,7 +11,10 @@
 -   [x] VPS manager widget for users
 -   [x] Fontawesome for desktop Navigation
 -   [x] VPS.mgr CRUD location
--   [ ] VPS.mgr CRUD VPS
+-   [x] VPS.mgr CRUD VPS
+-   [ ] IP manager database migrations, models, factories
+-   [ ] IP manager roles (moduluar)
+-   [ ] IP manager model fields (Subnet, VLAN, Leased Company)
 
 ### For future update
 
