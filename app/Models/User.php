@@ -98,4 +98,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(VPS::class);
     }
+
+    public function subnets()
+    {
+        return $this->hasMany(Subnet::class);
+    }
 }
