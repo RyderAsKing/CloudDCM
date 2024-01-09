@@ -13,7 +13,7 @@
 -   [x] VPS.mgr CRUD location
 -   [x] VPS.mgr CRUD VPS
 -   [x] VPS.mgr additional fields (cpu, memory, storage and os)
--   [ ] IP manager database migrations, models, factories
+-   [x] IP manager database migrations, models, factories
 -   [ ] IP manager roles (moduluar)
 -   [ ] IP manager model fields (Subnet, VLAN, Leased Company)
 
