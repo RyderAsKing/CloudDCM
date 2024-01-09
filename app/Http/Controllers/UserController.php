@@ -65,6 +65,8 @@ class UserController extends Controller
             'owner_id' => 'integer|exists:users,id|nullable',
             'colocation_manager' => 'nullable',
             'customer_relationship_manager' => 'nullable',
+            'vps_manager' => 'nullable',
+            'ip_manager' => 'nullable',
         ]);
 
         $user = new User();
@@ -103,6 +105,15 @@ class UserController extends Controller
             Gate::allows('edit-modules', 'vps_manager')
         ) {
             $user->assignRole('vps_manager');
+        }
+
+        // ip_manager
+
+        if (
+            $request->input('ip_manager') != null &&
+            Gate::allows('edit-modules', 'ip_manager')
+        ) {
+            $user->assignRole('ip_manager');
         }
 
         return redirect()
@@ -160,6 +171,8 @@ class UserController extends Controller
             'permissions' => 'array',
             'colocation_manager' => 'nullable',
             'customer_relationship_manager' => 'nullable',
+            'vps_manager' => 'nullable',
+            'ip_manager' => 'nullable',
         ]);
 
         $user->name = $request->input('name');
@@ -212,6 +225,20 @@ class UserController extends Controller
                 if ($user->owner_id == null) {
                     $subusers = User::where('owner_id', $user->id)->get();
                     $this->massRemoveRole($subusers, 'vps_manager');
+                }
+            }
+        }
+
+        if (Gate::allows('edit-modules', 'ip_manager')) {
+            if ($request->input('ip_manager') != null) {
+                $user->assignRole('ip_manager');
+            } else {
+                $user->removeRole('ip_manager');
+
+                // if the user is not subuser then remove the roles from all his subusers
+                if ($user->owner_id == null) {
+                    $subusers = User::where('owner_id', $user->id)->get();
+                    $this->massRemoveRole($subusers, 'ip_manager');
                 }
             }
         }

@@ -99,6 +99,14 @@
                     </div>
                     @endcan
 
+                    @can('edit-modules', 'ip_manager')
+                    <div class="flex flex-row items-center gap-2">
+                        <input type="checkbox" id="ip_manager" name="ip_manager" @if($user->hasRole('ip_manager'))
+                        checked @endif>
+                        <label for="ip_manager"> IP Manager</label><br>
+                    </div>
+                    @endcan
+
                     @endhasanyrole
 
 
