@@ -152,6 +152,14 @@
                             <x-input-error :messages="$message" />
                             @enderror
                         </div>
+
+                        <div class="flex flex-col ">
+                            <label for="os" class="font-bold">Operating System</label>
+                            <x-text-input name="os" label="os" placeholder="eg Windows 11" value="{{$vps->os}}" />
+                            @error('os')
+                            <x-input-error :messages="$message" />
+                            @enderror
+                        </div>
                     </div>
                     <x-primary-button class="mt-2" style="width: fit-content;">Edit vps &rarr;</x-primary-button>
                 </form>

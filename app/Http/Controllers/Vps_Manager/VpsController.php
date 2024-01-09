@@ -77,6 +77,7 @@ class VpsController extends Controller
             'cpu' => 'nullable|string',
             'memory' => 'nullable|string',
             'storage' => 'nullable|string',
+            'os' => 'nullable|string',
         ]);
 
         $vps = new VPS();
@@ -89,6 +90,7 @@ class VpsController extends Controller
         $vps->cpu = $request->cpu;
         $vps->memory = $request->memory;
         $vps->storage = $request->storage;
+        $vps->os = $request->os;
 
         if ($request->location_id) {
             $vps->location_id = $request->location_id;
@@ -165,6 +167,7 @@ class VpsController extends Controller
             'cpu' => 'nullable|string',
             'memory' => 'nullable|string',
             'storage' => 'nullable|string',
+            'os' => 'nullable|string',
         ]);
 
         $vps = $vpss;
@@ -182,6 +185,7 @@ class VpsController extends Controller
         $vps->cpu = $request->cpu;
         $vps->memory = $request->memory;
         $vps->storage = $request->storage;
+        $vps->os = $request->os;
 
         $vps->save();
 

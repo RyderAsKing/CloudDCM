@@ -15,6 +15,10 @@ class VPS extends Model
         'ip_address',
         'username',
         'password',
+        'cpu',
+        'memory',
+        'storage',
+        'os',
         'user_id',
     ];
 
