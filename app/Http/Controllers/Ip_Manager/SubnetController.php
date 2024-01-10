@@ -43,7 +43,7 @@ class SubnetController extends Controller
         //
         $this->authorize('create', Subnet::class);
 
-        dd('SubnetController@create');
+        return view('ip_manager.subnets.create');
     }
 
     /**
