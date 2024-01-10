@@ -17,6 +17,8 @@ class SubnetController extends Controller
     {
         //
         $this->authorize('view', Subnet::class);
+
+        dd('SubnetController@index');
     }
 
     /**
@@ -28,6 +30,8 @@ class SubnetController extends Controller
     {
         //
         $this->authorize('create', Subnet::class);
+
+        dd('SubnetController@create');
     }
 
     /**
@@ -40,6 +44,8 @@ class SubnetController extends Controller
     {
         //
         $this->authorize('create', Subnet::class);
+
+        dd('SubnetController@store');
     }
 
     /**
@@ -52,6 +58,8 @@ class SubnetController extends Controller
     {
         //
         $this->authorize('show', $subnet);
+
+        dd('SubnetController@show');
     }
 
     /**
@@ -64,6 +72,8 @@ class SubnetController extends Controller
     {
         //
         $this->authorize('update', $subnet);
+
+        dd('SubnetController@edit');
     }
 
     /**
@@ -77,6 +87,8 @@ class SubnetController extends Controller
     {
         //
         $this->authorize('update', $subnet);
+
+        dd('SubnetController@update');
     }
 
     /**
@@ -89,5 +101,7 @@ class SubnetController extends Controller
     {
         //
         $this->authorize('delete', $subnet);
+
+        dd('SubnetController@destroy');
     }
 }
