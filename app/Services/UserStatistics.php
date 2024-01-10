@@ -18,6 +18,7 @@ class UserStatistics
                 $user
             ),
             'vps_manager' => $this->getVpsManagerStatistics($user),
+            'ip_manager' => 'ip_manager',
         ];
 
         return $user_statistics;
