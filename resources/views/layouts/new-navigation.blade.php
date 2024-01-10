@@ -43,6 +43,17 @@
                     <span class="mx-2 text-sm font-medium">VPS Manager</span>
                 </a>
                 @endhasrole
+
+                @hasrole('ip_manager')
+
+                <a class="flex items-center px-3 py-2 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
+                    href="{{route('ip_manager.subnets.index')}}">
+                    <i class="fa fa-thin fa-network-wired"></i>
+                    <span class="mx-2 text-sm font-medium">IP Manager</span>
+                </a>
+
+                @endhasrole
+
             </div>
             @endhasanyrole
 
