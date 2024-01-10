@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Managing Customers') }}
+            {{ __('Managing Subnets') }}
         </h2>
     </x-slot>
 
@@ -24,11 +24,11 @@
             @endif
 
             <div class="flex justify-between">
-                <x-primary-link href="{{route('customer_relationship_manager.customers.create')}}" class="mb-2">
-                    Add customer +
+                <x-primary-link href="{{route('ip_manager.subnets.create')}}" class="mb-2">
+                    Add subnet +
                 </x-primary-link>
 
-                <form action="{{route('customer_relationship_manager.customers.index')}}" class="flex gap-2 my-2">
+                <form action="{{route('ip_manager.subnets.index')}}" class="flex gap-2 my-2">
                     <x-text-input name="search" placeholder="eg. Something LLC">
                     </x-text-input>
                     <x-primary-button type="submit">Search</x-primary-button>
@@ -36,9 +36,9 @@
             </div>
             <div class="flex flex-col">
                 <div class="backdrop-blur-sm bg-white p-6 rounded-md shadow-sm  border-2 border-gray-50 ">
-                    <h2 class="text-xl font-semibold mb-4">Welcome to Customer Relationship Manager</h2>
-                    <p class="text-gray-700">Here you can manage your customers </p>
-                    @if(count($customers) < 1) <p class="text-gray-700">You have no customers yet, click the button
+                    <h2 class="text-xl font-semibold mb-4">Welcome to IP Manager (subnets)</h2>
+                    <p class="text-gray-700">Here you can manage your subnets </p>
+                    @if(count($subnets) < 1) <p class="text-gray-700">You have no subnets yet, click the button
                         above to get started</p>
                         @endif
                 </div>
@@ -48,20 +48,22 @@
                             <table class="min-w-full divide-y divide-neutral-200">
                                 <thead class="bg-white">
                                     <tr class="text-neutral-500">
-                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Company Name</th>
-                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Status
-                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Phone
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Subnet Name</th>
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Subnet</th>
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">VLAN
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Leased Company
                                         </th>
-                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Email</th>
+                                        <th class="px-5 py-3 text-xs font-medium text-left uppercase">Parent Subnet</th>
                                         <th class="px-5 py-3 text-xs font-medium text-right uppercase">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody class="divide-y divide-neutral-200">
-                                    @if ($customers->isEmpty())
+                                    @if ($subnets->isEmpty())
 
                                     <tr class="bg-white text-neutral-500">
-                                        <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">No customer found.
+                                        <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">No subnet found.
                                         </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
@@ -70,48 +72,31 @@
                                     </tr>
                                     @endif
 
-                                    @foreach ($customers as $customer)
+                                    @foreach ($subnets as $subnet)
                                     <tr class="text-neutral-800 bg-white">
                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap flex items-center">
-                                            {{Str::limit($customer->company_name, 45)}}
+                                            {{$subnet->name}}}
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
-                                            @switch($customer->status)
-                                            @case('potential')
-                                            <span
-                                                class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Potential</span>
-                                            @break
-                                            @case('active')
-                                            <span
-                                                class="bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Active</span>
-                                            @break
-                                            @case('cancelled')
-                                            <span
-                                                class="bg-red-100 text-red-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Cancelled</span>
-                                            @break
-                                            @case('not_interested')
-                                            <span
-                                                class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Not
-                                                Interested</span>
-                                            @break
-                                            @case('contacted')
-                                            <span
-                                                class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Contacted</span>
-                                            @break
-                                            @default
-                                            <span
-                                                class="bg-gray-100 text-gray-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">Unkown</span>
-                                            @endswitch
+                                            {{$subnet->subnet}}}
                                         </td>
-
-                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{Str::limit($customer->phone,
-                                            45)}}</td>
-                                        <td class="px-5 py-4 text-sm whitespace-nowrap">{{Str::limit($customer->email,
-                                            45)}}
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                            {{$subnet->vlan}}}
+                                        </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                            {{$subnet->leased_company}}}
+                                        </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                            @if($subnet->parent_subnet != null)
+                                            <a
+                                                href="{{route('ip_manager.subnets.show', $subnet->parent_subnet)}}"></a>{{$subnet->parent_subnet->name}}}
+                                            @else
+                                            None
+                                            @endif
                                         </td>
                                         <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
                                             <a class="text-blue-600 hover:text-blue-700"
-                                                href="{{route('customer_relationship_manager.customers.show', $customer->id)}}">View</a>
+                                                href="{{route('ip_manager.subnets.show', $subnet->id)}}">View</a>
                                         </td>
                                     </tr>
                                     @endforeach
@@ -122,7 +107,7 @@
                 </div>
             </div>
             <div class="mt-2">
-                {{ $customers->links() }}
+                {{ $subnets->links() }}
             </div>
         </div>
     </div>

@@ -18,7 +18,19 @@ class SubnetController extends Controller
         //
         $this->authorize('view', Subnet::class);
 
-        dd('SubnetController@index');
+        $subnets = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->subnets()
+                ->paginate(10)
+            : auth()
+                ->user()
+                ->subnets()
+                ->paginate(10);
+
+        return view('ip_manager.subnets.index', compact('subnets'));
     }
 
     /**
