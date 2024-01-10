@@ -21,45 +21,50 @@
                     @csrf
                     <div>
                         <div class="flex flex-col mt-2">
-                            <label for="company_name" class="font-bold">Name*</label>
-                            <x-text-input name="company_name" label="Company Name" placeholder="e.g. Example LLC"
-                                value="{{old('company_name')}}" />
-                            @error('company_name')
+                            <label for="name" class="font-bold">Name*</label>
+                            <x-text-input name="name" label="Company Name" placeholder="e.g. Dallas Main Subnet"
+                                value="{{old('name')}}" />
+                            @error('name')
                             <x-input-error :messages="$message" />
                             @enderror
                         </div>
                         <div class="flex flex-col mt-2">
-                            <label for="phone" class="font-bold">Subnet</label>
-                            <x-text-input name="phone" label="Phone" placeholder="e.g. +1 824739921"
-                                value="{{old('phone')}}" />
-                            @error('phone')
+                            <label for="subnet" class="font-bold">Subnet</label>
+                            <x-text-input name="subnet" label="Phone" placeholder="e.g. +1 824739921"
+                                value="{{old('subnet')}}" />
+                            @error('subnet')
                             <x-input-error :messages="$message" />
                             @enderror
                         </div>
                         <div class="flex flex-col mt-2">
-                            <label for="website" class="font-bold">VLAN</label>
-                            <x-text-input name="url" label="URL" placeholder="e.g. example.com"
-                                value="{{old('url')}}" />
-                            @error('url')
+                            <label for="vlan" class="font-bold">VLAN</label>
+                            <x-text-input name="vlan" label="URL" placeholder="e.g. example.com"
+                                value="{{old('vlan')}}" />
+                            @error('vlan')
                             <x-input-error :messages="$message" />
                             @enderror
                         </div>
                         <div class="flex flex-col mt-2">
-                            <label for="website" class="font-bold">VLAN</label>
-                            <x-text-input name="url" label="URL" placeholder="e.g. example.com"
-                                value="{{old('url')}}" />
-                            @error('url')
+                            <label for="leased_company" class="font-bold">Leased Company</label>
+                            <x-text-input name="leased_company" label="URL" placeholder="e.g. example.com"
+                                value="{{old('leased_company')}}" />
+                            @error('leased_company')
                             <x-input-error :messages="$message" />
                             @enderror
                         </div>
                         <div class="flex flex-col mt-2">
-                            <label for="website" class="font-bold">VLAN</label>
-                            <x-text-input name="url" label="URL" placeholder="e.g. example.com"
-                                value="{{old('url')}}" />
-                            @error('url')
+                            <label for="parent_id" class="font-bold">Parent Subnet</label>
+                            <select id="parent_id" name="parent_id" style="width: 100%;">
+                                <option value=" ">None</option>
+                                @foreach ($subnets as $subnet)
+                                <option value="{{$subnet->id}}">{{$subnet->name}} | {{$subnet->subnet}}</option>
+                                @endforeach
+                            </select>
+                            @error('parent_id')
                             <x-input-error :messages="$message" />
                             @enderror
                         </div>
+
                     </div>
 
                     <x-primary-button type="submit" class="mt-2" style="width: fit-content;">Add Subnet +

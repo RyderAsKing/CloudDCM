@@ -75,21 +75,22 @@
                                     @foreach ($subnets as $subnet)
                                     <tr class="text-neutral-800 bg-white">
                                         <td class="px-5 py-4 text-sm font-medium whitespace-nowrap flex items-center">
-                                            {{$subnet->name}}}
+                                            {{$subnet->name}}
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
-                                            {{$subnet->subnet}}}
+                                            {{$subnet->subnet}}
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
-                                            {{$subnet->vlan}}}
+                                            {{$subnet->vlan}}
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
-                                            {{$subnet->leased_company}}}
+                                            {{$subnet->leased_company}}
                                         </td>
                                         <td class="px-5 py-4 text-sm whitespace-nowrap">
-                                            @if($subnet->parent_subnet != null)
-                                            <a
-                                                href="{{route('ip_manager.subnets.show', $subnet->parent_subnet)}}"></a>{{$subnet->parent_subnet->name}}}
+                                            @if($subnet->parent != null)
+                                            <a class="text-blue-800"
+                                                href="{{route('ip_manager.subnets.show', $subnet->parent)}}">{{$subnet->parent->name}}
+                                                &rarr;</a>
                                             @else
                                             None
                                             @endif

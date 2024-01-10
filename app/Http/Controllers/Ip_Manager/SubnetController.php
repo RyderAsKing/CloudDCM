@@ -43,7 +43,21 @@ class SubnetController extends Controller
         //
         $this->authorize('create', Subnet::class);
 
-        return view('ip_manager.subnets.create');
+        $subnets = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->subnets()
+                ->where('parent_id', null)
+                ->get()
+            : auth()
+                ->user()
+                ->subnets()
+                ->where('parent_id', null)
+                ->get();
+
+        return view('ip_manager.subnets.create', compact('subnets'));
     }
 
     /**
@@ -57,7 +71,31 @@ class SubnetController extends Controller
         //
         $this->authorize('create', Subnet::class);
 
-        dd('SubnetController@store');
+        $request->validate([
+            // name, subnet (nullable), vlan (nullable), leased_company (nullable), parent_id (nullable)
+            'name' => 'required|string|max:255',
+            'subnet' => 'nullable|string|max:255',
+            'vlan' => 'nullable|string|max:255',
+            'leased_company' => 'nullable|string|max:255',
+            'parent_id' => 'nullable|integer|exists:subnets,id',
+        ]);
+
+        $subnet = new Subnet();
+        $subnet->name = $request->name;
+        $subnet->subnet = $request->subnet;
+        $subnet->vlan = $request->vlan;
+        $subnet->leased_company = $request->leased_company;
+        $subnet->parent_id = $request->parent_id;
+        $subnet->user_id = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()->user()->owner->id
+            : auth()->user()->id;
+        $subnet->save();
+
+        return redirect()
+            ->route('ip_manager.subnets.index')
+            ->with('success', 'Subnet created successfully.');
     }
 
     /**
