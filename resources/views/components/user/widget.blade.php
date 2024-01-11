@@ -49,7 +49,7 @@
                 Created
             </h5>
         </a>
-        <p class="mb-4 text-neutral-500">There are a total of <strong>{{$users}}</strong>
+        <p class="text-neutral-500">There are a total of <strong>{{$users}}</strong>
             users created.
         </p>
     </div>

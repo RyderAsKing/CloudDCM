@@ -29,4 +29,20 @@
     @endif
 </div>
 @endcan
+
+@can('view', App\Models\VPS::class)
+<div class=" grid grid-cols-3 gap-2">
+    <div class="mt-4 bg-white border-2 border-gray-50 rounded-md shadow-sm p-7 ">
+        <span class="block mb-3">
+            <h5 class="text-xl font-bold leading-none tracking-tight text-neutral-900">Total VPS
+                Added
+            </h5>
+        </span>
+        <p class=" text-neutral-500">There are a total of <strong>{{$vpsManager['vps']}} </strong>
+            VPS added.
+        </p>
+    </div>
+
+</div>
+@endcan
 @endhasanyrole

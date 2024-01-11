@@ -8,7 +8,7 @@
                 Added
             </h5>
         </a>
-        <p class="mb-4 text-neutral-500">There are a total of
+        <p class="text-neutral-500">There are a total of
             <strong>{{$customerRelationshipManager['customers']}}</strong>
             customers added.
         </p>

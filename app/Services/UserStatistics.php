@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Rack;
+use App\Models\Subnet;
 use App\Models\Customer;
 use App\Models\RackSpace;
 
@@ -18,7 +19,7 @@ class UserStatistics
                 $user
             ),
             'vps_manager' => $this->getVpsManagerStatistics($user),
-            'ip_manager' => 'ip_manager',
+            'ip_manager' => $this->getIpManagerStatistics($user),
         ];
 
         return $user_statistics;
@@ -95,7 +96,11 @@ class UserStatistics
 
     public function getVpsManagerStatistics($user)
     {
-        $vps = ['locations' => []];
+        $vps = ['vps' => 0, 'locations' => []];
+
+        $vps['vps'] = $user->isSubUser()
+            ? $user->owner->vpss()->count()
+            : $user->vpss()->count();
 
         $vps['locations'] = $user->isSubUser()
             ? $user->owner
@@ -120,5 +125,40 @@ class UserStatistics
                 ->count();
 
         return $vps;
+    }
+
+    public function getIpManagerStatistics($user)
+    {
+        $subnet = [
+            'subnets' => 0,
+            'sub_subnets' => 0,
+        ];
+
+        if ($user->hasRole('admin')) {
+            $subnet['subnets'] = Subnet::whereNull('parent_id')->count();
+            $subnet['sub_subnets'] = Subnet::whereNotNull('parent_id')->count();
+        } else {
+            $subnet['subnets'] = $user->isSubUser()
+                ? $user->owner
+                    ->subnets()
+                    ->whereNull('parent_id')
+                    ->count()
+                : $user
+                    ->subnets()
+                    ->whereNull('parent_id')
+                    ->count();
+
+            $subnet['sub_subnets'] = $user->isSubUser()
+                ? $user->owner
+                    ->subnets()
+                    ->whereNotNull('parent_id')
+                    ->count()
+                : $user
+                    ->subnets()
+                    ->whereNotNull('parent_id')
+                    ->count();
+        }
+
+        return $subnet;
     }
 }

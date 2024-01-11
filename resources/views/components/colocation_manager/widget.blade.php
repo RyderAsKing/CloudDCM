@@ -39,19 +39,23 @@
                 Added
             </h5>
         </span>
-        <p class="mb-4 text-neutral-500">There are a total of <strong>{{$colocationManager['racks']}}</strong>
+        <p class="text-green-700 text-sm font-semibold">
+            {{$colocationManager['rackSpaces']}} unit rack {{Str::plural('space',
+            $colocationManager['rackSpaces'])}} added
+        </p>
+        <p class=" text-neutral-500">There are a total of <strong>{{$colocationManager['racks']}}</strong>
             racks added.
         </p>
     </div>
-    <div class="mt-4 bg-white border-2 border-gray-50 rounded-md shadow-sm p-7">
+    {{-- <div class="mt-4 bg-white border-2 border-gray-50 rounded-md shadow-sm p-7">
         <span class="block mb-3">
             <h5 class="text-xl font-bold leading-none tracking-tight text-neutral-900">Total Rack
                 Units Added
             </h5>
         </span>
-        <p class="mb-4 text-neutral-500">There are a total of
+        <p class=" text-neutral-500">There are a total of
             <strong>{{$colocationManager['rackSpaces']}}</strong> unit rack space added.
         </p>
-    </div>
+    </div> --}}
 </div>
 @endcan

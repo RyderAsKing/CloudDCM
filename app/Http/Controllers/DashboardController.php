@@ -30,6 +30,7 @@ class DashboardController extends Controller
             'customer_relationship_manager' =>
                 $user_statistics['customer_relationship_manager'],
             'vps_manager' => $user_statistics['vps_manager'],
+            'ip_manager' => $user_statistics['ip_manager'],
         ]);
     }
 }
