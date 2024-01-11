@@ -17,7 +17,5 @@
 -   [x] IP manager roles (moduluar)
 -   [x] IP manager model fields (Subnet, VLAN, Leased Company)
 -   [ ] IP manager CRUD
-
-### For future updatee
-
-create VPS manager (locations)
+-   [x] Widgets for IP manager
+-   [x] Admin widgets to show overall stats
