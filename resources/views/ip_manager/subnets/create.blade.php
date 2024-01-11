@@ -30,7 +30,7 @@
                         </div>
                         <div class="flex flex-col mt-2">
                             <label for="subnet" class="font-bold">Subnet</label>
-                            <x-text-input name="subnet" label="Phone" placeholder="e.g. +1 824739921"
+                            <x-text-input name="subnet" label="Phone" placeholder="e.g. 127.0.0.0/24"
                                 value="{{old('subnet')}}" />
                             @error('subnet')
                             <x-input-error :messages="$message" />
@@ -38,15 +38,14 @@
                         </div>
                         <div class="flex flex-col mt-2">
                             <label for="vlan" class="font-bold">VLAN</label>
-                            <x-text-input name="vlan" label="URL" placeholder="e.g. example.com"
-                                value="{{old('vlan')}}" />
+                            <x-text-input name="vlan" label="URL" placeholder="e.g. VLAN 30" value="{{old('vlan')}}" />
                             @error('vlan')
                             <x-input-error :messages="$message" />
                             @enderror
                         </div>
                         <div class="flex flex-col mt-2">
                             <label for="leased_company" class="font-bold">Leased Company</label>
-                            <x-text-input name="leased_company" label="URL" placeholder="e.g. example.com"
+                            <x-text-input name="leased_company" label="URL" placeholder="e.g. IPXO"
                                 value="{{old('leased_company')}}" />
                             @error('leased_company')
                             <x-input-error :messages="$message" />

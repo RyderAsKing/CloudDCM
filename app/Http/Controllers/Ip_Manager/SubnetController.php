@@ -109,7 +109,10 @@ class SubnetController extends Controller
         //
         $this->authorize('show', $subnet);
 
-        dd('SubnetController@show');
+        // dd('SubnetController@show');
+        // redirect to edit page
+
+        return redirect()->route('ip_manager.subnets.edit', $subnet);
     }
 
     /**
@@ -123,7 +126,28 @@ class SubnetController extends Controller
         //
         $this->authorize('update', $subnet);
 
-        dd('SubnetController@edit');
+        // dd('SubnetController@edit');
+
+        $subnets = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->subnets()
+                ->where('parent_id', null)
+                ->get()
+            : auth()
+                ->user()
+                ->subnets()
+                ->where('parent_id', null)
+                ->get();
+
+        $children = $subnet->children()->get();
+
+        return view(
+            'ip_manager.subnets.edit',
+            compact('subnet', 'children', 'subnets')
+        );
     }
 
     /**
@@ -138,7 +162,25 @@ class SubnetController extends Controller
         //
         $this->authorize('update', $subnet);
 
-        dd('SubnetController@update');
+        $request->validate([
+            // name, subnet (nullable), vlan (nullable), leased_company (nullable), parent_id (nullable)
+            'name' => 'required|string|max:255',
+            'subnet' => 'nullable|string|max:255',
+            'vlan' => 'nullable|string|max:255',
+            'leased_company' => 'nullable|string|max:255',
+            'parent_id' => 'nullable|integer|exists:subnets,id',
+        ]);
+
+        $subnet->name = $request->name;
+        $subnet->subnet = $request->subnet;
+        $subnet->vlan = $request->vlan;
+        $subnet->leased_company = $request->leased_company;
+        $subnet->parent_id = $request->parent_id;
+        $subnet->save();
+
+        return redirect()
+            ->route('ip_manager.subnets.index')
+            ->with('success', 'Subnet updated successfully.');
     }
 
     /**
@@ -152,6 +194,10 @@ class SubnetController extends Controller
         //
         $this->authorize('delete', $subnet);
 
-        dd('SubnetController@destroy');
+        $subnet->delete();
+
+        return redirect()
+            ->route('ip_manager.subnets.index')
+            ->with('success', 'Subnet deleted successfully.');
     }
 }
