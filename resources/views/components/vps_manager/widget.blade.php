@@ -1,6 +1,6 @@
-@hasanyrole('user|subuser')
 @can('view', App\Models\VPS::class)
 <h1 class="text-xl font-bold mt-6">VPS Manager (Locations/Groups)</h1>
+@hasanyrole('user|subuser')
 <div class="mt-2 grid grid-cols-3 gap-2">
     @foreach ($vpsManager['locations'] as $location)
     @if(isset($location->name))
@@ -28,9 +28,8 @@
     </a>
     @endif
 </div>
-@endcan
+@endhasanyrole
 
-@can('view', App\Models\VPS::class)
 <div class=" grid grid-cols-3 gap-2">
     <div class="mt-4 bg-white border-2 border-gray-50 rounded-md shadow-sm p-7 ">
         <span class="block mb-3">
@@ -42,7 +41,5 @@
             VPS added.
         </p>
     </div>
-
 </div>
 @endcan
-@endhasanyrole

@@ -1,4 +1,3 @@
-@hasanyrole('user|subuser')
 @can('view', App\Models\Subnet::class)
 <h1 class="text-xl font-bold mt-6">Subnet Manager (IP)</h1>
 <div class="mt-2 grid grid-cols-3 gap-2">
@@ -19,4 +18,3 @@
     </div>
 </div>
 @endcan
-@endhasrole

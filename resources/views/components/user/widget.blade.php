@@ -42,13 +42,14 @@
 @endhasanyrole
 
 @hasrole('admin')
+<h1 class="text-xl font-bold mt-6">User Manager (Companies)</h1>
 <div class="mt-6 grid grid-cols-3 gap-2">
     <div class="bg-white border rounded-lg shadow-sm p-7 border-neutral-200/60">
-        <a href="#_" class="block mb-3">
+        <span class="block mb-3">
             <h5 class="text-xl font-bold leading-none tracking-tight text-neutral-900">Total Users
                 Created
             </h5>
-        </a>
+        </span>
         <p class="text-neutral-500">There are a total of <strong>{{$users}}</strong>
             users created.
         </p>

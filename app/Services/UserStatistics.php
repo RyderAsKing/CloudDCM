@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Models\VPS;
 use App\Models\Rack;
 use App\Models\Subnet;
 use App\Models\Customer;
@@ -98,9 +99,13 @@ class UserStatistics
     {
         $vps = ['vps' => 0, 'locations' => []];
 
-        $vps['vps'] = $user->isSubUser()
-            ? $user->owner->vpss()->count()
-            : $user->vpss()->count();
+        if ($user->hasRole('admin')) {
+            $vps['vps'] = VPS::count();
+        } else {
+            $vps['vps'] = $user->isSubUser()
+                ? $user->owner->vpss()->count()
+                : $user->vpss()->count();
+        }
 
         $vps['locations'] = $user->isSubUser()
             ? $user->owner
