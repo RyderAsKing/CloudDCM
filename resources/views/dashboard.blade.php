@@ -24,6 +24,7 @@
                     :customer_relationship_manager="$customer_relationship_manager" />
 
                 <x-ip_manager.widget :ip_manager="$ip_manager" />
+
             </div>
         </div>
 </x-app-layout>
