@@ -19,3 +19,4 @@
 -   [ ] IP manager CRUD
 -   [x] Widgets for IP manager
 -   [x] Admin widgets to show overall stats
+-   [x] Background image on guest pages
