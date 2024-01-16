@@ -100,6 +100,36 @@
                                                 href="{{route('ip_manager.subnets.show', $subnet->id)}}">View</a>
                                         </td>
                                     </tr>
+
+                                    @foreach($subnet->children as $child)
+                                    <tr class="text-neutral-800 bg-gray-200">
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap"></td>
+                                        <td class="px-5 py-4 text-sm font-medium whitespace-nowrap flex items-center">
+                                            {{$child->name}} | {{$child->subnet}}
+                                        </td>
+
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                            {{$child->vlan}}
+                                        </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                            {{$child->leased_company}}
+                                        </td>
+                                        <td class="px-5 py-4 text-sm whitespace-nowrap">
+                                            @if($child->parent != null)
+                                            <a class="text-blue-800"
+                                                href="{{route('ip_manager.subnets.show', $child->parent)}}">{{$child->parent->name}}
+                                                &rarr;</a>
+                                            @else
+                                            None
+                                            @endif
+                                        </td>
+
+                                        <td class="px-5 py-4 text-sm font-medium text-right whitespace-nowrap">
+                                            <a class="text-blue-600 hover:text-blue-700"
+                                                href="{{route('ip_manager.subnets.show', $child->id)}}">View</a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                     @endforeach
                                 </tbody>
                             </table>

@@ -24,10 +24,12 @@ class SubnetController extends Controller
             ? auth()
                 ->user()
                 ->owner->subnets()
+                ->whereNull('parent_id')
                 ->paginate(10)
             : auth()
                 ->user()
                 ->subnets()
+                ->whereNull('parent_id')
                 ->paginate(10);
 
         return view('ip_manager.subnets.index', compact('subnets'));
