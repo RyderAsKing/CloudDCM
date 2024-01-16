@@ -26,7 +26,10 @@
 
 
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100">
+        <div class="min-h-screen bg-gray-100" @if(file_exists(public_path('image/' . env('BACKGROUND_APP'))) &&
+            env('BACKGROUND_APP') !=null)
+            style="background-image: url({{ asset('image/' . env('BACKGROUND_APP')) }}); background-size: cover;"
+            @endif>
 
             <!-- Page Heading -->
 
