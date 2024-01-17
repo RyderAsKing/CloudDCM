@@ -130,6 +130,10 @@
                                         </td>
                                     </tr>
                                     @endforeach
+                                    <tr>
+                                        <td colspan="6" class="py-1 text-xs whitespace-nowrap dashed  text-center">
+                                        </td>
+                                    </tr>
                                     @endforeach
                                 </tbody>
                             </table>

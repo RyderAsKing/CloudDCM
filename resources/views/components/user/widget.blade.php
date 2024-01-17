@@ -1,5 +1,5 @@
 @hasrole('admin')
-<div class="backdrop-blur-sm bg-white/20 rounded-md  ">
+<div class="backdrop-blur-sm  rounded-md  ">
     <h2 class="text-xl font-semibold mb-2">Welcome to admin dashboard</h2>
     <p class="text-gray-700">Here you can manage users and their subusers</p>
 
@@ -12,7 +12,7 @@
 @endhasrole
 
 @hasanyrole('user|subuser')
-<div class="backdrop-blur-sm bg-white/20 rounded-md ">
+<div class="backdrop-blur-sm  rounded-md ">
     <h2 class="text-xl font-semibold mb-2">Welcome to your dashboard</h2>
     <p class="text-gray-700">Here are the modules you have access to </p>
 
