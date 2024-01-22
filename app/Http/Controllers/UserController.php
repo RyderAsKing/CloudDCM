@@ -107,7 +107,14 @@ class UserController extends Controller
             $user->assignRole('vps_manager');
         }
 
-        // ip_manager
+        if (
+            $request->input('dedicated_server_manager') != null &&
+            Gate::allows('edit-modules', 'dedicated_server_manager')
+        ) {
+            $user->assignRole('dedicated_server_manager');
+        }
+
+        // dedicated_server_manager
 
         if (
             $request->input('ip_manager') != null &&
@@ -243,7 +250,24 @@ class UserController extends Controller
             }
         }
 
-        // vps_manager
+        if (Gate::allows('edit-modules', 'dedicated_server_manager')) {
+            if ($request->input('dedicated_server_manager') != null) {
+                $user->assignRole('dedicated_server_manager');
+            } else {
+                $user->removeRole('dedicated_server_manager');
+
+                // if the user is not subuser then remove the roles from all his subusers
+                if ($user->owner_id == null) {
+                    $subusers = User::where('owner_id', $user->id)->get();
+                    $this->massRemoveRole(
+                        $subusers,
+                        'dedicated_server_manager'
+                    );
+                }
+            }
+        }
+
+        // dedicated_server_manager
 
         $user->syncPermissions($request->input('permissions'));
 
