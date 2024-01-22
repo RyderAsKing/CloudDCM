@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Dedicated_Server_Manager;
 
-use App\Http\Controllers\Controller;
+use App\Models\Server;
+use App\Models\Location;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class LocationController extends Controller
 {
@@ -15,6 +17,42 @@ class LocationController extends Controller
     public function index()
     {
         //
+        $this->authorize('view', [Location::class, 'server']);
+
+        //
+        $locations = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->locations()
+                ->where('for', '=', 'server')
+                ->paginate(10)
+            : auth()
+                ->user()
+                ->locations()
+                ->where('for', '=', 'server')
+                ->paginate(10);
+
+        // check if there is any rack which is not assigned to any location and add it to the locations array as $location['uncategorized']
+        $locations['uncategorized'] = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->servers()
+                ->where('location_id', null)
+                ->count()
+            : auth()
+                ->user()
+                ->servers()
+                ->where('location_id', null)
+                ->count();
+
+        return view(
+            'dedicated_server_manager.locations.index',
+            compact('locations')
+        );
     }
 
     /**
@@ -25,6 +63,9 @@ class LocationController extends Controller
     public function create()
     {
         //
+        $this->authorize('create', [Location::class, 'server']);
+
+        return view('dedicated_server_manager.locations.create');
     }
 
     /**
@@ -35,7 +76,31 @@ class LocationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', [Location::class, 'server']);
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+        ]);
+
+        $location = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->locations()
+                ->create($request->all())
+            : auth()
+                ->user()
+                ->locations()
+                ->create($request->all());
+
+        $location->for = 'server';
+
+        $location->save();
+
+        return redirect()
+            ->route('dedicated_server_manager.locations.index')
+            ->with('success', 'Location created successfully');
     }
 
     /**
@@ -46,7 +111,27 @@ class LocationController extends Controller
      */
     public function show($id)
     {
-        //
+        $location = Location::findOrFail($id);
+        $this->authorize('show', [$location, 'server']);
+
+        $servers = auth()
+            ->user()
+            ->isSubUser()
+            ? auth()
+                ->user()
+                ->owner->servers()
+                ->where('location_id', '=', $id)
+                ->paginate(10)
+            : auth()
+                ->user()
+                ->servers()
+                ->where('location_id', '=', $id)
+                ->paginate(10);
+
+        return view(
+            'dedicated_server_manager.servers.index',
+            compact('servers')
+        );
     }
 
     /**
@@ -58,6 +143,14 @@ class LocationController extends Controller
     public function edit($id)
     {
         //
+        $location = Location::findOrFail($id);
+
+        $this->authorize('update', [$location, 'server']);
+
+        return view(
+            'dedicated_server_manager.locations.edit',
+            compact('location')
+        );
     }
 
     /**
@@ -70,6 +163,21 @@ class LocationController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+        $location = Location::findOrFail($id);
+
+        $this->authorize('update', [$location, 'server']);
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'description' => 'nullable|string|max:255',
+        ]);
+
+        $location->update($request->all());
+
+        return redirect()
+            ->route('dedicated_server_manager.locations.index')
+            ->with('success', 'Location updated successfully');
     }
 
     /**
@@ -81,5 +189,20 @@ class LocationController extends Controller
     public function destroy($id)
     {
         //
+        $location = Location::findOrFail($id);
+
+        $this->authorize('delete', [$location, 'server']);
+
+        $servers = Server::where('location_id', $id)->get();
+
+        foreach ($servers as $vps) {
+            $vps->location_id = null;
+            $vps->save();
+        }
+
+        $location->delete();
+        return redirect()
+            ->route('dedicated_server_manager.locations.index')
+            ->with('success', 'Location deleted successfully');
     }
 }

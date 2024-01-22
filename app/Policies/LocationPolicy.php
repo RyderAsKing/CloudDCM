@@ -21,6 +21,10 @@ class LocationPolicy
         if ($for === 'vps') {
             return $user->hasRole('vps_manager');
         }
+
+        if ($for === 'server') {
+            return $user->hasRole('dedicated_server_manager');
+        }
     }
 
     public function before(User $user)

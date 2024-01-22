@@ -25,4 +25,9 @@ class Location extends Model
     {
         return $this->hasMany(Vps::class);
     }
+
+    public function servers()
+    {
+        return $this->hasMany(Server::class);
+    }
 }
