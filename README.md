@@ -20,3 +20,7 @@
 -   [x] Widgets for IP manager
 -   [x] Admin widgets to show overall stats
 -   [x] Background image on guest pages
+-   [x] Server Crud
+-   [x] Dedicated server roles (module)
+-   [x] Server relationship (location->server), (user->servers), (server->user)
+-   [x] Widgets for DCM
