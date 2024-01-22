@@ -27,7 +27,7 @@
             @endif
 
             <x-primary-link href="{{route('dedicated_server_manager.servers.create')}}" class="mb-2">
-                Add vps +
+                Add server +
             </x-primary-link>
             <div class="flex flex-col">
 

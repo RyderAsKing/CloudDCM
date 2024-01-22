@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Server extends Model
 {
+    protected $table = 'servers';
+
     use HasFactory;
 
     protected $fillable = [

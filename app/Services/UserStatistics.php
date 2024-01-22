@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\VPS;
 use App\Models\Rack;
+use App\Models\Server;
 use App\Models\Subnet;
 use App\Models\Customer;
 use App\Models\RackSpace;
@@ -21,6 +22,9 @@ class UserStatistics
             ),
             'vps_manager' => $this->getVpsManagerStatistics($user),
             'ip_manager' => $this->getIpManagerStatistics($user),
+            'dedicated_server_manager' => $this->getDedicatedServerManagerStatistics(
+                $user
+            ),
         ];
 
         return $user_statistics;
@@ -111,12 +115,12 @@ class UserStatistics
             ? $user->owner
                 ->locations()
                 ->where('for', '=', 'vps')
-                ->with('racks')
+                ->with('vpss')
                 ->get()
             : $user
                 ->locations()
                 ->where('for', '=', 'vps')
-                ->with('racks')
+                ->with('vpss')
                 ->get();
 
         $vps['locations']['uncategorized'] = $user->isSubUser()
@@ -165,5 +169,42 @@ class UserStatistics
         }
 
         return $subnet;
+    }
+
+    public function getDedicatedServerManagerStatistics($user)
+    {
+        $server = ['servers' => 0, 'locations' => []];
+
+        if ($user->hasRole('admin')) {
+            $server['servers'] = Server::count();
+        } else {
+            $server['servers'] = $user->isSubUser()
+                ? $user->owner->servers()->count()
+                : $user->servers()->count();
+        }
+
+        $server['locations'] = $user->isSubUser()
+            ? $user->owner
+                ->locations()
+                ->where('for', '=', 'server')
+                ->with('servers')
+                ->get()
+            : $user
+                ->locations()
+                ->where('for', '=', 'server')
+                ->with('servers')
+                ->get();
+
+        $server['locations']['uncategorized'] = $user->isSubUser()
+            ? $user->owner
+                ->servers()
+                ->whereNull('location_id')
+                ->count()
+            : $user
+                ->servers()
+                ->whereNull('location_id')
+                ->count();
+
+        return $server;
     }
 }

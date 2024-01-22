@@ -24,6 +24,9 @@ class AuthServiceProvider extends ServiceProvider
         'App\Models\VPS' => 'App\Policies\Vps_Manager\VpsPolicy',
         // IP Manager
         'App\Models\Subnet' => 'App\Policies\Ip_Manager\SubnetPolicy',
+        // Dedicated Server Manager
+        'App\Models\Server' =>
+            'App\Policies\Dedicated_Server_Manager\ServerPolicy',
     ];
 
     /**

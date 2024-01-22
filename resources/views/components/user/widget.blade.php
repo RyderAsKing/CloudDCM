@@ -38,6 +38,13 @@
         IP Manager &rarr;
     </x-primary-link>
     @endcan
+
+    @can('view', App\Models\Server::class)
+    <x-primary-link href="{{route('dedicated_server_manager.locations.index')}}" class="mt-4">
+        Server Manager &rarr;
+    </x-primary-link>
+    @endcan
+
 </div>
 @endhasanyrole
 

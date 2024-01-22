@@ -25,6 +25,8 @@
 
                 <x-ip_manager.widget :ip_manager="$ip_manager" />
 
+                <x-dedicated_server_manager.widget :dedicated_server_manager="$dedicated_server_manager" />
+
             </div>
         </div>
 </x-app-layout>
