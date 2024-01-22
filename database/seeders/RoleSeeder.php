@@ -24,6 +24,7 @@ class RoleSeeder extends Seeder
             'customer_relationship_manager',
             'vps_manager',
             'ip_manager',
+            'dedicated_server_manager',
         ];
 
         foreach ($roles as $role) {

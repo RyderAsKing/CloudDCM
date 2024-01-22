@@ -103,4 +103,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Subnet::class);
     }
+
+    public function servers()
+    {
+        return $this->hasMany(Server::class);
+    }
 }
