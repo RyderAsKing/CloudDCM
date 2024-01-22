@@ -67,6 +67,7 @@ class UserController extends Controller
             'customer_relationship_manager' => 'nullable',
             'vps_manager' => 'nullable',
             'ip_manager' => 'nullable',
+            'dedicated_server_manager' => 'nullable',
         ]);
 
         $user = new User();
@@ -180,6 +181,7 @@ class UserController extends Controller
             'customer_relationship_manager' => 'nullable',
             'vps_manager' => 'nullable',
             'ip_manager' => 'nullable',
+            'dedicated_server_manager' => 'nullable',
         ]);
 
         $user->name = $request->input('name');

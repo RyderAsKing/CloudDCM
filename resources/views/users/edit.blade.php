@@ -91,6 +91,8 @@
                     </div>
                     @endcan
 
+
+
                     @can('edit-modules', 'vps_manager')
                     <div class="flex flex-row items-center gap-2">
                         <input type="checkbox" id="vps_manager" name="vps_manager" @if($user->hasRole('vps_manager'))
@@ -107,6 +109,13 @@
                     </div>
                     @endcan
 
+                    @can('edit-modules', 'dedicated_server_manager')
+                    <div class="flex flex-row items-center gap-2">
+                        <input type="checkbox" id="dedicated_server_manager" name="dedicated_server_manager"
+                            @if($user->hasRole('dedicated_server_manager')) checked @endif>
+                        <label for="dedicated_server_manager"> Dedicated Server Manager</label><br>
+                    </div>
+                    @endcan
                     @endhasanyrole
 
 

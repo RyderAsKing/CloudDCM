@@ -94,6 +94,13 @@
                         <label for="ip_manager"> IP Manager</label><br>
                     </div>
                     @endcan
+
+                    @can('edit-modules', 'dedicated_server_manager')
+                    <div class="flex flex-row items-center gap-2">
+                        <input type="checkbox" id="dedicated_server_manager" name="dedicated_server_manager">
+                        <label for="dedicated_server_manager"> Dedicated Server Manager</label><br>
+                    </div>
+                    @endcan
                     @endhasanyrole
 
 
