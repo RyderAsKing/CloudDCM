@@ -35,7 +35,8 @@ class LocationPolicy
 
         if (
             $user->hasRole('colocation_manager') ||
-            $user->hasRole('vps_manager')
+            $user->hasRole('vps_manager') ||
+            $user->hasRole('dedicated_server_manager')
         ) {
             return null;
         }
