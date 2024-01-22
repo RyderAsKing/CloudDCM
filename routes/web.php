@@ -46,3 +46,4 @@ require __DIR__ . '/colocation_manager.php';
 require __DIR__ . '/customer_relationship_manager.php';
 require __DIR__ . '/vps_manager.php';
 require __DIR__ . '/ip_manager.php';
+require __DIR__ . '/dedicated_server_manager.php';
