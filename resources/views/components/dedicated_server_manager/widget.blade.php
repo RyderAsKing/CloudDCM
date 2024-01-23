@@ -1,6 +1,6 @@
 @can('view', App\Models\Server::class)
-<h1 class="text-xl font-bold mt-6">Server Manager (Locations/Groups)</h1>
-@hasanyrole('user|subuser')
+<h1 class="text-xl font-bold mt-6">Server Manager </h1>
+{{-- @hasanyrole('user|subuser')
 <div class="mt-2 grid grid-cols-3 gap-2">
     @foreach ($dedicatedServerManager['locations'] as $location)
     @if(isset($location->name))
@@ -28,7 +28,7 @@
     </a>
     @endif
 </div>
-@endhasanyrole
+@endhasanyrole --}}
 
 <div class=" grid grid-cols-3 gap-2">
     <div class="mt-4 bg-white border-2 border-gray-50 rounded-md shadow-sm p-7 ">
