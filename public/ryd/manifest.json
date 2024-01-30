@@ -1,0 +1,12 @@
+{
+  "themes/ryd/css/app.css": {
+    "file": "assets/app-1a327707.css",
+    "isEntry": true,
+    "src": "themes/ryd/css/app.css"
+  },
+  "themes/ryd/js/app.js": {
+    "file": "assets/app-e6895be6.js",
+    "isEntry": true,
+    "src": "themes/ryd/js/app.js"
+  }
+}

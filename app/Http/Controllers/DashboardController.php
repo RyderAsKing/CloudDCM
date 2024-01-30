@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Qirolab\Theme\Theme;
 use App\Services\UserStatistics;
 
 class DashboardController extends Controller

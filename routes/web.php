@@ -47,3 +47,9 @@ require __DIR__ . '/customer_relationship_manager.php';
 require __DIR__ . '/vps_manager.php';
 require __DIR__ . '/ip_manager.php';
 require __DIR__ . '/dedicated_server_manager.php';
+
+// create a home route which dies with a message
+
+Route::get('/home', function () {
+    return 'Home';
+})->name('home');
