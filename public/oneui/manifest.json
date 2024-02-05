@@ -1,0 +1,119 @@
+{
+  "themes/oneui/fonts/fontawesome/fa-brands-400.ttf": {
+    "file": "assets/fa-brands-400-003f1154.ttf",
+    "src": "themes/oneui/fonts/fontawesome/fa-brands-400.ttf"
+  },
+  "themes/oneui/fonts/fontawesome/fa-brands-400.woff2": {
+    "file": "assets/fa-brands-400-faae6fc0.woff2",
+    "src": "themes/oneui/fonts/fontawesome/fa-brands-400.woff2"
+  },
+  "themes/oneui/fonts/fontawesome/fa-regular-400.ttf": {
+    "file": "assets/fa-regular-400-7d81a1a7.ttf",
+    "src": "themes/oneui/fonts/fontawesome/fa-regular-400.ttf"
+  },
+  "themes/oneui/fonts/fontawesome/fa-regular-400.woff2": {
+    "file": "assets/fa-regular-400-9169d8be.woff2",
+    "src": "themes/oneui/fonts/fontawesome/fa-regular-400.woff2"
+  },
+  "themes/oneui/fonts/fontawesome/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900-cea79b34.ttf",
+    "src": "themes/oneui/fonts/fontawesome/fa-solid-900.ttf"
+  },
+  "themes/oneui/fonts/fontawesome/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900-886c8611.woff2",
+    "src": "themes/oneui/fonts/fontawesome/fa-solid-900.woff2"
+  },
+  "themes/oneui/fonts/inter/inter-v13-latin-300.woff2": {
+    "file": "assets/inter-v13-latin-300-09eea703.woff2",
+    "src": "themes/oneui/fonts/inter/inter-v13-latin-300.woff2"
+  },
+  "themes/oneui/fonts/inter/inter-v13-latin-500.woff2": {
+    "file": "assets/inter-v13-latin-500-eebf14ab.woff2",
+    "src": "themes/oneui/fonts/inter/inter-v13-latin-500.woff2"
+  },
+  "themes/oneui/fonts/inter/inter-v13-latin-600.woff2": {
+    "file": "assets/inter-v13-latin-600-3022fadd.woff2",
+    "src": "themes/oneui/fonts/inter/inter-v13-latin-600.woff2"
+  },
+  "themes/oneui/fonts/inter/inter-v13-latin-700.woff2": {
+    "file": "assets/inter-v13-latin-700-7b43cb86.woff2",
+    "src": "themes/oneui/fonts/inter/inter-v13-latin-700.woff2"
+  },
+  "themes/oneui/fonts/inter/inter-v13-latin-800.woff2": {
+    "file": "assets/inter-v13-latin-800-03db2737.woff2",
+    "src": "themes/oneui/fonts/inter/inter-v13-latin-800.woff2"
+  },
+  "themes/oneui/fonts/inter/inter-v13-latin-900.woff2": {
+    "file": "assets/inter-v13-latin-900-c67b5d31.woff2",
+    "src": "themes/oneui/fonts/inter/inter-v13-latin-900.woff2"
+  },
+  "themes/oneui/fonts/inter/inter-v13-latin-regular.woff2": {
+    "file": "assets/inter-v13-latin-regular-2301bb03.woff2",
+    "src": "themes/oneui/fonts/inter/inter-v13-latin-regular.woff2"
+  },
+  "themes/oneui/fonts/simple-line-icons/Simple-Line-Icons.eot": {
+    "file": "assets/Simple-Line-Icons-1c823013.eot",
+    "src": "themes/oneui/fonts/simple-line-icons/Simple-Line-Icons.eot"
+  },
+  "themes/oneui/fonts/simple-line-icons/Simple-Line-Icons.svg": {
+    "file": "assets/Simple-Line-Icons-b381f90a.svg",
+    "src": "themes/oneui/fonts/simple-line-icons/Simple-Line-Icons.svg"
+  },
+  "themes/oneui/fonts/simple-line-icons/Simple-Line-Icons.ttf": {
+    "file": "assets/Simple-Line-Icons-3f501ddb.ttf",
+    "src": "themes/oneui/fonts/simple-line-icons/Simple-Line-Icons.ttf"
+  },
+  "themes/oneui/fonts/simple-line-icons/Simple-Line-Icons.woff": {
+    "file": "assets/Simple-Line-Icons-14b825d7.woff",
+    "src": "themes/oneui/fonts/simple-line-icons/Simple-Line-Icons.woff"
+  },
+  "themes/oneui/fonts/simple-line-icons/Simple-Line-Icons.woff2": {
+    "file": "assets/Simple-Line-Icons-104673f4.woff2",
+    "src": "themes/oneui/fonts/simple-line-icons/Simple-Line-Icons.woff2"
+  },
+  "themes/oneui/js/app.js": {
+    "file": "assets/app-02317797.js",
+    "isEntry": true,
+    "src": "themes/oneui/js/app.js"
+  },
+  "themes/oneui/js/oneui/app.js": {
+    "file": "assets/app-3b26f77f.js",
+    "isEntry": true,
+    "src": "themes/oneui/js/oneui/app.js"
+  },
+  "themes/oneui/js/pages/datatables.js": {
+    "file": "assets/datatables-ad71b457.js",
+    "isEntry": true,
+    "src": "themes/oneui/js/pages/datatables.js"
+  },
+  "themes/oneui/sass/main.scss": {
+    "file": "assets/main-d970a225.css",
+    "isEntry": true,
+    "src": "themes/oneui/sass/main.scss"
+  },
+  "themes/oneui/sass/oneui/themes/amethyst.scss": {
+    "file": "assets/amethyst-f3aceb9c.css",
+    "isEntry": true,
+    "src": "themes/oneui/sass/oneui/themes/amethyst.scss"
+  },
+  "themes/oneui/sass/oneui/themes/city.scss": {
+    "file": "assets/city-b638a57a.css",
+    "isEntry": true,
+    "src": "themes/oneui/sass/oneui/themes/city.scss"
+  },
+  "themes/oneui/sass/oneui/themes/flat.scss": {
+    "file": "assets/flat-654f083e.css",
+    "isEntry": true,
+    "src": "themes/oneui/sass/oneui/themes/flat.scss"
+  },
+  "themes/oneui/sass/oneui/themes/modern.scss": {
+    "file": "assets/modern-2c9c8144.css",
+    "isEntry": true,
+    "src": "themes/oneui/sass/oneui/themes/modern.scss"
+  },
+  "themes/oneui/sass/oneui/themes/smooth.scss": {
+    "file": "assets/smooth-0590c896.css",
+    "isEntry": true,
+    "src": "themes/oneui/sass/oneui/themes/smooth.scss"
+  }
+}
