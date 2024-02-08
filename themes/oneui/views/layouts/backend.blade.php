@@ -18,7 +18,7 @@
 
         <!-- Modules -->
         @yield('css')
-        @vite(['themes/oneui/sass/main.scss', 'themes/oneui/js/oneui/app.js'])
+        @vite(['themes/oneui/sass/main.scss', 'themes/oneui/js/oneui/app.js'], 'oneui')
 
         <!-- Alternatively, you can also include a specific color theme after the main stylesheet to alter the default color theme of the template -->
         {{-- @vite(['resources/sass/main.scss', 'resources/sass/oneui/themes/amethyst.scss',
