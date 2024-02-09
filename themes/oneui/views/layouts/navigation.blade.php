@@ -87,46 +87,107 @@
         <div class="content-side">
             <ul class="nav-main">
                 <li class="nav-main-item">
-                    <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}" href="/dashboard">
+                    <a class="nav-main-link{{ request()->is('dashboard') ? ' active' : '' }}"
+                        href="{{route('dashboard')}}">
                         <i class="nav-main-link-icon si si-cursor"></i>
                         <span class="nav-main-link-name">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-main-heading">Various</li>
-                <li class="nav-main-item{{ request()->is('pages/*') ? ' open' : '' }}">
+                @hasanyrole('user|subuser')
+                <li class="nav-main-heading">MODULES</li>
+
+                @can('view', App\Models\Rack::class)
+                <li class="nav-main-item{{ request()->is('colocation_manager/*') ? ' open' : '' }}">
                     <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                         aria-expanded="true" href="#">
-                        <i class="nav-main-link-icon si si-bulb"></i>
-                        <span class="nav-main-link-name">Examples</span>
+                        <i class="nav-main-link-icon fa-solid fa-server"></i>
+                        <span class="nav-main-link-name">Colocation Manager</span>
                     </a>
                     <ul class="nav-main-submenu">
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/datatables') ? ' active' : '' }}"
-                                href="/pages/datatables">
-                                <span class="nav-main-link-name">DataTables</span>
+                            <a class="nav-main-link{{ request()->is('colocation_manager.locations.index') ? ' active' : '' }}"
+                                href="{{route('colocation_manager.locations.index')}}">
+                                <span class="nav-main-link-name">Locations</span>
                             </a>
                         </li>
                         <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/slick') ? ' active' : '' }}"
-                                href="/pages/slick">
-                                <span class="nav-main-link-name">Slick Slider</span>
+                            <a class="nav-main-link{{ request()->is('colocation_manager.racks.index') ? ' active' : '' }}"
+                                href="{{route('colocation_manager.racks.index')}}">
+                                <span class="nav-main-link-name">Racks</span>
                             </a>
                         </li>
-                        <li class="nav-main-item">
-                            <a class="nav-main-link{{ request()->is('pages/blank') ? ' active' : '' }}"
-                                href="/pages/blank">
-                                <span class="nav-main-link-name">Blank</span>
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
-                <li class="nav-main-heading">More</li>
+                @endcan
+
+                @can('view', App\Models\Customer::class)
                 <li class="nav-main-item open">
-                    <a class="nav-main-link" href="/">
-                        <i class="nav-main-link-icon si si-globe"></i>
-                        <span class="nav-main-link-name">Landing</span>
+                    <a class="nav-main-link" href="{{route('customer_relationship_manager.customers.index')}}">
+                        <i class="nav-main-link-icon fa fa-thin fa-users"></i>
+                        <span class="nav-main-link-name">Customer Relationship</span>
                     </a>
                 </li>
+                @endcan
+
+                @can('view', App\Models\VPS::class)
+
+                <li class="nav-main-item{{ request()->is('vps_manager/*') ? ' open' : '' }}">
+                    <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
+                        aria-expanded="true" href="#">
+                        <i class="nav-main-link-icon fa fa-thin fa-cloud"></i>
+                        <span class="nav-main-link-name">VPS Manager</span>
+                    </a>
+                    <ul class="nav-main-submenu">
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('vps_manager.locations.index') ? ' active' : '' }}"
+                                href="{{route('vps_manager.locations.index')}}">
+                                <span class="nav-main-link-name">Locations</span>
+                            </a>
+                        </li>
+                        <li class="nav-main-item">
+                            <a class="nav-main-link{{ request()->is('vps_manager.vpss.index') ? ' active' : '' }}"
+                                href="{{route('vps_manager.vpss.index')}}">
+                                <span class="nav-main-link-name">VPS</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+                @endcan
+
+                @can('view', App\Models\Subnet::class)
+                <li class="nav-main-item open">
+                    <a class="nav-main-link" href="{{route('ip_manager.subnets.index')}}">
+                        <i class="nav-main-link-icon fa fa-thin fa-network-wired"></i>
+                        <span class="nav-main-link-name">IP Manager</span>
+                    </a>
+                </li>
+
+
+                @endcan
+
+                @can('view', App\Models\Server::class)
+
+                <li class="nav-main-item open">
+                    <a class="nav-main-link" href="{{route('dedicated_server_manager.servers.index')}}">
+                        <i class="nav-main-link-icon fa fa-thin fa-microchip"></i>
+                        <span class="nav-main-link-name">Server Manager</span>
+                    </a>
+                </li>
+                @endcan
+
+                @endhasanyrole
+
+                @hasanyrole('admin|user')
+                <li class="nav-main-heading">Configuration</li>
+                <li class="nav-main-item open">
+                    <a class="nav-main-link" href="{{route('users.index')}}">
+                        <i class="nav-main-link-icon fa fa-thin fa-user"></i>
+                        <span class="nav-main-link-name">Users</span>
+                    </a>
+                </li>
+                @endhasanyrole
             </ul>
         </div>
         <!-- END Side Navigation -->
@@ -142,33 +203,12 @@
         <!-- Left Section -->
         <div class="d-flex align-items-center">
             <!-- Toggle Sidebar -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout()-->
-            <button type="button" class="btn btn-sm btn-alt-secondary me-2 d-lg-none" data-toggle="layout"
-                data-action="sidebar_toggle">
+            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
+            <button type="button" class="btn btn-dual" data-toggle="layout" data-action="sidebar_toggle">
                 <i class="fa fa-fw fa-bars"></i>
             </button>
             <!-- END Toggle Sidebar -->
 
-            <!-- Open Search Section (visible on smaller screens) -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-sm btn-alt-secondary d-md-none" data-toggle="layout"
-                data-action="header_search_on">
-                <i class="fa fa-fw fa-search"></i>
-            </button>
-            <!-- END Open Search Section -->
-
-            <!-- Search Form (visible on larger screens) -->
-            <form class="d-none d-md-inline-block" action="/dashboard" method="POST">
-                @csrf
-                <div class="input-group input-group-sm">
-                    <input type="text" class="form-control form-control-alt" placeholder="Search.."
-                        id="page-header-search-input2" name="page-header-search-input2">
-                    <span class="input-group-text border-0">
-                        <i class="fa fa-fw fa-search"></i>
-                    </span>
-                </div>
-            </form>
-            <!-- END Search Form -->
         </div>
         <!-- END Left Section -->
 
