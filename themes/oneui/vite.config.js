@@ -13,7 +13,7 @@ export default defineConfig({
         'themes/oneui/sass/oneui/themes/modern.scss',
         'themes/oneui/sass/oneui/themes/smooth.scss',
         'themes/oneui/js/app.js',
-        'themes/oneui/js/oneui/app.js',
+        'themes/oneui/js/oneui.min.js',
         'themes/oneui/js/pages/datatables.js',
       ],
       buildDirectory: 'oneui',

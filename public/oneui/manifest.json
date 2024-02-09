@@ -76,10 +76,10 @@
     "isEntry": true,
     "src": "themes/oneui/js/app.js"
   },
-  "themes/oneui/js/oneui/app.js": {
-    "file": "assets/app-3b26f77f.js",
+  "themes/oneui/js/oneui.min.js": {
+    "file": "assets/oneui.min-6cbbe515.js",
     "isEntry": true,
-    "src": "themes/oneui/js/oneui/app.js"
+    "src": "themes/oneui/js/oneui.min.js"
   },
   "themes/oneui/js/pages/datatables.js": {
     "file": "assets/datatables-ad71b457.js",
