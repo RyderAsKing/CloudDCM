@@ -128,7 +128,7 @@
                         <span class="smini-visible">
                             <i class="fa fa-circle-notch text-primary"></i>
                         </span>
-                        <span class="smini-hide fs-5 tracking-wider">One<span class="fw-normal">UI</span></span>
+                        <span class="smini-hide fs-5 tracking-wider">Cloud<span class="fw-normal">DCM</span></span>
                     </a>
                     <!-- END Logo -->
 
