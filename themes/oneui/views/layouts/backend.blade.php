@@ -151,11 +151,11 @@
                 <div class="content py-3">
                     <div class="row fs-sm">
                         <div class="col-sm-6 order-sm-2 py-1 text-center text-sm-end">
-                            Crafted with <i class="fa fa-heart text-danger"></i> by <a class="fw-semibold"
-                                href="https://pixelcave.com" target="_blank">pixelcave</a>
+                            Request executed in {{number_format(microtime(true) - LARAVEL_START, 3)}}s
                         </div>
                         <div class="col-sm-6 order-sm-1 py-1 text-center text-sm-start">
-                            <a class="fw-semibold" href="https://pixelcave.com/products/oneui" target="_blank">OneUI</a>
+                            <a class="fw-semibold" href="{{route('dashboard')}}">{{config('app.name',
+                                'CloudDCM')}}</a>
                             &copy; <span data-toggle="year-copy"></span>
                         </div>
                     </div>
