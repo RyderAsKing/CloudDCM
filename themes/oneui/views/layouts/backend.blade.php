@@ -166,4 +166,6 @@
         <!-- END Page Container -->
     </body>
 
+    @yield('javascript')
+
 </html>
