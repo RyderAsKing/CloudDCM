@@ -21,6 +21,7 @@ class DashboardController extends Controller
         $user = auth()->user();
         $users = 0;
         $user_statistics = $this->userStatistics->getUserStatistics($user);
+        $admin_statistics = $this->userStatistics->getAdminStatistics($user);
 
         if ($user->hasRole('admin')) {
             $users = User::count();
@@ -111,6 +112,7 @@ class DashboardController extends Controller
                 'dedicated_server_manager' =>
                     $user_statistics['dedicated_server_manager'],
                 'charts' => $charts,
+                'admin_statistics' => $admin_statistics,
             ]);
         }
 

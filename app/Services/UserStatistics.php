@@ -4,9 +4,11 @@ namespace App\Services;
 
 use App\Models\VPS;
 use App\Models\Rack;
+use App\Models\User;
 use App\Models\Server;
 use App\Models\Subnet;
 use App\Models\Customer;
+use App\Models\Location;
 use App\Models\RackSpace;
 
 class UserStatistics
@@ -206,5 +208,22 @@ class UserStatistics
                 ->count();
 
         return $server;
+    }
+
+    public function getAdminStatistics()
+    {
+        $statistics = [
+            'users' => User::count(),
+            'locations' => Location::count(),
+            'racks' => Rack::count(),
+            'rackSpaces' => RackSpace::count(),
+            'customers' => Customer::count(),
+            'vpss' => VPS::count(),
+            'subnets' => Subnet::whereNull('parent_id')->count(),
+            'servers' => Server::count(),
+            'sub_subnets' => Subnet::whereNotNull('parent_id')->count(),
+        ];
+
+        return $statistics;
     }
 }
