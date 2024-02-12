@@ -38,15 +38,14 @@
                 </div>
                 <div class="block-content fs-sm text-muted">
                     <p>
-                        We’ve put everything together, so you can start working on your Laravel project as soon as
-                        possible! OneUI assets are integrated and work seamlessly with Laravel Vite, so you can use the
-                        npm scripts as you would in any other Laravel project.
+                        Here you can manage users and their subusers and also manage the companies.
                     </p>
                     <p>
-                        Feel free to use any examples you like from the full HTML version to build your own pages.
+                        This dashboard also provides you with the ability to visualize the data in the form of charts.
                     </p>
+                    <hr />
                     <p>
-                        <strong>Wish you all the best and happy coding!</strong>
+                        <script type="text/javascript" src="https://www.brainyquote.com/link/quotebr.js"></script>
                     </p>
                 </div>
             </div>
@@ -54,10 +53,10 @@
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">...</h3>
+                    <h3 class="block-title">{{ $charts['locations_chart']->options['chart_title'] }}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>...
+                    <p>{!! $charts['locations_chart']->renderHtml() !!}
                     </p>
                 </div>
             </div>
@@ -65,88 +64,85 @@
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Block Title</h3>
+                    <h3 class="block-title">{{ $charts['racks_chart']->options['chart_title'] }}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>
-                        ...
+                    <p>{!! $charts['racks_chart']->renderHtml() !!}
                     </p>
                 </div>
             </div>
         </div>
+
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Block Title</h3>
+                    <h3 class="block-title">{{ $charts['customers_chart']->options['chart_title'] }}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>
-                        ...
+                    <p>{!! $charts['customers_chart']->renderHtml() !!}
                     </p>
                 </div>
             </div>
         </div>
+
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Block Title</h3>
+                    <h3 class="block-title">{{ $charts['vpss_chart']->options['chart_title'] }}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>
-                        ...
+                    <p>{!! $charts['vpss_chart']->renderHtml() !!}
                     </p>
                 </div>
             </div>
+
         </div>
+
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Block Title</h3>
+                    <h3 class="block-title">{{ $charts['subnets_chart']->options['chart_title'] }}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>
-                        ...
+                    <p>{!! $charts['subnets_chart']->renderHtml() !!}
                     </p>
                 </div>
             </div>
         </div>
+
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Block Title</h3>
+                    <h3 class="block-title">{{ $charts['servers_chart']->options['chart_title'] }}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>
-                        ...
+                    <p>{!! $charts['servers_chart']->renderHtml() !!}
                     </p>
                 </div>
             </div>
         </div>
-        <div class="col-md-6 col-xl-4">
-            <div class="block block-rounded h-100 mb-0">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Block Title</h3>
-                </div>
-                <div class="block-content fs-sm text-muted">
-                    <p>
-                        ...
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 col-xl-4">
-            <div class="block block-rounded h-100 mb-0">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">Block Title</h3>
-                </div>
-                <div class="block-content fs-sm text-muted">
-                    <p>
-                        ...
-                    </p>
-                </div>
-            </div>
-        </div>
+
+
+
+
     </div>
 </div>
 <!-- END Page Content -->
+@endsection
+
+@section('javascript')
+{!! $charts['racks_chart']->renderChartJsLibrary() !!}
+
+{!! $charts['racks_chart']->renderJs() !!}
+
+{!! $charts['locations_chart']->renderJs() !!}
+
+{!! $charts['customers_chart']->renderJs() !!}
+
+{!! $charts['vpss_chart']->renderJs() !!}
+
+{!! $charts['subnets_chart']->renderJs() !!}
+
+{!! $charts['servers_chart']->renderJs() !!}
+
 @endsection
