@@ -10,6 +10,7 @@ use App\Models\Subnet;
 use App\Models\Customer;
 use App\Models\Location;
 use App\Models\RackSpace;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 
 class UserStatistics
 {
@@ -38,6 +39,7 @@ class UserStatistics
             'racks' => 0,
             'rackSpaces' => 0,
             'locations' => [],
+            'chart' => [],
         ];
 
         if ($user->hasRole('admin')) {
@@ -81,6 +83,30 @@ class UserStatistics
                     ->racks()
                     ->whereNull('location_id')
                     ->count();
+
+            $racks_chart = [
+                'chart_title' => 'New racks added by days',
+                'report_type' => 'group_by_date',
+                'model' => 'App\Models\Rack',
+                'group_by_field' => 'created_at',
+                'group_by_period' => 'day',
+                'chart_type' => 'line',
+                'chart_color' => '0, 123, 255',
+                'conditions' => [
+                    [
+                        'name' => 'User Racks',
+                        'condition' =>
+                            'user_id = ' .
+                            ($user->isSubUser() ? $user->owner_id : $user->id),
+                        'color' => 'green',
+                        'fill' => true,
+                    ],
+                ],
+            ];
+
+            $racks_chart = new LaravelChart($racks_chart);
+
+            $colocation['chart'] = $racks_chart;
         }
 
         return $colocation;
@@ -88,7 +114,7 @@ class UserStatistics
 
     public function getCustomerRelationshipManagerStatistics($user)
     {
-        $customer = ['customers' => 0];
+        $customer = ['customers' => 0, 'chart' => []];
 
         if ($user->hasRole('admin')) {
             $customer['customers'] = Customer::count();
@@ -103,7 +129,7 @@ class UserStatistics
 
     public function getVpsManagerStatistics($user)
     {
-        $vps = ['vps' => 0, 'locations' => []];
+        $vps = ['vps' => 0, 'locations' => [], 'chart' => []];
 
         if ($user->hasRole('admin')) {
             $vps['vps'] = VPS::count();
@@ -143,6 +169,7 @@ class UserStatistics
         $subnet = [
             'subnets' => 0,
             'sub_subnets' => 0,
+            'chart' => [],
         ];
 
         if ($user->hasRole('admin')) {
@@ -175,7 +202,7 @@ class UserStatistics
 
     public function getDedicatedServerManagerStatistics($user)
     {
-        $server = ['servers' => 0, 'locations' => []];
+        $server = ['servers' => 0, 'locations' => [], 'chart' => []];
 
         if ($user->hasRole('admin')) {
             $server['servers'] = Server::count();

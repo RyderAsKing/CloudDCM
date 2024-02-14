@@ -54,11 +54,10 @@
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">...</h3>
+                    <h3 class="block-title">{{$colocation_manager['chart']->options['chart_title']}}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>...
-                    </p>
+                    {!! $colocation_manager['chart']->renderHtml() !!}
                 </div>
             </div>
         </div>
@@ -149,4 +148,10 @@
     </div>
 </div>
 <!-- END Page Content -->
+@endsection
+
+@section('javascript')
+{!! $colocation_manager['chart']->renderChartJsLibrary() !!}
+{!! $colocation_manager['chart']->renderJs() !!}
+
 @endsection
