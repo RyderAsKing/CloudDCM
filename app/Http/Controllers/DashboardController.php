@@ -31,6 +31,10 @@ class DashboardController extends Controller
             $users = $admin_statistics['users']['count'];
         }
 
+        if ($user->owner_id == null) {
+            $users = User::where('owner_id', $user->id)->count();
+        }
+
         return view($user->hasRole('admin') ? 'admin' : 'dashboard', [
             'users' => $users,
             'colocation_manager' => $user_statistics['colocation_manager'],

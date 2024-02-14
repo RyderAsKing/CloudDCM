@@ -98,7 +98,7 @@ class UserStatistics
                         'condition' =>
                             'user_id = ' .
                             ($user->isSubUser() ? $user->owner_id : $user->id),
-                        'color' => 'green',
+                        'color' => '#007BFF',
                         'fill' => true,
                     ],
                 ],
@@ -123,6 +123,30 @@ class UserStatistics
                 ? $user->owner->customers()->count()
                 : $user->customers()->count();
         }
+
+        $customers_chart = [
+            'chart_title' => 'New customers added by days',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Models\Customer',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'day',
+            'chart_type' => 'line',
+            'chart_color' => '0, 123, 255',
+            'conditions' => [
+                [
+                    'name' => 'User Customers',
+                    'condition' =>
+                        'user_id = ' .
+                        ($user->isSubUser() ? $user->owner_id : $user->id),
+                    'color' => '#007BFF',
+                    'fill' => true,
+                ],
+            ],
+        ];
+
+        $customers_chart = new LaravelChart($customers_chart);
+
+        $customer['chart'] = $customers_chart;
 
         return $customer;
     }
@@ -161,6 +185,30 @@ class UserStatistics
                 ->whereNull('location_id')
                 ->count();
 
+        $vps_chart = [
+            'chart_title' => 'New VPS added by days',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Models\VPS',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'day',
+            'chart_type' => 'line',
+            'chart_color' => '0, 123, 255',
+            'conditions' => [
+                [
+                    'name' => 'User VPS',
+                    'condition' =>
+                        'user_id = ' .
+                        ($user->isSubUser() ? $user->owner_id : $user->id),
+                    'color' => '#007BFF',
+                    'fill' => true,
+                ],
+            ],
+        ];
+
+        $vps_chart = new LaravelChart($vps_chart);
+
+        $vps['chart'] = $vps_chart;
+
         return $vps;
     }
 
@@ -196,6 +244,30 @@ class UserStatistics
                     ->whereNotNull('parent_id')
                     ->count();
         }
+
+        $subnets_chart = [
+            'chart_title' => 'New subnets added by days',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Models\Subnet',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'day',
+            'chart_type' => 'line',
+            'chart_color' => '0, 123, 255',
+            'conditions' => [
+                [
+                    'name' => 'User Subnets',
+                    'condition' =>
+                        'user_id = ' .
+                        ($user->isSubUser() ? $user->owner_id : $user->id),
+                    'color' => '#007BFF',
+                    'fill' => true,
+                ],
+            ],
+        ];
+
+        $subnets_chart = new LaravelChart($subnets_chart);
+
+        $subnet['chart'] = $subnets_chart;
 
         return $subnet;
     }
@@ -234,23 +306,30 @@ class UserStatistics
                 ->whereNull('location_id')
                 ->count();
 
-        return $server;
-    }
-
-    public function getAdminStatistics()
-    {
-        $statistics = [
-            'users' => User::count(),
-            'locations' => Location::count(),
-            'racks' => Rack::count(),
-            'rackSpaces' => RackSpace::count(),
-            'customers' => Customer::count(),
-            'vpss' => VPS::count(),
-            'subnets' => Subnet::whereNull('parent_id')->count(),
-            'servers' => Server::count(),
-            'sub_subnets' => Subnet::whereNotNull('parent_id')->count(),
+        $servers_chart = [
+            'chart_title' => 'New servers added by days',
+            'report_type' => 'group_by_date',
+            'model' => 'App\Models\Server',
+            'group_by_field' => 'created_at',
+            'group_by_period' => 'day',
+            'chart_type' => 'line',
+            'chart_color' => '0, 123, 255',
+            'conditions' => [
+                [
+                    'name' => 'User Servers',
+                    'condition' =>
+                        'user_id = ' .
+                        ($user->isSubUser() ? $user->owner_id : $user->id),
+                    'color' => '#007BFF',
+                    'fill' => true,
+                ],
+            ],
         ];
 
-        return $statistics;
+        $servers_chart = new LaravelChart($servers_chart);
+
+        $server['chart'] = $servers_chart;
+
+        return $server;
     }
 }
