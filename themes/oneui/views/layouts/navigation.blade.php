@@ -188,6 +188,14 @@
                     </a>
                 </li>
                 @endhasanyrole
+                @impersonating
+                <li class="nav-main-item open">
+                    <a class="nav-main-link" href="{{route('impersonate.leave')}}">
+                        <i class="nav-main-link-icon fa fa-thin fa-circle-xmark"></i>
+                        <span class="nav-main-link-name">Leave impersonation</span>
+                    </a>
+                </li>
+                @endImpersonating
             </ul>
         </div>
         <!-- END Side Navigation -->
