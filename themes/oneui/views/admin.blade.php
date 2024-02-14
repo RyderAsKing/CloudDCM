@@ -36,7 +36,7 @@
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
-                        <dt class="fs-3 fw-bold">{{$admin_statistics['users']}}</dt>
+                        <dt class="fs-3 fw-bold">{{$admin_statistics['users']['count']}}</dt>
                         <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Users</dd>
                     </dl>
                     <div class="item item-rounded-lg bg-body-light">
@@ -58,7 +58,7 @@
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
-                        <dt class="fs-3 fw-bold">{{$admin_statistics['locations']}}</dt>
+                        <dt class="fs-3 fw-bold">{{$admin_statistics['locations']['count']}}</dt>
                         <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Locations</dd>
                     </dl>
                     <div class="item item-rounded-lg bg-body-light">
@@ -68,7 +68,8 @@
                 <div class="bg-body-light rounded-bottom">
                     <span
                         class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between text-primary">
-                        <span>{{$admin_statistics['racks']}} racks and {{$admin_statistics['vpss']}} VPS</span>
+                        <span>{{$admin_statistics['racks']['count']}} racks and {{$admin_statistics['vpss']['count']}}
+                            VPS</span>
                     </span>
                 </div>
             </div>
@@ -80,7 +81,7 @@
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
-                        <dt class="fs-3 fw-bold">{{$admin_statistics['racks']}}</dt>
+                        <dt class="fs-3 fw-bold">{{$admin_statistics['racks']['count']}}</dt>
                         <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Racks</dd>
                     </dl>
                     <div class="item item-rounded-lg bg-body-light">
@@ -90,7 +91,7 @@
                 <div class="bg-body-light rounded-bottom">
                     <span
                         class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between text-primary">
-                        <span>{{$admin_statistics['rackSpaces']}} rack spaces</span>
+                        <span>{{$admin_statistics['rackSpaces']['count']}} rack spaces</span>
                     </span>
                 </div>
             </div>
@@ -103,7 +104,7 @@
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
-                        <dt class="fs-3 fw-bold">{{$admin_statistics['customers']}}</dt>
+                        <dt class="fs-3 fw-bold">{{$admin_statistics['customers']['count']}}</dt>
                         <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Customers</dd>
                     </dl>
                     <div class="item item-rounded-lg bg-body-light">
@@ -121,7 +122,7 @@
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
-                        <dt class="fs-3 fw-bold">{{$admin_statistics['subnets']}}</dt>
+                        <dt class="fs-3 fw-bold">{{$admin_statistics['subnets']['count']}}</dt>
                         <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Subnets</dd>
                     </dl>
                     <div class="item item-rounded-lg bg-body-light">
@@ -131,7 +132,7 @@
                 <div class="bg-body-light rounded-bottom">
                     <span
                         class="block-content block-content-full block-content-sm fs-sm fw-medium d-flex align-items-center justify-content-between text-primary">
-                        <span>{{$admin_statistics['sub_subnets']}} sub subnets</span>
+                        <span>{{$admin_statistics['sub_subnets']['count']}} sub subnets</span>
                     </span>
                 </div>
             </div>
@@ -143,7 +144,7 @@
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
-                        <dt class="fs-3 fw-bold">{{$admin_statistics['servers']}}</dt>
+                        <dt class="fs-3 fw-bold">{{$admin_statistics['servers']['count']}}</dt>
                         <dd class="fs-sm fw-medium fs-sm fw-medium text-muted mb-0">Servers</dd>
                     </dl>
                     <div class="item item-rounded-lg bg-body-light">
@@ -179,10 +180,10 @@
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">{{ $charts['locations_chart']->options['chart_title'] }}</h3>
+                    <h3 class="block-title">{{ $admin_statistics['locations']['chart']->options['chart_title'] }}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>{!! $charts['locations_chart']->renderHtml() !!}
+                    <p>{!! $admin_statistics['locations']['chart']->renderHtml() !!}
                     </p>
                 </div>
             </div>
@@ -190,22 +191,10 @@
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">{{ $charts['racks_chart']->options['chart_title'] }}</h3>
+                    <h3 class="block-title">{{ $admin_statistics['racks']['chart']->options['chart_title'] }}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>{!! $charts['racks_chart']->renderHtml() !!}
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-md-6 col-xl-4">
-            <div class="block block-rounded h-100 mb-0">
-                <div class="block-header block-header-default">
-                    <h3 class="block-title">{{ $charts['customers_chart']->options['chart_title'] }}</h3>
-                </div>
-                <div class="block-content fs-sm text-muted">
-                    <p>{!! $charts['customers_chart']->renderHtml() !!}
+                    <p>{!! $admin_statistics['racks']['chart']->renderHtml() !!}
                     </p>
                 </div>
             </div>
@@ -214,10 +203,22 @@
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">{{ $charts['vpss_chart']->options['chart_title'] }}</h3>
+                    <h3 class="block-title">{{ $admin_statistics['customers']['chart']->options['chart_title'] }}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>{!! $charts['vpss_chart']->renderHtml() !!}
+                    <p>{!! $admin_statistics['customers']['chart']->renderHtml() !!}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-xl-4">
+            <div class="block block-rounded h-100 mb-0">
+                <div class="block-header block-header-default">
+                    <h3 class="block-title">{{ $admin_statistics['vpss']['chart']->options['chart_title'] }}</h3>
+                </div>
+                <div class="block-content fs-sm text-muted">
+                    <p>{!! $admin_statistics['vpss']['chart']->renderHtml() !!}
                     </p>
                 </div>
             </div>
@@ -227,10 +228,10 @@
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">{{ $charts['subnets_chart']->options['chart_title'] }}</h3>
+                    <h3 class="block-title">{{ $admin_statistics['subnets']['chart']->options['chart_title'] }}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>{!! $charts['subnets_chart']->renderHtml() !!}
+                    <p>{!! $admin_statistics['subnets']['chart']->renderHtml() !!}
                     </p>
                 </div>
             </div>
@@ -239,10 +240,10 @@
         <div class="col-md-6 col-xl-4">
             <div class="block block-rounded h-100 mb-0">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">{{ $charts['servers_chart']->options['chart_title'] }}</h3>
+                    <h3 class="block-title">{{ $admin_statistics['servers']['chart']->options['chart_title'] }}</h3>
                 </div>
                 <div class="block-content fs-sm text-muted">
-                    <p>{!! $charts['servers_chart']->renderHtml() !!}
+                    <p>{!! $admin_statistics['servers']['chart']->renderHtml() !!}
                     </p>
                 </div>
             </div>
@@ -257,18 +258,18 @@
 @endsection
 
 @section('javascript')
-{!! $charts['racks_chart']->renderChartJsLibrary() !!}
+{!! $admin_statistics['racks']['chart']->renderChartJsLibrary() !!}
 
-{!! $charts['racks_chart']->renderJs() !!}
+{!! $admin_statistics['racks']['chart']->renderJs() !!}
 
-{!! $charts['locations_chart']->renderJs() !!}
+{!! $admin_statistics['locations']['chart']->renderJs() !!}
 
-{!! $charts['customers_chart']->renderJs() !!}
+{!! $admin_statistics['customers']['chart']->renderJs() !!}
 
-{!! $charts['vpss_chart']->renderJs() !!}
+{!! $admin_statistics['vpss']['chart']->renderJs() !!}
 
-{!! $charts['subnets_chart']->renderJs() !!}
+{!! $admin_statistics['subnets']['chart']->renderJs() !!}
 
-{!! $charts['servers_chart']->renderJs() !!}
+{!! $admin_statistics['servers']['chart']->renderJs() !!}
 
 @endsection
