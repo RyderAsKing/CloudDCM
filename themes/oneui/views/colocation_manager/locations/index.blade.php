@@ -59,6 +59,13 @@
 
         @endforeach
         <!-- END Course -->
+
+        {{ $locations->links() }}
+
+        <div style="flex gap-2">
+            <x-primary-link href="{{route('colocation_manager.locations.create')}}">Add Location +</x-primary-link>
+            <x-primary-link href="{{route('colocation_manager.racks.create')}}">Add Rack +</x-primary-link>
+        </div>
     </div>
 </div>
 <!-- END Page Content -->
