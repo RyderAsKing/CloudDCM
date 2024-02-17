@@ -15,11 +15,19 @@
 
         <!-- Modules -->
         @yield('css')
+        <script src="{{asset('js/lib/jquery.min.js')}}"></script>
+        <script src="{{asset('js/plugins/bootstrap-notify/bootstrap-notify.js')}}"></script>
         @vite(['themes/oneui/sass/main.scss', 'themes/oneui/js/oneui.min.js'], 'oneui')
 
         <!-- Alternatively, you can also include a specific color theme after the main stylesheet to alter the default color theme of the template -->
         {{-- @vite(['resources/sass/main.scss', 'resources/sass/oneui/themes/amethyst.scss',
         'resources/js/oneui/app.js']) --}}
+
+        <style>
+            .close {
+                display: none;
+            }
+        </style>
         @yield('js')
     </head>
 
@@ -167,5 +175,18 @@
     </body>
 
     @yield('javascript')
+
+    <script>
+        @if(session('success'))
+        $.notify({
+    message: '{{session('success')}}'
+    },{  type: 'success',  placement: { from: "bottom", align: "right" }});
+        @elseif(session('error'))
+        $.notify({
+    message: '{{session('error')}}'
+    },{  type: 'danger',  placement: { from: "bottom", align: "right" }});
+        @endif
+
+    </script>
 
 </html>

@@ -29,7 +29,7 @@
 <!-- END Hero -->
 
 <!-- Page Content -->
-<div class="content content-boxed">
+<div class="content ">
     <div class="row items-push py-4">
 
         @foreach($locations as $location)
