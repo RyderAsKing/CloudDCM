@@ -31,7 +31,7 @@ class RackController extends Controller
                         $query->where('name', '!=', null);
                     },
                 ])
-                ->paginate(3)
+                ->paginate(10)
             : auth()
                 ->user()
                 ->racks()
@@ -41,7 +41,7 @@ class RackController extends Controller
                         $query->where('name', '!=', null);
                     },
                 ])
-                ->paginate(3);
+                ->paginate(10);
 
         return view('colocation_manager.racks.index', compact('racks'));
     }
