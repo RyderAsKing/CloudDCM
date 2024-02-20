@@ -33,7 +33,7 @@
             <!-- END Dark Mode -->
 
             <!-- Options -->
-            <div class="dropdown d-inline-block ms-1">
+            {{-- <div class="dropdown d-inline-block ms-1">
                 <a class="btn btn-sm btn-alt-secondary" id="sidebar-themes-dropdown" data-bs-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" href="#">
                     <i class="fa fa-brush"></i>
@@ -66,7 +66,7 @@
                     </a>
                     <!-- END Header Styles -->
                 </div>
-            </div>
+            </div> --}}
             <!-- END Options -->
 
             <!-- Close Sidebar, Visible only on mobile screens -->
