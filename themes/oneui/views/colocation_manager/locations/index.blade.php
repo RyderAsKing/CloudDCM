@@ -19,8 +19,9 @@
                         <a class="link-fx" href="{{route('dashboard')}}">App</a>
                     </li>
                     <li class="breadcrumb-item" aria-current="page">
-                        Colocation Manager
+                        <a class="link-fx" href="{{route('colocation_manager.locations.index')}}">Colocation Manager</a>
                     </li>
+
                 </ol>
             </nav>
         </div>
@@ -35,7 +36,8 @@
         @foreach($locations as $location)
         <!-- Course -->
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <a class="block block-rounded block-link-pop h-100 mb-0" href="be_pages_elearning_course.html">
+            <a class="block block-rounded block-link-pop h-100 mb-0"
+                href="{{route('colocation_manager.locations.show', $location)}}">
 
                 <div class="block-content block-content-full">
                     <h4 class="h5 mb-1">
