@@ -105,7 +105,7 @@
                                 <td class="d-none d-sm-table-cell  fs-sm"><code>{{$vps->password}}</code></td>
                                 <td class="d-none d-xl-table-cell  fs-sm">
                                     <a class="fw-semibold"
-                                        href="{{route('vps_manager.locations.show', $vps->location)}}">{{$vps->location
+                                        href="{{ $vps->location != null ? route('vps_manager.locations.show', $vps->location) : route('vps_manager.vpss.index')}}">{{$vps->location
                                         !=
                                         null ?
                                         $vps->location->name : 'Uncategorized'}}</a>

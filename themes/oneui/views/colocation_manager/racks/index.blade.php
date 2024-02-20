@@ -119,7 +119,7 @@
                             @foreach($racks as $rack)
                             <tr>
                                 <td class=" fs-sm">
-                                    <a class="fw-semibold" href="be_pages_ecom_order.html">
+                                    <a class="fw-semibold" href="{{route('colocation_manager.racks.edit', $rack)}}">
                                         <strong>{{$rack->name}}</strong>
                                     </a>
                                 </td>
@@ -132,7 +132,9 @@
                                 </td>
                                 <td class="d-none d-sm-table-cell  fs-sm">{{$rack->rack_spaces_count}}</td>
                                 <td class="d-none d-xl-table-cell  fs-sm">
-                                    <a class="fw-semibold" href="be_pages_ecom_order.html">{{$rack->location != null ?
+                                    <a class="fw-semibold"
+                                        href="{{ $rack->location != null ? route('colocation_manager.locations.show', $rack->location) : route('colocation_manager.racks.index')}}">{{$rack->location
+                                        != null ?
                                         $rack->location->name : 'Uncategorized'}}</a>
                                 </td>
 
