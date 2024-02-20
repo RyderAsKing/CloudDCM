@@ -36,7 +36,7 @@
 <div class="content js-appear-enabled animated fadeIn">
     <div class="row">
         <div class="col-6 ">
-            <a class="block block-rounded block-link-shadow text-center" href="be_pages_ecom_orders.html">
+            <div class="block block-rounded block-link-shadow text-center">
                 <div class="block-content block-content-full">
                     <div class="fs-2 fw-semibold text-primary">{{$racks->count()}}</div>
                 </div>
@@ -45,10 +45,10 @@
                         Racks
                     </p>
                 </div>
-            </a>
+            </div>
         </div>
         <div class="col-6 ">
-            <a class="block block-rounded block-link-shadow text-center" href="javascript:void(0)">
+            <div class="block block-rounded block-link-shadow text-center">
                 <div class="block-content block-content-full">
                     <div class="fs-2 fw-semibold text-dark">{{$rackSpaces}}</div>
                 </div>
@@ -57,7 +57,7 @@
                         Rack Spaces
                     </p>
                 </div>
-            </a>
+            </div>
         </div>
     </div>
     <div class="block block-rounded">
