@@ -33,7 +33,7 @@
     <div class="row items-push">
         @hasrole('user')
         <div class="col-sm-6 col-xxl-2">
-            <div class="block block-rounded d-flex flex-column h-100 mb-0">
+            <div class="block block-rounded d-flex flex-column h-100 mb-0  js-appear-enabled animated fadeIn">
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
@@ -58,7 +58,8 @@
         @if(auth()->user()->can('view', App\Models\Rack::class) || auth()->user()->can('view',
         App\Models\Vps::class))
         <div class="col-sm-6 col-xxl-2">
-            <div class="block block-rounded d-flex flex-column h-100 mb-0">
+            <div
+                class="block block-rounded d-flex flex-column h-100 mb-0 js-appear-enabled animated fadeIn js-appear-enabled animated fadeIn">
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
@@ -84,7 +85,7 @@
         @can('view', App\Models\Rack::class)
         <div class="col-sm-6 col-xxl-2">
             <!-- New Customers -->
-            <div class="block block-rounded d-flex flex-column h-100 mb-0">
+            <div class="block block-rounded d-flex flex-column h-100 mb-0 js-appear-enabled animated fadeIn">
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
@@ -109,7 +110,7 @@
         @can('view', App\Models\Customer::class)
         <div class="col-sm-6 col-xxl-2">
             <!-- Conversion Rate -->
-            <div class="block block-rounded d-flex flex-column h-100 mb-0">
+            <div class="block block-rounded d-flex flex-column h-100 mb-0 js-appear-enabled animated fadeIn">
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
@@ -128,7 +129,7 @@
         @can('view', App\Models\Subnet::class)
         <div class="col-sm-6 col-xxl-2">
             <!-- Conversion Rate -->
-            <div class="block block-rounded d-flex flex-column h-100 mb-0">
+            <div class="block block-rounded d-flex flex-column h-100 mb-0 js-appear-enabled animated fadeIn">
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
@@ -153,7 +154,7 @@
         @can('view', App\Models\Server::class)
         <div class="col-sm-6 col-xxl-2">
             <!-- Conversion Rate -->
-            <div class="block block-rounded d-flex flex-column h-100 mb-0">
+            <div class="block block-rounded d-flex flex-column h-100 mb-0 js-appear-enabled animated fadeIn">
                 <div
                     class="block-content block-content-full flex-grow-1 d-flex justify-content-between align-items-center">
                     <dl class="mb-0">
@@ -172,7 +173,7 @@
 
     <div class="row items-push">
         <div class="col-md-6 col-xl-4">
-            <div class="block block-rounded h-100 mb-0">
+            <div class="block block-rounded h-100 mb-0 js-appear-enabled animated fadeIn">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">Welcome</h3>
                 </div>
@@ -194,7 +195,7 @@
 
         @can('view', App\Models\Rack::class)
         <div class="col-md-6 col-xl-4">
-            <div class="block block-rounded h-100 mb-0">
+            <div class="block block-rounded h-100 mb-0 js-appear-enabled animated fadeIn">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">{{ $colocation_manager['chart']->options['chart_title'] }}</h3>
                 </div>
@@ -209,7 +210,7 @@
 
         @can('view', App\Models\Customer::class)
         <div class="col-md-6 col-xl-4">
-            <div class="block block-rounded h-100 mb-0">
+            <div class="block block-rounded h-100 mb-0 js-appear-enabled animated fadeIn">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">{{ $customer_relationship_manager['chart']->options['chart_title'] }}</h3>
                 </div>
@@ -222,7 +223,7 @@
         @endcan
         @can('view', App\Models\Vps::class)
         <div class="col-md-6 col-xl-4">
-            <div class="block block-rounded h-100 mb-0">
+            <div class="block block-rounded h-100 mb-0 js-appear-enabled animated fadeIn">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">{{ $vps_manager['chart']->options['chart_title'] }}</h3>
                 </div>
@@ -236,7 +237,7 @@
         @endcan
         @can('view', App\Models\Subnet::class)
         <div class="col-md-6 col-xl-4">
-            <div class="block block-rounded h-100 mb-0">
+            <div class="block block-rounded h-100 mb-0 js-appear-enabled animated fadeIn">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">{{ $ip_manager['chart']->options['chart_title'] }}</h3>
                 </div>
@@ -249,7 +250,7 @@
         @endcan
         @can('view', App\Models\Server::class)
         <div class="col-md-6 col-xl-4">
-            <div class="block block-rounded h-100 mb-0">
+            <div class="block block-rounded h-100 mb-0 js-appear-enabled animated fadeIn">
                 <div class="block-header block-header-default">
                     <h3 class="block-title">{{ $dedicated_server_manager['chart']->options['chart_title'] }}</h3>
                 </div>

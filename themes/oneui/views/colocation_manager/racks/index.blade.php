@@ -33,7 +33,7 @@
 <!-- END Hero -->
 
 <!-- Page Content -->
-<div class="content ">
+<div class="content js-appear-enabled animated fadeIn">
     <div class="row">
         <div class="col-6 ">
             <a class="block block-rounded block-link-shadow text-center" href="be_pages_ecom_orders.html">

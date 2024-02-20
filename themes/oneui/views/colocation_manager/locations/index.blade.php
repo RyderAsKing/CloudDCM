@@ -36,7 +36,7 @@
         @foreach($locations as $location)
         <!-- Course -->
         <div class="col-md-6 col-lg-4 col-xl-3">
-            <a class="block block-rounded block-link-pop h-100 mb-0"
+            <a class="block block-rounded block-link-pop h-100 mb-0 js-appear-enabled animated fadeIn"
                 href="{{route('colocation_manager.locations.show', $location)}}">
 
                 <div class="block-content block-content-full">
@@ -64,9 +64,11 @@
 
         {{ $locations->links() }}
 
-        <div style="flex gap-2">
-            <x-primary-link href="{{route('colocation_manager.locations.create')}}">Add Location +</x-primary-link>
-            <x-primary-link href="{{route('colocation_manager.racks.create')}}">Add Rack +</x-primary-link>
+        <div style="flex gap-2 ">
+            <x-primary-link class="js-appear-enabled animated fadeIn"
+                href="{{route('colocation_manager.locations.create')}}">Add Location +</x-primary-link>
+            <x-primary-link class="js-appear-enabled animated fadeIn"
+                href="{{route('colocation_manager.racks.create')}}">Add Rack +</x-primary-link>
         </div>
     </div>
 </div>
