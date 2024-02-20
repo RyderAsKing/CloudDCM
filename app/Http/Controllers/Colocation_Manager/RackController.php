@@ -43,7 +43,16 @@ class RackController extends Controller
                 ])
                 ->paginate(10);
 
-        return view('colocation_manager.racks.index', compact('racks'));
+        $rackSpaces = 0;
+
+        foreach ($racks as $rack) {
+            $rackSpaces += $rack->rack_spaces_count;
+        }
+
+        return view(
+            'colocation_manager.racks.index',
+            compact('racks', 'rackSpaces')
+        );
     }
 
     /**
