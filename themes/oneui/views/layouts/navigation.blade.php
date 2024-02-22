@@ -125,7 +125,7 @@
                 <li class="nav-main-item open">
                     <a class="nav-main-link" href="{{route('customer_relationship_manager.customers.index')}}">
                         <i class="nav-main-link-icon fa fa-thin fa-users"></i>
-                        <span class="nav-main-link-name">Customer Relationship</span>
+                        <span class="nav-main-link-name">CRM</span>
                     </a>
                 </li>
                 @endcan
