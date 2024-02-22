@@ -113,7 +113,7 @@
 
                                 <td class="">
                                     <a class="btn btn-sm btn-alt-secondary"
-                                        href="{{route('vps_manager.vpss.show', $vps->id)}}" data-bs-toggle="tooltip"
+                                        href="{{route('vps_manager.vpss.edit', $vps->id)}}" data-bs-toggle="tooltip"
                                         title="View">
                                         <i class="fa fa-fw fa-eye"></i>
                                     </a>
