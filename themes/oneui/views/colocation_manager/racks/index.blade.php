@@ -23,7 +23,7 @@
                         <a class="link-fx" href="{{route('colocation_manager.locations.index')}}">Colocation Manager</a>
                     </li>
                     <li class=" breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href="{{route('colocation_manager.racks.index')}}">Racks</a>
+                        <span>Racks</span>
                     </li>
                 </ol>
             </nav>

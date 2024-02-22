@@ -19,7 +19,7 @@
                         <a class="link-fx" href="{{route('dashboard')}}">App</a>
                     </li>
                     <li class="breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href="{{route('colocation_manager.locations.index')}}">Colocation Manager</a>
+                        <span>Colocation Manager</span>
                     </li>
 
                 </ol>

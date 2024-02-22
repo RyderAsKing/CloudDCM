@@ -23,7 +23,7 @@
                         <a class="link-fx" href="{{route('vps_manager.locations.index')}}">VPS Manager</a>
                     </li>
                     <li class=" breadcrumb-item" aria-current="page">
-                        <a class="link-fx" href="{{route('vps_manager.vpss.index')}}">VPS</a>
+                        <span>VPS</span>
                     </li>
                 </ol>
             </nav>
