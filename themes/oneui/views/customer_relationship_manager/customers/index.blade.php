@@ -118,7 +118,7 @@
 
                                 <td class="">
                                     <a class="btn btn-sm btn-alt-secondary"
-                                        href="{{route('customer_relationship_manager.customers.edit', $customer->id)}}"
+                                        href="{{route('customer_relationship_manager.customers.show', $customer->id)}}"
                                         data-bs-toggle="tooltip" title="View">
                                         <i class="fa fa-fw fa-eye"></i>
                                     </a>
