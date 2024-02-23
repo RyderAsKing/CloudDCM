@@ -42,8 +42,7 @@
                             <p class="mb-3">
                                 @if(file_exists(public_path('image/' . env('APP_LOGO'))) &&
                                 env('APP_LOGO') !=null)
-                                <img src="{{ asset('image/' . env('APP_LOGO')) }}" alt="" width="200"
-                                    class="bg-black p-2 mb-2 rounded">
+                                <img src="{{ asset('image/' . env('APP_LOGO')) }}" alt="" width="250">
                                 @else
                                 <i class="fa fa-2x fa-circle-notch text-primary-light"></i>
                                 @endif
