@@ -3,64 +3,106 @@
 @section('content')
 <main id="main-container">
     <!-- Page Content -->
-    <div class="bg-image " @if(file_exists(public_path('image/' . env('BACKGROUND_LOGIN'))) && env('BACKGROUND_LOGIN')
-        !=null)
-        style="background-image: url({{ asset('image/' . env('BACKGROUND_LOGIN')) }}); background-size: cover; background-position: center;"
-        @endif>
-        <div class="hero-static d-flex align-items-center bg-primary-dark-op">
-            <div class="content">
-                <div class="row justify-content-center push">
-                    <div class="col-md-8 col-lg-6 col-xl-4">
-                        <!-- Unlock Block -->
-                        <div class="block block-rounded shadow-none mb-0">
-                            <div class="block-header block-header-default">
-                                <h3 class="block-title">SIGN IN</h3>
-                                <div class="block-options">
-                                    {{-- forget pass options --}}
-                                </div>
-                            </div>
-                            <div class="block-content">
-                                <div class="p-sm-3 px-lg-4 px-xxl-5 py-lg-5 text-center">
-                                    <img class="img-avatar img-avatar96" src={{asset('media/avatars/avatar10.jpg')}}
-                                        alt="">
-                                    <form class=" mt-4" method="POST" action="{{ route('login') }}">
-                                        @csrf
-                                        <div class="mb-4">
-                                            <input type="email" class="form-control form-control-lg form-control-alt"
-                                                id="email" name="email" value="{{old('email')}}" placeholder="Email..">
-                                            @error('email')
-
-
-                                            <x-error-message :message="$message" />
-                                            @enderror
-                                        </div>
-                                        <div class="mb-4">
-                                            <input type="password" class="form-control form-control-lg form-control-alt"
-                                                id="password" name="password" placeholder="Password..">
-                                            @error('password')
-                                            <x-error-message :message="$message" />
-                                            @enderror
-                                        </div>
-                                        <div class="row justify-content-center mb-4">
-                                            <div class="col-md-6 col-xl-5">
-                                                <button type="submit" class="btn w-100 btn-alt-success">
-                                                    <i class="fa fa-fw fa-lock-open me-1 opacity-50"></i> Unlock
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                    <!-- END Unlock Form -->
-                                </div>
-                            </div>
-                        </div>
-                        <!-- END Unlock Block -->
+    <div class="bg-image" style="background-image: url('{{asset('media/photos/photo28@2x.jpg')}}');">
+        <div class="row g-0 bg-primary-dark-op">
+            <!-- Meta Info Section -->
+            <div class="hero-static col-lg-4 d-none d-lg-flex flex-column justify-content-center">
+                <div class="p-4 p-xl-5 flex-grow-1 d-flex align-items-center">
+                    <div class="w-100">
+                        <a class="link-fx fw-semibold fs-2 text-white" href="index.html">
+                            {{config('app.name', 'CloudDCM')}}
+                        </a>
+                        <p class="text-white-75 me-xl-8 mt-2">
+                            The ultimate all-in-one Data Center Management / Service Management solution. Built by
+                            hosting companies for hosting
+                            companies.
+                        </p>
                     </div>
                 </div>
-                <div class="fs-sm text-center text-white">
-                    <span class="fw-medium">{{config('app.name', 'CloudDCM')}}</span> &copy; <span
-                        data-toggle="year-copy"></span>
+                <div class="p-4 p-xl-5 d-xl-flex justify-content-between align-items-center fs-sm">
+                    <p class="fw-medium text-white-50 mb-0">
+                        <strong>{{config('app.name', 'CloudDCM')}}</strong> &copy; <span data-toggle="year-copy"></span>
+                    </p>
+
                 </div>
             </div>
+            <!-- END Meta Info Section -->
+
+            <!-- Main Section -->
+            <div class="hero-static col-lg-8 d-flex flex-column align-items-center bg-body-extra-light">
+                <div class="p-3 w-100 d-lg-none text-center">
+                    <a class="link-fx fw-semibold fs-3 text-dark" href="index.html">
+                        OneUI
+                    </a>
+                </div>
+                <div class="p-4 w-100 flex-grow-1 d-flex align-items-center">
+                    <div class="w-100">
+                        <!-- Header -->
+                        <div class="text-center mb-5">
+                            <p class="mb-3">
+                                <i class="fa fa-2x fa-circle-notch text-primary-light"></i>
+                            </p>
+                            <h1 class="fw-bold mb-2">
+                                Sign In
+                            </h1>
+                            <p class="fw-medium text-muted">
+                                Welcome, please login to your account.
+                            </p>
+                        </div>
+                        <!-- END Header -->
+
+                        <!-- Sign In Form -->
+                        <!-- jQuery Validation (.js-validation-signin class is initialized in js/pages/op_auth_signin.min.js which was auto compiled from _js/pages/op_auth_signin.js) -->
+                        <!-- For more info and examples you can check out https://github.com/jzaefferer/jquery-validation -->
+                        <div class="row g-0 justify-content-center">
+                            <div class="col-sm-8 col-xl-4">
+                                <form class="js-validation-signin" action="{{ route('login') }}" method="POST">
+                                    @csrf
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control form-control-lg form-control-alt py-3"
+                                            id="email" name="email" placeholder="Email">
+
+                                        @error('email')
+                                        <x-error-message :message="$message" />
+                                        @enderror
+                                    </div>
+                                    <div class="mb-4">
+                                        <input type="password"
+                                            class="form-control form-control-lg form-control-alt py-3" id="password"
+                                            name="password" placeholder="Password">
+
+                                        @error('password')
+                                        <x-error-message :message="$message" />
+                                        @enderror
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mb-4">
+                                        <div>
+                                            <a class="text-muted fs-sm fw-medium d-block d-lg-inline-block mb-1"
+                                                href="{{route('password.store')}}">
+                                                Forgot Password?
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <button type="submit" class="btn btn-lg btn-alt-primary">
+                                                <i class="fa fa-fw fa-sign-in-alt me-1 opacity-50"></i> Sign In
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- END Sign In Form -->
+                    </div>
+                </div>
+                <div
+                    class="px-4 py-3 w-100 d-lg-none d-flex flex-column flex-sm-row justify-content-between fs-sm text-center text-sm-start">
+                    <p class="fw-medium text-black-50 py-2 mb-0 w-100 text-center">
+                        <strong>{{config('app.name', 'CloudDCM')}}</strong> &copy; <span data-toggle="year-copy"></span>
+                    </p>
+
+                </div>
+            </div>
+            <!-- END Main Section -->
         </div>
     </div>
     <!-- END Page Content -->
