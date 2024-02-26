@@ -32,7 +32,7 @@
             <div class="hero-static col-lg-8 d-flex flex-column align-items-center bg-body-extra-light">
                 <div class="p-3 w-100 d-lg-none text-center">
                     <a class="link-fx fw-semibold fs-3 text-dark" href="index.html">
-                        OneUI
+                        {{config('app.name', 'CloudDCM')}}
                     </a>
                 </div>
                 <div class="p-4 w-100 flex-grow-1 d-flex align-items-center">
@@ -47,9 +47,9 @@
                                 <i class="fa fa-2x fa-circle-notch text-primary-light"></i>
                                 @endif
                             </p>
-                            <h1 class="fw-bold mb-2">
+                            <h2 class="fw-bold mb-2">
                                 Sign In
-                            </h1>
+                            </h2>
                             <p class="fw-medium text-muted">
                                 Welcome, please login to your account.
                             </p>
