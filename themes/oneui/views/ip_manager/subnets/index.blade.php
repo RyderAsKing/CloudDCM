@@ -35,23 +35,7 @@
         @foreach($subnets as $subnet)
         <!-- Course -->
         @if(isset($subnet->name))
-        {{-- <a class="block block-rounded block-link-pop h-100 mb-0 js-appear-enabled animated fadeIn"
-            href="{{route('ip_manager.subnets.show', $subnet)}}">
 
-            <div class="block-content block-content-full">
-                <h4 class="h5 mb-1">
-
-                    {{$subnet->name}}
-                </h4>
-                {{-- <div class="fs-sm text">{{isset($subnet->racks) ? $subnet->racks->count() : $subnet }}
-                    Racks added
-                </div>
-                <div class="fs-sm text-muted">{{isset($subnet->description) ? $subnet->description :
-                    '' }} </div>
-
-            </div>
-
-        </a> --}}
 
         <div class="block block-rounded row g-0">
             <ul class="nav nav-tabs nav-tabs-block flex-md-column col-md-4" role="tablist">
