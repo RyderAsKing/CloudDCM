@@ -40,18 +40,19 @@
         <div class="block block-rounded row g-0">
             <ul class="nav nav-tabs nav-tabs-block flex-md-column col-md-4" role="tablist">
                 <li class="nav-item d-md-flex flex-md-column" role="presentation">
-                    <button class="nav-link text-md-start active" id="{{str_replace(' ', '', $subnet->name).'_tab'}}"
-                        data-bs-toggle="tab" data-bs-target="#{{str_replace(' ', '', $subnet->name)}}" role="tab"
-                        aria-controls="{{str_replace(' ', '', $subnet->name)}}" aria-selected="true">
+
+                    <button class="nav-link text-md-start active" id="{{pureify($subnet->name) . $subnet->id .'_tab'}}"
+                        data-bs-toggle="tab" data-bs-target="#{{pureify($subnet->name) . $subnet->id }}" role="tab"
+                        aria-controls="{{pureify($subnet->name) . $subnet->id }}" aria-selected="true">
                         <i class="fa fa-fw fa-network-wired opacity-50 me-1 d-none d-sm-inline-block"></i> Subnet
                     </button>
                 </li>
 
                 @if($subnet->parent == null)
                 <li class="nav-item d-md-flex flex-md-column" role="presentation">
-                    <button class="nav-link text-md-start" id="{{str_replace(' ', '', $subnet->name) . '_sub_tab'}}"
-                        data-bs-toggle="tab" data-bs-target="#{{str_replace(' ', '', $subnet->name) . '_sub'}}"
-                        role="tab" aria-controls="{{str_replace(' ', '', $subnet->name) . '_sub'}}"
+                    <button class="nav-link text-md-start" id="{{pureify($subnet->name) . $subnet->id  . '_sub_tab'}}"
+                        data-bs-toggle="tab" data-bs-target="#{{pureify($subnet->name) . $subnet->id  . '_sub'}}"
+                        role="tab" aria-controls="{{pureify($subnet->name) . $subnet->id  . '_sub'}}"
                         aria-selected="false" tabindex="-1">
                         <i class="fa fa-fw fa-table-list opacity-50 me-1 d-none d-sm-inline-block"></i> Sub Subnets
                     </button>
@@ -59,8 +60,8 @@
                 @endif
             </ul>
             <div class="tab-content col-md-8">
-                <div class="block-content tab-pane active show" id="{{str_replace(' ', '', $subnet->name)  }}"
-                    role="tabpanel" aria-labelledby="{{str_replace(' ', '', $subnet->name)}}" tabindex="0">
+                <div class="block-content tab-pane active show" id="{{pureify($subnet->name) . $subnet->id   }}"
+                    role="tabpanel" aria-labelledby="{{pureify($subnet->name) . $subnet->id }}" tabindex="0">
                     <h4 class="fw-semibold">{{$subnet->name}}</h4>
                     <div class="list-group push">
                         <a class="list-group-item list-group-item-action"
@@ -74,8 +75,8 @@
                         </a>
                     </div>
                 </div>
-                <div class="block-content tab-pane" id="{{str_replace(' ', '', $subnet->name) . '_sub'}}"
-                    role="tabpanel" aria-labelledby="{{str_replace(' ', '', $subnet->name) . '_sub'}}" tabindex="0">
+                <div class="block-content tab-pane" id="{{pureify($subnet->name) . $subnet->id  . '_sub'}}"
+                    role="tabpanel" aria-labelledby="{{pureify($subnet->name) . $subnet->id  . '_sub'}}" tabindex="0">
                     <h4 class="fw-semibold">{{$subnet->name}}</h4>
                     <div class="list-group push">
                         @if($subnet->children->count() < 1) <a class="list-group list-group-item list-group-item-action"
