@@ -33,4 +33,9 @@ class Subnet extends Model
     {
         return $this->belongsTo(Subnet::class, 'parent_id');
     }
+
+    public function ips()
+    {
+        return $this->hasMany(IP::class);
+    }
 }
