@@ -33,6 +33,7 @@
 
 <!-- Page Content -->
 <div class="content ">
+    {{-- subnet editing --}}
     <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">Edit subnet</h3>
@@ -113,6 +114,7 @@
         </div>
     </div>
 
+    {{-- range creation --}}
     <div class="block block-rounded">
         <div class="block-header block-header-default">
             <h3 class="block-title">Range (IPs)</h3>
@@ -145,6 +147,96 @@
                     </form>
                     <!-- END Form Inline - Default Style -->
                 </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- ips list --}}
+    <div class="block block-rounded">
+        <div class="block block-rounded">
+            <div class="block-header ">
+                <h3 class="block-title">All ips</h3>
+                <div class="block-options">
+                    <div class="dropdown">
+                        <button type="button" class="btn-block-option" id="dropdown-ecom-filters"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Add New <i class="fa fa-angle-down ms-1"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-ecom-filters">
+                            <a class="dropdown-item d-flex align-items-center justify-content-between"
+                                href="{{route('ip_manager.ips.create')}}">
+                                IPv4
+                                <span class="badge bg-black-50 rounded-pill">+</span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-content">
+                {{--
+                <!-- Search Form -->
+                <form action="be_pages_ecom_orders.html" method="POST" onsubmit="return false;">
+                    <div class="mb-4">
+                        <div class="input-group">
+                            <input type="text" class="form-control form-control-alt" id="one-ecom-orders-search"
+                                name="one-ecom-orders-search" placeholder="Search all orders..">
+                            <span class="input-group-text bg-body border-0">
+                                <i class="fa fa-search"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form> --}}
+                <!-- END Search Form -->
+
+                <!-- All Orders Table -->
+                <div class="table-responsive">
+                    <table class="table table-borderless table-striped table-vcenter">
+                        <thead>
+                            <tr>
+                                <th>IP</th>
+                                <th class="d-none d-sm-table-cell ">Status</th>
+                                <th>Block</th>
+                                <th style="width: 50px;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($ips as $ip)
+                            <tr>
+                                <td class=" fs-sm">
+                                    <a class="fw-semibold" href="{{route('ip_manager.ips.edit', $ip)}}">
+                                        <strong>{{$ip->ip}}</strong>
+                                    </a>
+                                </td>
+                                <td class="d-sm-table-cell">
+                                    <span class="badge bg-info">{{ $ip->status }}</span>
+                                </td>
+                                <td class="d-none d-sm-table-cell  fs-sm">{{ $subnet->name }}</td>
+                                <td class="d-sm-table-cell">
+                                    <a class="btn btn-sm btn-alt-secondary"
+                                        href="{{route('ip_manager.ips.show', $ip->id)}}" data-bs-toggle="tooltip"
+                                        title="View">
+                                        <i class="fa fa-fw fa-eye"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                            @endforeach
+
+                            @if($ips->count() == 0)
+                            <tr>
+                                <td colspan="6" class="text-center ">
+                                    <p class="m-0">No ips added yet</p>
+                                </td>
+                            </tr>
+                            @endif
+                        </tbody>
+                    </table>
+                </div>
+                <!-- END All Orders Table -->
+
+
+                {{ $ips->links() }}
+                <!-- END Pagination -->
             </div>
         </div>
     </div>

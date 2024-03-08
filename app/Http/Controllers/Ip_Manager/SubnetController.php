@@ -146,9 +146,11 @@ class SubnetController extends Controller
 
         $children = $subnet->children()->get();
 
+        $ips = $subnet->ips()->paginate(25);
+
         return view(
             'ip_manager.subnets.edit',
-            compact('subnet', 'children', 'subnets')
+            compact('subnet', 'children', 'subnets', 'ips')
         );
     }
 

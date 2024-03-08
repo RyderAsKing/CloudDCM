@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\IpManager\IpsController;
 use App\Http\Controllers\Ip_Manager\SubnetController;
 
 Route::prefix('ip_manager')
@@ -12,4 +13,6 @@ Route::prefix('ip_manager')
             SubnetController::class,
             'range',
         ])->name('subnets.range');
+
+        Route::resource('ips', IpsController::class);
     });
