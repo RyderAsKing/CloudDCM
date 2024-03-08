@@ -112,6 +112,42 @@
             </form>
         </div>
     </div>
+
+    <div class="block block-rounded">
+        <div class="block-header block-header-default">
+            <h3 class="block-title">Range (IPs)</h3>
+        </div>
+        <div class="block-content block-content-full">
+            <div class="row">
+                <div class="col-lg-4">
+                    <p class="fs-sm text-muted">
+                        Using an inline layout can come really handy for small forms
+                    </p>
+                </div>
+                <div class="col-lg-8 space-y-2">
+                    <!-- Form Inline - Default Style -->
+                    <form class="row row-cols-lg-auto g-3 align-items-center"
+                        action="{{route('ip_manager.subnets.range', $subnet)}}" method="POST">
+                        @csrf
+                        <div class="col-12">
+                            <label class="visually-hidden" for="start">Start</label>
+                            <input type="text" class="form-control" id="start" name="start"
+                                placeholder="Start eg. 10.0.0.1">
+                        </div>
+                        <div class="col-12">
+                            <label class="visually-hidden" for="end">End</label>
+                            <input type="text" class="form-control" id="end" name="end"
+                                placeholder="End eg. 10.0.0.127">
+                        </div>
+                        <div>
+                            <button type="submit" class="btn btn-primary">Add </button>
+                        </div>
+                    </form>
+                    <!-- END Form Inline - Default Style -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- END Page Content -->
 @endsection

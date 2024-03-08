@@ -214,4 +214,56 @@ class SubnetController extends Controller
             ->route('ip_manager.subnets.index')
             ->with('success', 'Subnet deleted successfully.');
     }
+
+    public function range(Subnet $subnet, Request $request)
+    {
+        $this->authorize('create', Subnet::class);
+
+        $request->validate([
+            'start' => 'required|string|max:255',
+            'end' => 'required|string|max:255',
+        ]);
+
+        $start = ip2long($request->start);
+        $end = ip2long($request->end);
+
+        if ($start > $end) {
+            return redirect()
+                ->back()
+                ->with('error', 'Start IP cannot be greater than End IP.');
+        }
+
+        $ips = [];
+
+        for ($i = $start; $i <= $end; $i++) {
+            $ips[] = long2ip($i);
+        }
+
+        if (count($ips) > 256) {
+            return redirect()
+                ->back()
+                ->with('error', 'IP range cannot be greater than 256.');
+        }
+
+        $existing_ips = $subnet
+            ->ips()
+            ->whereIn('ip', $ips)
+            ->get();
+
+        if ($existing_ips->count() > 0) {
+            return redirect()
+                ->back()
+                ->with('error', 'IPs already exist.');
+        }
+
+        $subnet->ips()->createMany(
+            array_map(function ($ip) {
+                return ['ip' => $ip];
+            }, $ips)
+        );
+
+        return redirect()
+            ->back()
+            ->with('success', 'IP range created successfully.');
+    }
 }

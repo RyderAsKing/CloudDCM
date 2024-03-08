@@ -9,6 +9,8 @@ class IP extends Model
 {
     use HasFactory;
 
+    protected $table = 'ips';
+
     protected $fillable = ['subnet_id', 'ip', 'status'];
 
     public function subnet()

@@ -8,4 +8,8 @@ Route::prefix('ip_manager')
     ->middleware('auth')
     ->group(function () {
         Route::resource('subnets', SubnetController::class);
+        Route::post('subnets/{subnet}/range', [
+            SubnetController::class,
+            'range',
+        ])->name('subnets.range');
     });
