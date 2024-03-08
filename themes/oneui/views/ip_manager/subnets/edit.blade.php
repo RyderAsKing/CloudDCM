@@ -75,8 +75,8 @@
                                 <div class=" form-check form-block">
                                     <input type="radio" class="form-check-input" id="parent_id" name="parent_id"
                                         value=" ">
-                                    <label class="form-check-label" for="parent_id1"
-                                        style="height: 200px; display: flex; align-items:center; justify-content: center;">
+                                    <label class="form-check-label" for="parent_id"
+                                        style="height: 150px; display: flex; align-items:center; justify-content: center;">
                                         <span class="d-block fw-normal text-center ">
                                             <span class="fs-4 fw-semibold">None</span>
                                         </span>
@@ -91,7 +91,7 @@
                                     $parent_subnet->id)
                                     checked="checked" @endif>
                                     <label class="form-check-label" for="{{$parent_subnet->name}}"
-                                        style="height: 200px; display: flex; align-items:center; justify-content: center;">
+                                        style="height: 150px; display: flex; align-items:center; justify-content: center;">
                                         <span class="d-block fw-normal text-center ">
                                             <span class="fs-7 fw-semibold">{{$parent_subnet->name}} |
                                                 {{$parent_subnet->subnet}}</span>
