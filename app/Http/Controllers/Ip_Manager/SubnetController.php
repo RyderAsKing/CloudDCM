@@ -177,6 +177,18 @@ class SubnetController extends Controller
         $subnet->subnet = $request->subnet;
         $subnet->vlan = $request->vlan;
         $subnet->leased_company = $request->leased_company;
+
+        if ($subnet->parent_id != $request->parent_id) {
+            if ($subnet->children()->count() > 0) {
+                return redirect()
+                    ->back()
+                    ->with(
+                        'error',
+                        'Subnet has children, cannot change parent.'
+                    );
+            }
+        }
+
         $subnet->parent_id = $request->parent_id;
         $subnet->save();
 
